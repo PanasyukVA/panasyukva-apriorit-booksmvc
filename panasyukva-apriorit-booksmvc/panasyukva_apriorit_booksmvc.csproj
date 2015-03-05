@@ -114,36 +114,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Author.cs">
-      <DependentUpon>BooksModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Book.cs">
-      <DependentUpon>BooksModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BooksModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BooksModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BooksModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BooksModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BooksModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BooksModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\spAuthorGetList_Result.cs">
-      <DependentUpon>BooksModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\spBookGetList_Result.cs">
-      <DependentUpon>BooksModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -163,48 +135,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Models\BooksModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BooksModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Models\BooksModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BooksModel.edmx</DependentUpon>
-      <LastGenOutput>BooksModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\BooksModel.edmx.diagram">
-      <DependentUpon>BooksModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\BooksModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BooksModel.edmx</DependentUpon>
-      <LastGenOutput>BooksModel.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Books\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Books\Details.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Books\Create.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Books\Edit.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Books\Delete.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
