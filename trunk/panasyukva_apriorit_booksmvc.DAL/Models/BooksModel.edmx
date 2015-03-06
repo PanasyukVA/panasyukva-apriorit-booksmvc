@@ -4,19 +4,32 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SelfEducationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SelfEducationModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="SelfEducationModelStoreContainer">
+          <EntitySet Name="Author" EntityType="SelfEducationModel.Store.Author" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Book" EntityType="SelfEducationModel.Store.Book" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="BookAuthor" EntityType="SelfEducationModel.Store.BookAuthor" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_BookAuthor_AuthorID" Association="SelfEducationModel.Store.FK_BookAuthor_AuthorID">
+            <End Role="Author" EntitySet="Author" />
+            <End Role="BookAuthor" EntitySet="BookAuthor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookAuthor_BookID" Association="SelfEducationModel.Store.FK_BookAuthor_BookID">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="BookAuthor" EntitySet="BookAuthor" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Author">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="varchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="Book">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="varchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="BookAuthor">
@@ -28,8 +41,8 @@
           <Property Name="AuthorID" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_BookAuthor_AuthorID">
-          <End Role="Author" Type="Self.Author" Multiplicity="1" />
-          <End Role="BookAuthor" Type="Self.BookAuthor" Multiplicity="*" />
+          <End Role="Author" Type="SelfEducationModel.Store.Author" Multiplicity="1" />
+          <End Role="BookAuthor" Type="SelfEducationModel.Store.BookAuthor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Author">
               <PropertyRef Name="ID" />
@@ -40,8 +53,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BookAuthor_BookID">
-          <End Role="Book" Type="Self.Book" Multiplicity="1" />
-          <End Role="BookAuthor" Type="Self.BookAuthor" Multiplicity="*" />
+          <End Role="Book" Type="SelfEducationModel.Store.Book" Multiplicity="1" />
+          <End Role="BookAuthor" Type="SelfEducationModel.Store.BookAuthor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Book">
               <PropertyRef Name="ID" />
@@ -66,21 +79,7 @@
         <Function Name="spBookGetList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="AuthorID" Type="int" Mode="In" />
         </Function>
-        <EntityContainer Name="SelfEducationModelStoreContainer">
-          <EntitySet Name="Author" EntityType="Self.Author" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="BookAuthor" EntityType="Self.BookAuthor" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_BookAuthor_AuthorID" Association="Self.FK_BookAuthor_AuthorID">
-            <End Role="Author" EntitySet="Author" />
-            <End Role="BookAuthor" EntitySet="BookAuthor" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BookAuthor_BookID" Association="Self.FK_BookAuthor_BookID">
-            <End Role="Book" EntitySet="Book" />
-            <End Role="BookAuthor" EntitySet="BookAuthor" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SelfEducationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -116,7 +115,7 @@
             <Parameter Name="Name" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="spAuthorGetList" ReturnType="Collection(SelfEducationModel.spAuthorGetList_Result)">
-            <Parameter Name="BookID" Mode="In" Type="Int32" />
+          <Parameter Name="BookID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spBookEdit">
             <Parameter Name="ID" Mode="InOut" Type="Int32" />
@@ -124,7 +123,7 @@
             <Parameter Name="Authors" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="spBookGetList" ReturnType="Collection(SelfEducationModel.spBookGetList_Result)">
-            <Parameter Name="AuthorID" Mode="In" Type="Int32" />
+          <Parameter Name="AuthorID" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="spAuthorGetList_Result">
@@ -199,8 +198,8 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
         <DesignerProperty Name="UseLegacyProvider" Value="true" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
