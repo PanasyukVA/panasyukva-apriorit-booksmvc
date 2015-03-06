@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2012 for Web
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "panasyukva_apriorit_booksmvc", "panasyukva-apriorit-booksmvc\panasyukva_apriorit_booksmvc.csproj", "{803A22DD-EAE3-45D0-9C48-27B119EAE453}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "panasyukva_apriorit_booksmvc.DAL", "panasyukva_apriorit_booksmvc.DAL\panasyukva_apriorit_booksmvc.DAL.csproj", "{2C147D72-F029-4921-A8F3-5509AA38F4F6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "panasyukva_apriorit_booksmvc.DomainModel", "panasyukva_apriorit_booksmvc.DomainModel\panasyukva_apriorit_booksmvc.DomainModel.csproj", "{7DDD3173-0B11-41A1-ADA2-8E07674F124C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "panasyukva_apriorit_booksmvc.ViewModel", "panasyukva_apriorit_booksmvc.ViewModel\panasyukva_apriorit_booksmvc.ViewModel.csproj", "{84BBC1BC-A33D-4B50-89F2-1E8616CAE65F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "panasyukva_apriorit_booksmvc.DomainModel", "panasyukva_apriorit_booksmvc.DomainModel\panasyukva_apriorit_booksmvc.DomainModel.csproj", "{7DDD3173-0B11-41A1-ADA2-8E07674F124C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "panasyukva_apriorit_booksmvc.DAL", "panasyukva_apriorit_booksmvc.DAL\panasyukva_apriorit_booksmvc.DAL.csproj", "{FD819B14-1ECF-401D-894D-BFFD08C442B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,18 +21,18 @@ Global
 		{803A22DD-EAE3-45D0-9C48-27B119EAE453}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{803A22DD-EAE3-45D0-9C48-27B119EAE453}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{803A22DD-EAE3-45D0-9C48-27B119EAE453}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2C147D72-F029-4921-A8F3-5509AA38F4F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2C147D72-F029-4921-A8F3-5509AA38F4F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2C147D72-F029-4921-A8F3-5509AA38F4F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2C147D72-F029-4921-A8F3-5509AA38F4F6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{84BBC1BC-A33D-4B50-89F2-1E8616CAE65F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{84BBC1BC-A33D-4B50-89F2-1E8616CAE65F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{84BBC1BC-A33D-4B50-89F2-1E8616CAE65F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{84BBC1BC-A33D-4B50-89F2-1E8616CAE65F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7DDD3173-0B11-41A1-ADA2-8E07674F124C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7DDD3173-0B11-41A1-ADA2-8E07674F124C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DDD3173-0B11-41A1-ADA2-8E07674F124C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DDD3173-0B11-41A1-ADA2-8E07674F124C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84BBC1BC-A33D-4B50-89F2-1E8616CAE65F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84BBC1BC-A33D-4B50-89F2-1E8616CAE65F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84BBC1BC-A33D-4B50-89F2-1E8616CAE65F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84BBC1BC-A33D-4B50-89F2-1E8616CAE65F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD819B14-1ECF-401D-894D-BFFD08C442B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD819B14-1ECF-401D-894D-BFFD08C442B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD819B14-1ECF-401D-894D-BFFD08C442B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD819B14-1ECF-401D-894D-BFFD08C442B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

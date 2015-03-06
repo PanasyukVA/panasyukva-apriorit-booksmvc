@@ -30,8 +30,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\panasyukva_apriorit_booksmvc.DAL\bin\Debug\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="panasyukva_apriorit_booksmvc.DAL">
-      <HintPath>..\panasyukva_apriorit_booksmvc.DAL\bin\panasyukva_apriorit_booksmvc.DAL.dll</HintPath>
+      <HintPath>..\panasyukva_apriorit_booksmvc.DAL\bin\Debug\panasyukva_apriorit_booksmvc.DAL.dll</HintPath>
+    </Reference>
+    <Reference Include="panasyukva_apriorit_booksmvc.ViewModel">
+      <HintPath>..\panasyukva_apriorit_booksmvc.ViewModel\bin\Debug\panasyukva_apriorit_booksmvc.ViewModel.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -42,9 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Author.cs" />
-    <Compile Include="Book.cs" />
-    <Compile Include="BooksShop.cs" />
+    <Compile Include="Domains\DomainModelAuthor.cs" />
+    <Compile Include="Domains\DomainModelBook.cs" />
+    <Compile Include="Domains\DomainModelBooks.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
