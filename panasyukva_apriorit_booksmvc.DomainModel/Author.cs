@@ -2,14 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using panasyukva_apriorit_booksmvc;
 
 namespace panasyukva_apriorit_booksmvc.DomainModel
 {
-    public class Author
+    public class Author : DAL.Models.Author
     {
-        public int AuthorID { get; set; }
-        public string AuthorName { get; set; }
-        public string BooksName { get; set; }
     }
 }

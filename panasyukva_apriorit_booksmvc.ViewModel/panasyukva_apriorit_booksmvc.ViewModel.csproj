@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="panasyukva_apriorit_booksmvc.DAL">
+      <HintPath>..\panasyukva_apriorit_booksmvc.DAL\bin\panasyukva_apriorit_booksmvc.DAL.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
