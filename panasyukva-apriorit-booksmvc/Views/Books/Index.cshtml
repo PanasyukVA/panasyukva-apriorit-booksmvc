@@ -1,0 +1,66 @@
+﻿@model panasyukva_apriorit_booksmvc.DomainModel.Domains.DomainModelBooks
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/Books.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/functions.js"></script>
+    <script src="~/Scripts/jquery-2.1.3.js"></script>
+    <title>Books</title>
+</head>
+<body>
+    <div id="container">
+        <div role="main">
+            <div id="Book"></div>
+
+            <div id="books">
+                <table class="BooksTable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Book Name</th>
+                            <th>Authors</th>
+                            <th>Operations</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var book in Model.Books)
+                        {
+                            <tr>
+                                <th>
+                                    @book.BookID
+                                </th>
+                                <td>
+                                    @book.BookName
+                                </td>
+                                <td>
+                                    @foreach (var author in book.Authors)
+                                    {
+                                        <a href="Author/Details/@author.AuthorID" data-authorid="author.AuthorID">author.AuthorName</a>@:,&nbsp; 
+                                    }
+                                </td>
+                                <td>
+                                    <input id="btnEditBook" data-bookid="@book.BookID" type="button" value="Edit" title="Click the button to edit the book" />
+                                </td>
+                            </tr> 
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="Author"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            initialize();
+        });
+    </script>
+</body>
+</html>
