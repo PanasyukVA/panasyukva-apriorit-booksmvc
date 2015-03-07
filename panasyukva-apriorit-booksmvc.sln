@@ -1,9 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio Express 2012 for Web
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "panasyukva_apriorit_booksmvc", "panasyukva-apriorit-booksmvc\panasyukva_apriorit_booksmvc.csproj", "{803A22DD-EAE3-45D0-9C48-27B119EAE453}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FD819B14-1ECF-401D-894D-BFFD08C442B4} = {FD819B14-1ECF-401D-894D-BFFD08C442B4}
+		{7DDD3173-0B11-41A1-ADA2-8E07674F124C} = {7DDD3173-0B11-41A1-ADA2-8E07674F124C}
+		{84BBC1BC-A33D-4B50-89F2-1E8616CAE65F} = {84BBC1BC-A33D-4B50-89F2-1E8616CAE65F}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "panasyukva_apriorit_booksmvc.DomainModel", "panasyukva_apriorit_booksmvc.DomainModel\panasyukva_apriorit_booksmvc.DomainModel.csproj", "{7DDD3173-0B11-41A1-ADA2-8E07674F124C}"
 EndProject
