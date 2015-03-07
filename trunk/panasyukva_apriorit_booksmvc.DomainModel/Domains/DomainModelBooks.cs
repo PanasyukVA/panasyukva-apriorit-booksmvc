@@ -11,17 +11,25 @@ namespace panasyukva_apriorit_booksmvc.DomainModel.Domains
     public class DomainModelBooks
     {
         SelfEducationEntities context;
+        
         public ICollection<ViewModelBook> Books {
             get {
                 List<ViewModelBook> listBook = new List<ViewModelBook>();
-                //foreach (Book book in context.Books)
-                //    listBook.Add(new ViewModelBook() { BookID = book.ID, BookName = book.Name });
 
+                foreach (var book in context.Book)
+                {
+                    List<ViewModelAuthor> listAuthor = new List<ViewModelAuthor>();
+                    foreach (var author in book.Author)
+                        listAuthor.Add(new ViewModelAuthor() { AuthorID = author.ID, AuthorName = author.Name });
+
+                    listBook.Add(new ViewModelBook() { BookID = book.ID, BookName = book.Name, Authors = listAuthor });
+                }
+                
                 return listBook;
             }
         }
 
-        DomainModelBooks() {
+        public DomainModelBooks() {
             context = new SelfEducationEntities();
         }
     }

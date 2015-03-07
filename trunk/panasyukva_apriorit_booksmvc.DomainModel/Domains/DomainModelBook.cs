@@ -7,7 +7,12 @@ using panasyukva_apriorit_booksmvc.DAL;
 
 namespace panasyukva_apriorit_booksmvc.DomainModel.Domains
 {
-    class DomainModelBook
+    public class DomainModelBook
     {
+        SelfEducationEntities context;
+
+        public DomainModelBook() {
+            context = new SelfEducationEntities();
+        }
     }
 }

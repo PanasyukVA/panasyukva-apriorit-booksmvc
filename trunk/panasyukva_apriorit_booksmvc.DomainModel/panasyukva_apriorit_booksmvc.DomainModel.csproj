@@ -34,7 +34,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\panasyukva_apriorit_booksmvc.DAL\bin\Debug\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="panasyukva_apriorit_booksmvc.DAL">
+    <Reference Include="panasyukva_apriorit_booksmvc.DAL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\panasyukva_apriorit_booksmvc.DAL\bin\Debug\panasyukva_apriorit_booksmvc.DAL.dll</HintPath>
     </Reference>
     <Reference Include="panasyukva_apriorit_booksmvc.ViewModel">
