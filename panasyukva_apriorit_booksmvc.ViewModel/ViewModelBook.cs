@@ -15,5 +15,8 @@ namespace panasyukva_apriorit_booksmvc.ViewModel
         [Required()]
         [MaxLength(150)]
         public string BookName { get; set; }
+
+        [Required()]
+        public ICollection<ViewModelAuthor> Authors { get; set; }
     }
 }
