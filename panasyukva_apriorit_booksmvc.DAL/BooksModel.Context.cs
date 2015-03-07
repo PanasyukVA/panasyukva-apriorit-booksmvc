@@ -13,9 +13,9 @@ namespace panasyukva_apriorit_booksmvc.DAL
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SelfEducationEntitiesHome : DbContext
+    public partial class SelfEducationEntities : DbContext
     {
-        public SelfEducationEntitiesHome()
+        public SelfEducationEntities()
             : base("name=SelfEducationEntitiesHome")
         {
         }
