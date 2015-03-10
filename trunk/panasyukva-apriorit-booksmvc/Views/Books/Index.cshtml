@@ -42,11 +42,11 @@
                                 <td>
                                     @foreach (var author in book.Authors)
                                     {
-                                        <a href="Author/Details/@author.AuthorID" data-authorid="author.AuthorID">author.AuthorName</a>@:,&nbsp; 
+                                        <a id="aEditAuthor" href="Author/Edit/@author.AuthorID" data-authorid="@author.AuthorID">@author.AuthorName</a>@:,&nbsp; 
                                     }
                                 </td>
                                 <td>
-                                    <input id="btnEditBook" data-bookid="@book.BookID" type="button" value="Edit" title="Click the button to edit the book" />
+                                    <button id="btnEditBook" data-bookid="@book.BookID" title="Click the button to edit the book" type="button">Edit</button>
                                 </td>
                             </tr> 
                         }

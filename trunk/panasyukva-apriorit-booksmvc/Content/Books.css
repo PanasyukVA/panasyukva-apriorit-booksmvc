@@ -5,11 +5,7 @@ body {
     font-size: 14pt;
 }
 
-input {
-    width: 99%;
-}
-
-select {
+button {
     width: 100%;
 }
 

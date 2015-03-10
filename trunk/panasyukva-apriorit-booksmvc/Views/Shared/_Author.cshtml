@@ -9,11 +9,11 @@
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>ViewModelAuthor</legend>
+        <legend>Author</legend>
 
-        <div class="editor-label">
+        @*<div class="editor-label">
             @Html.LabelFor(model => model.AuthorID)
-        </div>
+        </div>*@
         <div class="editor-field">
             @Html.EditorFor(model => model.AuthorID)
             @Html.ValidationMessageFor(model => model.AuthorID)
@@ -31,7 +31,7 @@
             @Html.LabelFor(model => model.Books)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Books)
+            @Html.TextBoxFor(model => model.Books, new { @readonly = "readonly" })
             @Html.ValidationMessageFor(model => model.Books)
         </div>
 
@@ -41,6 +41,6 @@
     </fieldset>
 }
 
-<div>
+@*<div>
     @Html.ActionLink("Back to List", "Index")
-</div>
+</div>*@

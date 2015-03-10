@@ -2,13 +2,22 @@
 /// <reference path="jquery-2.1.3.intellisense.js" />
 
 function initialize() {
-    $("#btnEditBook").on("click", showAuthor);
+    var tt = $("#aEditAuthor");
+    $("[id=aEditAuthor]").on("click", showAuthor);
+    $("[id=btnEditBook]").on("click", showBook);
 }
 
 function showAuthor() {
+    var authorid = $(this).data("authorid");
+    var path = "Author/Edit/" + authorid;
+    getPartialView(path).done(displayAuthor).fail(authorErrorHandling);
+    return false;
+}
+
+function showBook() {
     var bookId = $(this).data("bookid");
-    var path = "Author/Details/" + bookId;
-    getPartialView(path).done(displayAuthor).fail(errorHandling);
+    var path = "Book/Edit/" + bookId;
+    getPartialView(path).done(displayBook).fail(bookErrorHandling);
 }
 
 function getPartialView(path) {
@@ -16,9 +25,17 @@ function getPartialView(path) {
 }
 
 function displayAuthor(authorView) {
-    $("#Author").text(authorView);
+    $("#Author").html(authorView);
 }
 
-function errorHandling(error){
+function displayBook(bookView) {
+    $("#Book").html(bookView);
+}
+
+function authorErrorHandling(error){
     $("#Author").html(error.responseText);
+}
+
+function bookErrorHandling(error) {
+    $("#Book").html(error.responseText);
 }

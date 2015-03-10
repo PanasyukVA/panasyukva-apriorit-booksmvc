@@ -9,11 +9,11 @@
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>ViewModelBook</legend>
+        <legend>Book</legend>
 
-        <div class="editor-label">
+        @*<div class="editor-label">
             @Html.LabelFor(model => model.BookID)
-        </div>
+        </div>*@
         <div class="editor-field">
             @Html.EditorFor(model => model.BookID)
             @Html.ValidationMessageFor(model => model.BookID)
@@ -27,12 +27,20 @@
             @Html.ValidationMessageFor(model => model.BookName)
         </div>
 
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Authors)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Test", new SelectList(Model.Authors, "AuthorID", "AuthorName"))
+            @Html.ValidationMessageFor(model => model.Authors)
+        </div>
+
         <p>
             <input type="submit" value="Save" />
         </p>
     </fieldset>
 }
 
-<div>
+@*<div>
     @Html.ActionLink("Back to List", "Index")
-</div>
+</div>*@
