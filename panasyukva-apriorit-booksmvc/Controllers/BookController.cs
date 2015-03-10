@@ -4,15 +4,16 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using panasyukva_apriorit_booksmvc.DomainModel.Domains;
+using panasyukva_apriorit_booksmvc.ViewModel;
 
 namespace panasyukva_apriorit_booksmvc.Controllers
 {
-    public class AuthorController : Controller
+    public class BookController : Controller
     {
-        DomainModelAuthor model;
-
+        DomainModelBook model;
+        
         //
-        // GET: /Author/Create
+        // GET: /Book/Create
 
         public ActionResult Create()
         {
@@ -20,7 +21,7 @@ namespace panasyukva_apriorit_booksmvc.Controllers
         }
 
         //
-        // POST: /Author/Create
+        // POST: /Book/Create
 
         [HttpPost]
         public ActionResult Create(FormCollection collection)
@@ -38,16 +39,16 @@ namespace panasyukva_apriorit_booksmvc.Controllers
         }
 
         //
-        // GET: /Author/Edit/5
+        // GET: /Book/Edit/5
 
         public ActionResult Edit(int id)
         {
-            model = new DomainModelAuthor();
-            return View("_Author", model.GetAuthor(id));
+            model = new DomainModelBook();
+            return View("_Book", model.GetBook(id));
         }
 
         //
-        // POST: /Author/Edit/5
+        // POST: /Book/Edit/5
 
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
@@ -55,6 +56,32 @@ namespace panasyukva_apriorit_booksmvc.Controllers
             try
             {
                 // TODO: Add update logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        //
+        // GET: /Book/Delete/5
+
+        public ActionResult Delete(int id)
+        {
+            return View();
+        }
+
+        //
+        // POST: /Book/Delete/5
+
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add delete logic here
 
                 return RedirectToAction("Index");
             }
