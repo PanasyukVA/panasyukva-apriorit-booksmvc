@@ -18,20 +18,26 @@ namespace panasyukva_apriorit_booksmvc.DomainModel.Domains
 
         public ViewModelAuthor GetAuthor(int authorId)
         {
-            var currentAuthor = (from author in context.Author where author.ID == authorId select author).FirstOrDefault();
-            StringBuilder currentAuthorBooks = new StringBuilder();
-            foreach (var book in currentAuthor.Book)
-                currentAuthorBooks.Append(book.Name);
-            return new ViewModelAuthor() { AuthorID = currentAuthor.ID, AuthorName = currentAuthor.Name, Books = currentAuthorBooks.ToString() };
+            Author DALAuthor = context.Author.Where(author => author.ID == authorId).FirstOrDefault();
+            StringBuilder vmAuthorBooks = new StringBuilder();
+            foreach (var book in DALAuthor.Book)
+                vmAuthorBooks.Append(book.Name);
+            return new ViewModelAuthor() { AuthorID = DALAuthor.ID, AuthorName = DALAuthor.Name, Books = vmAuthorBooks.ToString() };
         }
 
-        public int CreateAuthor(string AuthorName)
+        public ViewModelAuthor CreateAuthor(ViewModelAuthor vmAuthor)
         {
-            return 1;
+            context.Author.Add(new Author() { Name = vmAuthor.AuthorName });
+            context.SaveChanges();
+            return vmAuthor;
         }
 
-        public void EditAuthor(int AuthorID, string AuthorName)
+        public ViewModelAuthor EditAuthor(ViewModelAuthor vmAuthor)
         {
+            Author DALAuthor = context.Author.Where(author => author.ID == vmAuthor.AuthorID).FirstOrDefault();
+            DALAuthor.Name = vmAuthor.AuthorName;
+            context.SaveChanges();
+            return vmAuthor;
         }
     }
 }
