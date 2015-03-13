@@ -1,0 +1,64 @@
+﻿@model IEnumerable<BooksMVC.ViewModel.BookViewModel>
+
+@{
+    ViewBag.Title = "Books";
+    Layout = "~/Views/_BaseLayout.cshtml";
+}
+
+<div id="container">
+    <div role="main">
+        <div id="Book"></div>
+
+        <div id="Books">
+            <table class="BooksTable table table-bordered table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th class="text-center">#</th>
+                        <th class="text-center">Book Name</th>
+                        <th class="text-center">Authors</th>
+                        <th class="text-center">Operations</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var book in Model)
+                    {
+                        <tr>
+                            <th>
+                                @book.BookID
+                            </th>
+                            <td>
+                                @book.BookName
+                            </td>
+                            <td>
+                                @foreach (var author in book.Authors)
+                                {
+                                    <a id="aEditAuthor" class="btn btn-link" href="#" data-authorid="@author.AuthorID">@author.AuthorName</a>
+                                    if (author != book.Authors.Last())
+                                    {
+                                        @:,
+                                    }
+                                }
+                            </td>
+                            <td>
+                                <button id="btnEditBook" class="btn btn-primary btn-sm" data-bookid="@book.BookID" title="Click the button to edit the book" type="button">Edit</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div id="Author"></div>
+
+        <p class="btn-group">
+            <input type="button" id="btnCreateBook" value="Add book" class="btn btn-primary" />
+            <input type="button" id="btnCreateAuthor" value="Add author" class="btn btn-primary" />
+        </p>
+    </div>
+</div>
+<script type="text/javascript">
+        $(document).ready(function () {
+            initialize();
+        });
+</script>

@@ -1,0 +1,37 @@
+﻿@model BooksMVC.ViewModel.AuthorViewModel
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Author</legend>
+
+        <div class="form-group">
+            @Html.EditorFor(model => model.AuthorID)
+            @Html.ValidationMessageFor(model => model.AuthorID)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AuthorName)
+            @Html.EditorFor(model => model.AuthorName)
+            @Html.ValidationMessageFor(model => model.AuthorName)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Books)
+            @Html.TextBoxFor(model => model.Books, new { @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.Books)
+        </div>
+
+        <p class="btn-group">
+            <input type="submit" value="Save" class="btn btn-info btn-md" />
+            <input type="button" value="Cancel" id="btnCancelAuthor" class="btn btn-info btn-md" />
+        </p>
+    </fieldset>
+}
+<script type="text/javascript">
+        $(document).ready(function () {
+            initializeCreateEdit();
+        });
+</script>
