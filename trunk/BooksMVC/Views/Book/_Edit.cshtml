@@ -13,21 +13,24 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.BookName)
-            @Html.EditorFor(model => model.BookName)
+            @Html.LabelFor(model => model.BookName):
+            @Html.TextBoxFor(model => model.BookName, new { @class = "form-control", placeholder = "Please, enter a book name" })
             @Html.ValidationMessageFor(model => model.BookName)
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Authors)
-            @Html.ListBoxFor(model => model.SelectedAuthors, (SelectList)ViewBag.AllAuthors, new { size = 3 })
+            @Html.LabelFor(model => model.Authors):
+            @Html.ListBoxFor(model => model.SelectedAuthors, (SelectList)ViewBag.AllAuthors, new { size = 3, @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Authors)
         </div>
 
-
-        <p class="btn-group">
-            <input type="submit" value="Save" class="btn btn-info btn-md" />
-            <input type="button" value="Cancel" id="btnCancelBook" class="btn btn-info btn-md" />
+        <p>
+            <button type="submit" class="btn btn-info btn-md">
+                <span class="glyphicon glyphicon-floppy-saved"></span>&nbsp;&nbsp;&nbsp;Save
+            </button>
+            <button type="button" id="btnCancelBook" class="btn btn-info btn-md">
+                <span class="glyphicon glyphicon-floppy-remove"></span>&nbsp;&nbsp;&nbsp;Cancel
+            </button>
         </p>
     </fieldset>
 }

@@ -13,10 +13,10 @@
             <table class="BooksTable table table-bordered table-hover table-condensed">
                 <thead>
                     <tr>
-                        <th class="text-center">#</th>
-                        <th class="text-center">Book Name</th>
-                        <th class="text-center">Authors</th>
-                        <th class="text-center">Operations</th>
+                        <th class="text-center lead">#</th>
+                        <th class="text-center lead">Book Name</th>
+                        <th class="text-center lead">Authors</th>
+                        <th class="text-center lead">Operations</th>
                     </tr>
                 </thead>
 
@@ -41,7 +41,9 @@
                                 }
                             </td>
                             <td>
-                                <button id="btnEditBook" class="btn btn-primary btn-sm" data-bookid="@book.BookID" title="Click the button to edit the book" type="button">Edit</button>
+                                <button id="btnEditBook" class="btn btn-primary btn-sm" data-bookid="@book.BookID" title="Click the button to edit the book" type="button">
+                                    <span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;&nbsp;Edit
+                                </button>
                             </td>
                         </tr>
                     }
@@ -52,8 +54,12 @@
         <div id="Author"></div>
 
         <p class="btn-group">
-            <input type="button" id="btnCreateBook" value="Add book" class="btn btn-primary" />
-            <input type="button" id="btnCreateAuthor" value="Add author" class="btn btn-primary" />
+            <button class="btn btn-primary" id="btnCreateBook">
+                <span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;&nbsp;Add book
+            </button>
+            <button class="btn btn-primary" id="btnCreateAuthor">
+                <span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;&nbsp;Add author
+            </button>
         </p>
     </div>
 </div>

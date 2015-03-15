@@ -89,9 +89,26 @@ namespace BooksMVC.DomainModel.Domains
             using (context = new SelfEducationEntities())
             {
                 Book DALBook = context.Books.Where(book => book.ID == vmBook.BookID).First();
-                DALBook.Name = vmBook.BookName;
-                DALBook.Authors = context.Authors.Where(author => vmBook.SelectedAuthors.Contains(SqlFunctions.StringConvert((double?)author.ID).Trim())).ToList();
-                context.SaveChanges();
+                
+                // Update
+                if (DALBook.Name != vmBook.BookName)
+                    context.Database.ExecuteSqlCommand("UPDATE dbo.Book SET Name = {0} WHERE ID = {1}", vmBook.BookName, DALBook.ID);
+                
+                // Delete
+                IEnumerable<string> authorsDelete = DALBook.Authors.Where(
+                    author => !vmBook.SelectedAuthors.Contains(author.ID.ToString())).Select(
+                        author => author.ID.ToString()).AsEnumerable<string>();
+                foreach(var author in authorsDelete)
+                    context.Database.ExecuteSqlCommand("DELETE dbo.BookAuthor WHERE BookID = {0} AND AuthorID = {1}", DALBook.ID, author);
+
+                // Insert
+                IEnumerable<string> authorsInsert = vmBook.SelectedAuthors.Where(
+                    author => !DALBook.Authors.Select(
+                        dalauthor => dalauthor.ID).AsEnumerable<int>().Contains(Convert.ToInt32(author))
+                        );
+                foreach(var author in authorsInsert)
+                    context.Database.ExecuteSqlCommand("INSERT INTO dbo.BookAuthor(BookID, AuthorID) VALUES({0}, {1})", DALBook.ID, author);
+
                 return vmBook;
             }
         }

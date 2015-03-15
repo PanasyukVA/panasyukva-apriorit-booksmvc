@@ -1,23 +1,10 @@
-﻿/* --- Common --- */
-
-body {
-    font-family: Calibri;
-    font-size: 14pt;
-}
-
-button {
+﻿/* The Books page  */
+.BooksTable {
+    border-width: 1pt;
     width: 100%;
 }
 
-/*#Book, #Author input, select {
-    width: 30%;
-}*/
-
-/* --- Specific --- */
-
-/* The Books page  */
-.BooksTable {
-    border-width: 1pt;
+.BooksTable button {
     width: 100%;
 }
 
@@ -43,30 +30,13 @@ button {
 }
 
 /* The Author page  */
-.AuthorTable{
-    background-color: #b0c4de;
-    width: 30%;
-}
 
-.AuthorTable tbody tr td:first-child {
-    width: 30%;
-}
-
-.AuthorTable tbody tr td:nth-child(2){
-    text-align:left;
+#Author {
+    width: 50%;
 }
 
 /* The Book page  */
 
-.BookTable {
-    background-color: #b0c4de;
-    width: 40%;
-}
-
-.BookTable tr td:first-child {
-    width: 15%;
-}
-
-.BookTable tr td:nth-child(2){
-    text-align:left;
+#Book {
+    width: 50%;
 }
