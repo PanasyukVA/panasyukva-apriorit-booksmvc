@@ -49,9 +49,9 @@ namespace BooksMVC.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception err)
             {
-                return View("Index");
+                return View("_Error", err);
             }
         }
 
@@ -82,9 +82,9 @@ namespace BooksMVC.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception err)
             {
-                return View("Index");
+                return View("_Error", err);
             }
         }
     }
