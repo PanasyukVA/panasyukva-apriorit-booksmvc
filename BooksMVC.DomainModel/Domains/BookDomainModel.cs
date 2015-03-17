@@ -89,10 +89,8 @@ namespace BooksMVC.DomainModel.Domains
             using (context = new SelfEducationEntities())
             {
                 Book DALBook = context.Books.Where(book => book.ID == vmBook.BookID).First();
-                
-                // Update
-                if (DALBook.Name != vmBook.BookName)
-                    context.Database.ExecuteSqlCommand("UPDATE dbo.Book SET Name = {0} WHERE ID = {1}", vmBook.BookName, DALBook.ID);
+                DALBook.Name = vmBook.BookName;
+                context.SaveChanges();
                 
                 // Delete
                 IEnumerable<string> authorsDelete = DALBook.Authors.Where(
