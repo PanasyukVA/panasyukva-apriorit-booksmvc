@@ -9,22 +9,29 @@ function initialize() {
 }
 
 function initializeCreateEdit() {
-    $("#btnCancelAuthor").on("click", function () { $("#Author").text("") });
-    $("#btnCancelBook").on("click", function () { $("#Book").text("") });
+    $("#btnCancelAuthor").on("click", function () {
+        $("#Author").slideUp(1000);
+    });
+    $("#btnCancelBook").on("click", function () {
+        $("#Book").slideUp(1000);
+    });
 }
 
-function showCreateAuthor(){
+function showCreateAuthor() {
+    $('#Author').slideDown(1000);
     getPartialView("Author/Create/").done(displayAuthor).fail(authorErrorHandling);
 }
 
 function showCreateBook() {
     getPartialView("Book/Create/").done(displayBook).fail(bookErrorHandling);
+    $('#Book').slideDown(1000);
 }
 
 function showEditAuthor() {
     var authorid = $(this).data("authorid");
     var path = "Author/Edit/" + authorid;
     getPartialView(path).done(displayAuthor).fail(authorErrorHandling);
+    $('#Author').slideDown(1000);
     return false;
 }
 
@@ -32,6 +39,7 @@ function showEditBook() {
     var bookId = $(this).data("bookid");
     var path = "Book/Edit/" + bookId;
     getPartialView(path).done(displayBook).fail(bookErrorHandling);
+    $('#Book').slideDown(1000);
 }
 
 function getPartialView(path) {
