@@ -8,7 +8,7 @@ using BooksMVC.DAL;
 
 namespace BooksWcfServices
 {
-    [ServiceContract]
+    [ServiceContract(Namespace = "http://http://www.apriorit.com/PanasyukVA/Services")]
     public interface IBookWcfService
     {
         [OperationContract]
@@ -23,25 +23,26 @@ namespace BooksWcfServices
         [OperationContract]
         BookViewModel CreateBook(BookViewModel vmBook);
 
+        [OperationContract]
         BookViewModel EditBook(BookViewModel vmBook);
 
         [OperationContract]
         void RemoveBook(BookViewModel vmBook);
     }
 
-    [DataContract]
+    [DataContract(Namespace="http://http://www.apriorit.com/PanasyukVA/Services")]
     public class BookViewModel
     {
         [DataMember]
         public int? BookID { get; set; }
 
-        [DataMember]
+        [DataMember(IsRequired = true)]
         public string BookName { get; set; }
 
-        [DataMember]
+        [DataMember(IsRequired = true)]
         public ICollection<AuthorViewModel> Authors { get; set; }
 
-        [DataMember]
+        [DataMember(IsRequired = true)]
         public IEnumerable<string> SelectedAuthors { get; set; } 
     }
 }
