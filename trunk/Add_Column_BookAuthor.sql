@@ -1,0 +1,6 @@
+USE SelfEducation
+GO
+ALTER TABLE dbo.BookAuthor DROP CONSTRAINT PK_BookAuthor
+GO
+ALTER TABLE dbo.BookAuthor ADD BookAuthorID INT IDENTITY CONSTRAINT PK_BookAuthor PRIMARY KEY 
+GO
