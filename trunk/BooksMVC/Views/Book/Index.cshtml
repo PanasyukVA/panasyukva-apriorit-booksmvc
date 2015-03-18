@@ -7,7 +7,45 @@
 
 <div id="container">
     <div role="main">
-        <div id="Book"></div>
+        <div id="Book">
+            <fieldset>
+                <legend>Book</legend>
+
+                <div class="form-group">
+                    <input data-val="true" data-val-number="The field BookID must be a number." id="BookID" name="BookID" type="hidden" value="">
+                    <span class="field-validation-valid" data-valmsg-for="BookID" data-valmsg-replace="true"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="BookName">BookName</label>:
+                    <input class="form-control" data-val="true" data-val-required="The BookName field is required." id="BookName" name="BookName" placeholder="Please, enter a book name" type="text" value="">
+                    <span class="field-validation-valid" data-valmsg-for="BookName" data-valmsg-replace="true"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="Authors">Authors</label>:
+                    <select class="form-control" id="SelectedAuthors" multiple="multiple" name="SelectedAuthors" size="3"><option value="1">Adam Freeman</option>
+                        <option value="2">Matthew MacDonald</option>
+                        <option value="3">Mario Szpuszta</option>
+                        <option value="4">Jon Galloway</option>
+                        <option value="5">Phil Haack</option>
+                        <option value="6">Brad Wilson</option>
+                        <option value="7">K. Scott Allen</option>
+                        <option value="1017">TestAuthor</option>
+                    </select>
+                    <span class="field-validation-valid" data-valmsg-for="Authors" data-valmsg-replace="true"></span>
+                </div>
+
+                <p>
+                    <button type="submit" class="btn btn-info btn-md">
+                        <span class="glyphicon glyphicon-floppy-saved"></span>&nbsp;&nbsp;&nbsp;Save
+                    </button>
+                    <button type="button" id="btnCancelBook" class="btn btn-info btn-md">
+                        <span class="glyphicon glyphicon-floppy-remove"></span>&nbsp;&nbsp;&nbsp;Cancel
+                    </button>
+                </p>
+            </fieldset>
+        </div>
 
         <div id="Books">
             <table class="BooksTable table table-bordered table-hover table-condensed">
@@ -51,7 +89,37 @@
             </table>
         </div>
 
-        <div id="Author"></div>
+        <div id="Author">
+            <fieldset>
+                <legend>Author</legend>
+
+                <div class="form-group">
+                    <input data-val="true" data-val-number="The field AuthorID must be a number." id="AuthorID" name="AuthorID" type="hidden" value="">
+                    <span class="field-validation-valid" data-valmsg-for="AuthorID" data-valmsg-replace="true"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="AuthorName">AuthorName</label>
+                    <input class="form-control" data-val="true" data-val-required="The AuthorName field is required." id="AuthorName" name="AuthorName" placeholder="Please, enter an author name" type="text" value="">
+                    <span class="field-validation-valid" data-valmsg-for="AuthorName" data-valmsg-replace="true"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="Books">Books</label>
+                    <input class="form-control" id="AuthorBooks" name="Books" readonly="readonly" type="text" value="">
+                    <span class="field-validation-valid" data-valmsg-for="Books" data-valmsg-replace="true"></span>
+                </div>
+
+                <p>
+                    <button type="submit" class="btn btn-info btn-md">
+                        <span class="glyphicon glyphicon-floppy-saved"></span>&nbsp;&nbsp;&nbsp;Save
+                    </button>
+                    <button type="button" id="btnCancelAuthor" class="btn btn-info btn-md">
+                        <span class="glyphicon glyphicon-floppy-remove"></span>&nbsp;&nbsp;&nbsp;Cancel
+                    </button>
+                </p>
+            </fieldset>
+        </div>
 
         <p class="btn-group">
             <button class="btn btn-primary" id="btnCreateBook">
