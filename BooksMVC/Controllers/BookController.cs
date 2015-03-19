@@ -5,21 +5,40 @@ using System.Web;
 using System.Web.Mvc;
 using BooksMVC.DomainModel.Domains;
 using BooksMVC.ViewModel;
+using panasyukva_apriorit_booksmvc.BookWcfService;
 
 namespace BooksMVC.Controllers
 {
     public class BookController : Controller
     {
-        BookDomainModel model;
+        BookWcfServiceClient service;
         
         //
         // GET: /Book/Index
 
         public ActionResult Index()
         {
-            using (model = new BookDomainModel())
+            using (service = new BookWcfServiceClient())
             {
-                return View("Index", model.GetBooks());
+                var books = service.GetBooks().Select(book => new
+                {
+                    BookID = book.BookID,
+                    BookName = book.BookName,
+                    Authors = book.Authors.Select(author => new AuthorViewModel()
+                    {
+                        AuthorID = author.AuthorID,
+                        AuthorName = author.AuthorName
+                    }),
+                    SelectedAuthors = book.SelectedAuthors
+                }).ToList();
+
+                return View("Index", books.Select(book => new BookViewModel()
+                {
+                    BookID = book.BookID,
+                    BookName = book.BookName,
+                    Authors = book.Authors.ToList<AuthorViewModel>(),
+                    SelectedAuthors = book.SelectedAuthors
+                }));
             }
         }
         
@@ -28,9 +47,9 @@ namespace BooksMVC.Controllers
 
         public ActionResult Create()
         {
-            using (model = new BookDomainModel())
+            using (service = new BookWcfServiceClient())
             {
-                ViewBag.AllAuthors = new SelectList(model.GetAuthors(), "AuthorID", "AuthorName");
+                ViewBag.AllAuthors = new SelectList(service.GetAuthors(), "AuthorID", "AuthorName");
                 return View("_Edit", new BookViewModel() { SelectedAuthors = new List<string>() });
             }
         }
@@ -43,9 +62,13 @@ namespace BooksMVC.Controllers
         {
             try
             {
-                using (model = new BookDomainModel())
+                using (service = new BookWcfServiceClient())
                 {
-                    model.CreateBook(Model);
+                    service.CreateBook(new BookServiceModel() { 
+                        BookID = Model.BookID,
+                        BookName = Model.BookName,
+                        SelectedAuthors = Model.SelectedAuthors.ToArray<string>()
+                    });
                 }
                 return RedirectToAction("Index");
             }
@@ -61,11 +84,19 @@ namespace BooksMVC.Controllers
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public ActionResult Edit(int id)
         {
-            using (model = new BookDomainModel())
+            BookServiceModel bookService;
+            using (service = new BookWcfServiceClient())
             {
-                ViewBag.AllAuthors = new SelectList(model.GetAuthors(), "AuthorID", "AuthorName");
-                return View("_Edit", model.GetBook(id));
+                ViewBag.AllAuthors = new SelectList(service.GetAuthors().Select(author => new AuthorViewModel() 
+                { 
+                    AuthorID = author.AuthorID, 
+                    AuthorName = author.AuthorName 
+                }), "AuthorID", "AuthorName");
+
+                bookService = service.GetBook(id);
             }
+
+            return View("_Edit", new BookViewModel() { BookID = bookService.BookID, BookName = bookService.BookName, SelectedAuthors = bookService.SelectedAuthors });
         }
 
         //
@@ -76,9 +107,13 @@ namespace BooksMVC.Controllers
         {
             try
             {
-                using (model = new BookDomainModel())
+                using (service = new BookWcfServiceClient())
                 {
-                    model.EditBook(Model);
+                    service.EditBook(new BookServiceModel() { 
+                        BookID = Model.BookID, 
+                        BookName = Model.BookName, 
+                        SelectedAuthors = Model.SelectedAuthors.ToArray<string>()
+                    });
                 }
                 return RedirectToAction("Index");
             }

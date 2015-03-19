@@ -13,19 +13,19 @@ namespace BooksWcfServices
     {
         SelfEducationEntities context;
 
-        public ICollection<AuthorViewModel> GetAuthors()
+        public ICollection<AuthorServiceModel> GetAuthors()
         {
             using (context = new SelfEducationEntities())
             {
-                return context.Authors.Select(author => new AuthorViewModel()
+                return context.Authors.Select(author => new AuthorServiceModel()
                 {
                     AuthorID = author.ID,
                     AuthorName = author.Name
-                }).ToList<AuthorViewModel>();
+                }).ToList<AuthorServiceModel>();
             }
         }
 
-        public ICollection<BookViewModel> GetBooks()
+        public ICollection<BookServiceModel> GetBooks()
         {
             using (context = new SelfEducationEntities())
             {
@@ -33,23 +33,23 @@ namespace BooksWcfServices
                 {
                     BookID = book.ID,
                     BookName = book.Name,
-                    Authors = book.Authors.Select(author => new AuthorViewModel
+                    Authors = book.Authors.Select(author => new AuthorServiceModel
                     {
                         AuthorID = author.ID,
                         AuthorName = author.Name
                     })
                 }).ToList();
 
-                return books.Select(book => new BookViewModel()
+                return books.Select(book => new BookServiceModel()
                 {
                     BookID = book.BookID,
                     BookName = book.BookName,
-                    Authors = book.Authors.ToList<AuthorViewModel>()
-                }).ToList<BookViewModel>();
+                    Authors = book.Authors.ToList<AuthorServiceModel>()
+                }).ToList<BookServiceModel>();
             }
         }
 
-        public BookViewModel GetBook(int bookId)
+        public BookServiceModel GetBook(int bookId)
         {
             using (context = new SelfEducationEntities())
             {
@@ -57,21 +57,21 @@ namespace BooksWcfServices
                 {
                     BookID = book.ID,
                     BookName = book.Name,
-                    Authors = book.Authors.Select(author => new AuthorViewModel() { AuthorID = author.ID, AuthorName = author.Name }),
+                    Authors = book.Authors.Select(author => new AuthorServiceModel() { AuthorID = author.ID, AuthorName = author.Name }),
                     SelectedAuthors = book.Authors.Select(author => SqlFunctions.StringConvert((double?)author.ID).Trim())
                 }).First();
 
-                return new BookViewModel()
+                return new BookServiceModel()
                 {
                     BookID = returnBook.BookID,
                     BookName = returnBook.BookName,
-                    Authors = returnBook.Authors.ToList<AuthorViewModel>(),
+                    Authors = returnBook.Authors.ToList<AuthorServiceModel>(),
                     SelectedAuthors = returnBook.SelectedAuthors
                 };
             }
         }
 
-        public BookViewModel CreateBook(BookViewModel vmBook)
+        public BookServiceModel CreateBook(BookServiceModel vmBook)
         {
             using (context = new SelfEducationEntities())
             {
@@ -85,7 +85,7 @@ namespace BooksWcfServices
             }
         }
 
-        public BookViewModel EditBook(BookViewModel vmBook)
+        public BookServiceModel EditBook(BookServiceModel vmBook)
         {
             using (context = new SelfEducationEntities())
             {
@@ -112,7 +112,7 @@ namespace BooksWcfServices
             }
         }
 
-        public void RemoveBook(BookViewModel vmBook)
+        public void RemoveBook(BookServiceModel vmBook)
         {
             using (context = new SelfEducationEntities())
             {
