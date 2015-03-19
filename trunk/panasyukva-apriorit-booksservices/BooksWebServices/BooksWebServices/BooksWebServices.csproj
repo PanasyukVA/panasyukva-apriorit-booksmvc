@@ -39,13 +39,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BooksMVC.DAL">
-      <HintPath>..\..\..\panasyukva-apriorit-booksmvc\BooksMVC.DAL\bin\Debug\BooksMVC.DAL.dll</HintPath>
+      <HintPath>..\..\..\BooksMVC.DAL\bin\Debug\BooksMVC.DAL.dll</HintPath>
     </Reference>
     <Reference Include="BooksMVC.ViewModel">
-      <HintPath>..\..\..\panasyukva-apriorit-booksmvc\BooksMVC.ViewModel\bin\Debug\BooksMVC.ViewModel.dll</HintPath>
+      <HintPath>..\..\..\BooksMVC.ViewModel\bin\Debug\BooksMVC.ViewModel.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework">
-      <HintPath>..\..\..\panasyukva-apriorit-booksmvc\BooksMVC.DAL\bin\Debug\EntityFramework.dll</HintPath>
+      <HintPath>..\..\..\BooksMVC.DAL\bin\Debug\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data.Entity" />

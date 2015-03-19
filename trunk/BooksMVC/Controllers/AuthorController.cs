@@ -5,12 +5,15 @@ using System.Web;
 using System.Web.Mvc;
 using BooksMVC.DomainModel.Domains;
 using BooksMVC.ViewModel;
+using panasyukva_apriorit_booksmvc.AuthorWcfService;
+using System.Net.Http;
 
 namespace BooksMVC.Controllers
 {
     public class AuthorController : Controller
     {
-        AuthorDomainModel model;
+        AuthorWcfServiceClient service;
+        HttpClient serviceClient;
 
         //
         // GET: /Author/Create
@@ -28,9 +31,9 @@ namespace BooksMVC.Controllers
         {
             try
             {
-                using (model = new AuthorDomainModel())
+                using (service = new AuthorWcfServiceClient())
                 {
-                    model.CreateAuthor(Model);
+                    service.CreateAuthor(new AuthorServiceModel() { AuthorID = Model.AuthorID, AuthorName = Model.AuthorName, Books = Model.Books });
                 }
                 return RedirectToAction("Index", "Book");
             }
@@ -45,8 +48,18 @@ namespace BooksMVC.Controllers
 
         public ActionResult Edit(int id)
         {
-            model = new AuthorDomainModel();
-            return View("_Edit", model.GetAuthor(id));
+            AuthorServiceModel authorService;
+
+            using (serviceClient = new HttpClient())
+            {
+                serviceClient.BaseAddress = new Uri("http://localhost/");
+                serviceClient.DefaultRequestHeaders.Accept.Clear();
+                var response = serviceClient.GetAsync(String.Format("BooksWebAPI/api/Author/GetAuthor/{0}", id));
+
+                authorService = response.Result.Content.ReadAsAsync<AuthorServiceModel>().Result;
+            }
+
+            return View("_Edit", new AuthorViewModel() { AuthorID = authorService.AuthorID, AuthorName = authorService.AuthorName, Books = authorService.Books });
         }
 
         //
@@ -57,9 +70,9 @@ namespace BooksMVC.Controllers
         {
             try
             {
-                using (model = new AuthorDomainModel())
+                using (service = new AuthorWcfServiceClient())
                 {
-                    model.EditAuthor(Model);
+                    service.EditAuthor(new AuthorServiceModel() { AuthorID = Model.AuthorID, AuthorName = Model.AuthorName, Books = Model.Books });
                 }
                 return RedirectToAction("Index", "Book");
             }

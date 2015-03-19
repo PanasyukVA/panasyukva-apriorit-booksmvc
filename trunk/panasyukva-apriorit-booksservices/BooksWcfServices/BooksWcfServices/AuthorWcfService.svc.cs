@@ -13,7 +13,7 @@ namespace BooksWcfServices
     {
         SelfEducationEntities context;
 
-        public AuthorViewModel GetAuthor(int authorId)
+        public AuthorServiceModel GetAuthor(int authorId)
         {
             using (context = new SelfEducationEntities())
             {
@@ -22,7 +22,7 @@ namespace BooksWcfServices
                     AuthorID = author.ID,
                     AuthorName = author.Name,
                     Books = author.Books.Select(book => book.Name)
-                }).ToList().Select(author => new AuthorViewModel()
+                }).ToList().Select(author => new AuthorServiceModel()
                 {
                     AuthorID = author.AuthorID,
                     AuthorName = author.AuthorName,
@@ -31,7 +31,7 @@ namespace BooksWcfServices
             }
         }
 
-        public AuthorViewModel CreateAuthor(AuthorViewModel vmAuthor)
+        public AuthorServiceModel CreateAuthor(AuthorServiceModel vmAuthor)
         {
             using (context = new SelfEducationEntities())
             {
@@ -41,7 +41,7 @@ namespace BooksWcfServices
             }
         }
 
-        public AuthorViewModel EditAuthor(AuthorViewModel vmAuthor)
+        public AuthorServiceModel EditAuthor(AuthorServiceModel vmAuthor)
         {
             using (context = new SelfEducationEntities())
             {

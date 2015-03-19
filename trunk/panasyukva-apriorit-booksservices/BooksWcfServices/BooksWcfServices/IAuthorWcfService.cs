@@ -9,22 +9,22 @@ using BooksMVC.DAL;
 
 namespace BooksWcfServices
 {
-    [ServiceContract(Namespace = "http://http://www.apriorit.com/PanasyukVA/Services")]
+    [ServiceContract]
     public interface IAuthorWcfService
     {
         [OperationContract]
-        AuthorViewModel GetAuthor(int authorId);
+        AuthorServiceModel GetAuthor(int authorId);
 
         [OperationContract]
-        AuthorViewModel CreateAuthor(AuthorViewModel vmAuthor);
+        AuthorServiceModel CreateAuthor(AuthorServiceModel vmAuthor);
 
         [OperationContract]
-        AuthorViewModel EditAuthor(AuthorViewModel vmAuthor);
+        AuthorServiceModel EditAuthor(AuthorServiceModel vmAuthor);
     }
 
 
-    [DataContract(Namespace = "http://http://www.apriorit.com/PanasyukVA/Services")]
-    public class AuthorViewModel
+    [DataContract]
+    public class AuthorServiceModel
     {
         [DataMember]
         public int? AuthorID { get; set; }
