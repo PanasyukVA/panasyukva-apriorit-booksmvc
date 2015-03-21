@@ -30,20 +30,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BooksMVC.DAL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\BooksMVC.DAL\bin\Debug\BooksMVC.DAL.dll</HintPath>
-    </Reference>
     <Reference Include="BooksMVC.ViewModel">
       <HintPath>..\BooksMVC.ViewModel\bin\Debug\BooksMVC.ViewModel.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -54,16 +49,86 @@
     <Compile Include="Domains\AuthorDomainModel.cs" />
     <Compile Include="Domains\BookDomainModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\AuthorWcfService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\BookWcfService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Service References\AuthorWcfService\AuthorWcfService.disco" />
+    <None Include="Service References\AuthorWcfService\BooksMVC.DomainModel.AuthorWcfService.AuthorServiceModel.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AuthorWcfService\configuration91.svcinfo" />
+    <None Include="Service References\AuthorWcfService\configuration.svcinfo" />
+    <None Include="Service References\AuthorWcfService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\BookWcfService\BooksMVC.DomainModel.BookWcfService.AuthorServiceModel.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BookWcfService\BooksMVC.DomainModel.BookWcfService.BookServiceModel.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BookWcfService\BookWcfService.disco" />
+    <None Include="Service References\BookWcfService\configuration91.svcinfo" />
+    <None Include="Service References\BookWcfService\configuration.svcinfo" />
+    <None Include="Service References\BookWcfService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <None Include="Service References\AuthorWcfService\AuthorWcfService.wsdl" />
+    <None Include="Service References\AuthorWcfService\AuthorWcfService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AuthorWcfService\AuthorWcfService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AuthorWcfService\AuthorWcfService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BookWcfService\BookWcfService.wsdl" />
+    <None Include="Service References\BookWcfService\BookWcfService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BookWcfService\BookWcfService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BookWcfService\BookWcfService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BookWcfService\BookWcfService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BooksMVC.Infrastructure\BooksMVC.Infrastructure.csproj">
       <Project>{cfa4fff2-bf1d-4007-9404-d867e69a85f6}</Project>
       <Name>BooksMVC.Infrastructure</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\AuthorWcfService\" />
+    <WCFMetadataStorage Include="Service References\BookWcfService\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

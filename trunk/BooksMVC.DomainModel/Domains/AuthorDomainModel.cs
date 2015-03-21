@@ -3,51 +3,56 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BooksMVC.DAL;
 using BooksMVC.ViewModel;
 using BooksMVC.Infrastructure;
+using BooksMVC.DomainModel.AuthorWcfService;
 
 namespace BooksMVC.DomainModel.Domains
 {
     public class AuthorDomainModel : DomainModelBase 
     {
-        SelfEducationEntities context;
+        AuthorWcfServiceClient service;
 
         public AuthorViewModel GetAuthor(int authorId)
         {
-            using (context = new SelfEducationEntities())
+            using (service = new AuthorWcfServiceClient())
             {
-                return context.Authors.Where(author => author.ID == authorId).Select(author => new
-                {
-                    AuthorID = author.ID,
-                    AuthorName = author.Name,
-                    Books = author.Books.Select(book => book.Name)
-                }).ToList().Select(author => new AuthorViewModel()
+                AuthorServiceModel authorService = service.GetAuthor(authorId);
+                return new AuthorViewModel() 
                 { 
-                    AuthorID = author.AuthorID,
-                    AuthorName = author.AuthorName,
-                    Books = author.Books.Aggregate((currernt, next) => currernt + ", " + next)
-                }).First();
+                    AuthorID = authorService.AuthorID, 
+                    AuthorName = authorService.AuthorName, 
+                    Books = authorService.Books
+                };
             }
         }
 
         public AuthorViewModel CreateAuthor(AuthorViewModel vmAuthor)
         {
-            using (context = new SelfEducationEntities())
+            using (service = new AuthorWcfServiceClient())
             {
-                context.Authors.Add(new Author() { Name = vmAuthor.AuthorName });
-                context.SaveChanges();
+                service.CreateAuthor(new AuthorServiceModel() 
+                { 
+                    AuthorID = vmAuthor.AuthorID, 
+                    AuthorName = vmAuthor.AuthorName, 
+                    Books = vmAuthor.Books 
+                });
+
                 return vmAuthor;
             }
         }
 
         public AuthorViewModel EditAuthor(AuthorViewModel vmAuthor)
         {
-            using (context = new SelfEducationEntities())
+            using (service = new AuthorWcfServiceClient())
             {
-                Author DALAuthor = context.Authors.Where(author => author.ID == vmAuthor.AuthorID).First();
-                DALAuthor.Name = vmAuthor.AuthorName;
-                context.SaveChanges();
+                service.EditAuthor(new AuthorServiceModel() 
+                {
+                    AuthorID = vmAuthor.AuthorID,
+                    AuthorName = vmAuthor.AuthorName,
+                    Books = vmAuthor.Books
+                });
+
                 return vmAuthor;
             }
         }

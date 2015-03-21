@@ -3,109 +3,93 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BooksMVC.DAL;
 using BooksMVC.ViewModel;
 using BooksMVC.Infrastructure;
-using System.Data.Objects.SqlClient;
+using BooksMVC.DomainModel.BookWcfService;
 
 namespace BooksMVC.DomainModel.Domains
 {
     public class BookDomainModel : DomainModelBase 
     {
-        SelfEducationEntities context;
+        BookWcfServiceClient service;
 
         public ICollection<AuthorViewModel> GetAuthors()
         {
-            using (context = new SelfEducationEntities())
+            using (service = new BookWcfServiceClient())
             {
-                return context.Authors.Select(author => new AuthorViewModel() { 
-                    AuthorID = author.ID, 
-                    AuthorName = author.Name 
+                return service.GetAuthors().Select(author => new AuthorViewModel() 
+                { 
+                    AuthorID = author.AuthorID, 
+                    AuthorName = author.AuthorName 
                 }).ToList<AuthorViewModel>();
             }
         }
 
         public ICollection<BookViewModel> GetBooks()
         {
-            using (context = new SelfEducationEntities())
+            using (service = new BookWcfServiceClient())
             {
-                var books = context.Books.Select(book => new
+                var books = service.GetBooks().Select(book => new
                 {
-                    BookID = book.ID,
-                    BookName = book.Name,
-                    Authors = book.Authors.Select(author => new AuthorViewModel 
+                    BookID = book.BookID,
+                    BookName = book.BookName,
+                    Authors = book.Authors.Select(author => new AuthorViewModel()
                     {
-                        AuthorID = author.ID,
-                        AuthorName = author.Name
-                    })
+                        AuthorID = author.AuthorID,
+                        AuthorName = author.AuthorName
+                    }),
+                    SelectedAuthors = book.SelectedAuthors
                 }).ToList();
 
                 return books.Select(book => new BookViewModel()
                 {
                     BookID = book.BookID,
                     BookName = book.BookName,
-                    Authors = book.Authors.ToList<AuthorViewModel>()
+                    Authors = book.Authors.ToList<AuthorViewModel>(),
+                    SelectedAuthors = book.SelectedAuthors
                 }).ToList<BookViewModel>();
             }
         }
 
         public BookViewModel GetBook(int bookId)
         {
-            using (context = new SelfEducationEntities())
+            using (service = new BookWcfServiceClient())
             {
-                var returnBook = context.Books.Where(book => book.ID == bookId).Select(book => new
-                {
-                    BookID = book.ID,
-                    BookName = book.Name,
-                    Authors = book.Authors.Select(author => new AuthorViewModel() { AuthorID = author.ID, AuthorName = author.Name }),
-                    SelectedAuthors = book.Authors.Select(author => SqlFunctions.StringConvert((double?)author.ID).Trim())
-                }).First();
-
+                BookServiceModel bookService = service.GetBook(bookId);
                 return new BookViewModel() 
                 { 
-                    BookID = returnBook.BookID, 
-                    BookName = returnBook.BookName, 
-                    Authors = returnBook.Authors.ToList<AuthorViewModel>(), 
-                    SelectedAuthors = returnBook.SelectedAuthors 
+                    BookID = bookService.BookID, 
+                    BookName = bookService.BookName, 
+                    SelectedAuthors = bookService.SelectedAuthors 
                 };
             }
         }
 
         public BookViewModel CreateBook(BookViewModel vmBook)
         {
-            using (context = new SelfEducationEntities())
+            using (service = new BookWcfServiceClient())
             {
-                context.Books.Add(new Book() { 
-                    Name = vmBook.BookName, 
-                    Authors = context.Authors.Where(author => vmBook.SelectedAuthors.Contains(SqlFunctions.StringConvert((double?)author.ID).Trim())).ToList()
+                service.CreateBook(new BookServiceModel()
+                {
+                    BookID = vmBook.BookID,
+                    BookName = vmBook.BookName,
+                    SelectedAuthors = vmBook.SelectedAuthors.ToArray<string>()
                 });
-                context.SaveChanges();
-                return vmBook;
             }
+
+            return vmBook;
         }
 
         public BookViewModel EditBook(BookViewModel vmBook)
         {
-            using (context = new SelfEducationEntities())
+            using (service = new BookWcfServiceClient())
             {
-                Book DALBook = context.Books.Where(book => book.ID == vmBook.BookID).First();
-                DALBook.Name = vmBook.BookName;
-                context.SaveChanges();
-                
-                // Delete
-                IEnumerable<string> authorsDelete = DALBook.Authors.Where(
-                    author => !vmBook.SelectedAuthors.Contains(author.ID.ToString())).Select(
-                        author => author.ID.ToString()).AsEnumerable<string>();
-                foreach(var author in authorsDelete)
-                    context.Database.ExecuteSqlCommand("DELETE dbo.BookAuthor WHERE BookID = {0} AND AuthorID = {1}", DALBook.ID, author);
-
-                // Insert
-                IEnumerable<string> authorsInsert = vmBook.SelectedAuthors.Where(
-                    author => !DALBook.Authors.Select(
-                        dalauthor => dalauthor.ID).AsEnumerable<int>().Contains(Convert.ToInt32(author))
-                        );
-                foreach(var author in authorsInsert)
-                    context.Database.ExecuteSqlCommand("INSERT INTO dbo.BookAuthor(BookID, AuthorID) VALUES({0}, {1})", DALBook.ID, author);
+                service.EditBook(new BookServiceModel()
+                {
+                    BookID = vmBook.BookID,
+                    BookName = vmBook.BookName,
+                    SelectedAuthors = vmBook.SelectedAuthors.ToArray<string>()
+                });
 
                 return vmBook;
             }
@@ -113,11 +97,13 @@ namespace BooksMVC.DomainModel.Domains
 
         public void RemoveBook(BookViewModel vmBook)
         {
-            using (context = new SelfEducationEntities())
+            using (service = new BookWcfServiceClient())
             {
-                Book DALBook = context.Books.Where(book => book.ID == vmBook.BookID).First();
-                context.Books.Remove(DALBook);
-                context.SaveChanges();
+                service.RemoveBook(new BookServiceModel() 
+                { 
+                    BookID = vmBook.BookID, 
+                    BookName = vmBook.BookName 
+                });
             }
         }
     }
