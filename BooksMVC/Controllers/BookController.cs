@@ -15,6 +15,7 @@ namespace BooksMVC.Controllers
         //
         // GET: /Book/Index
 
+        [HttpGet]
         public ActionResult Index()
         {
             using (model = new BookDomainModel())
@@ -26,6 +27,7 @@ namespace BooksMVC.Controllers
         //
         // GET: /Book/Create
 
+        [HttpGet]
         public ActionResult Create()
         {
             using (model = new BookDomainModel())
@@ -59,6 +61,7 @@ namespace BooksMVC.Controllers
         //
         // GET: /Book/Edit/5
 
+        [HttpGet]
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public ActionResult Edit(int id)
         {

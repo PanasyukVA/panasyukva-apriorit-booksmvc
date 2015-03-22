@@ -7,9 +7,9 @@
 
 <div id="container">
     <div role="main">
-        <div id="Book"></div>
+        <div id="bookLayer"></div>
 
-        <div id="Books">
+        <div id="BooksLayer">
             <table class="BooksTable table table-bordered table-hover table-condensed">
                 <thead>
                     <tr>
@@ -51,7 +51,7 @@
             </table>
         </div>
 
-        <div id="Author"></div>
+        <div id="authorLayer"></div>
 
         <p class="btn-group">
             <button class="btn btn-primary" id="btnCreateBook">
@@ -65,6 +65,6 @@
 </div>
 <script type="text/javascript">
         $(document).ready(function () {
-            initialize();
+            initializeBooks();
         });
 </script>

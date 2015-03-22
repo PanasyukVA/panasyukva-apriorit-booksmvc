@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using BooksMVC.ViewModel;
 using BooksMVC.Infrastructure;
 using BooksMVC.DomainModel.BookWcfService;
+using AutoMapper;
 
 namespace BooksMVC.DomainModel.Domains
 {
@@ -13,15 +14,17 @@ namespace BooksMVC.DomainModel.Domains
     {
         BookWcfServiceClient service;
 
+        public BookDomainModel(){
+            Mapper.CreateMap<AuthorServiceModel, AuthorViewModel>();
+            Mapper.CreateMap<BookServiceModel, BookViewModel>();
+            Mapper.CreateMap<BookViewModel, BookServiceModel>();
+        }
+
         public ICollection<AuthorViewModel> GetAuthors()
         {
             using (service = new BookWcfServiceClient())
             {
-                return service.GetAuthors().Select(author => new AuthorViewModel() 
-                { 
-                    AuthorID = author.AuthorID, 
-                    AuthorName = author.AuthorName 
-                }).ToList<AuthorViewModel>();
+                return service.GetAuthors().Select(author => Mapper.Map<AuthorServiceModel, AuthorViewModel>(author)).ToList<AuthorViewModel>();
             }
         }
 
@@ -29,25 +32,7 @@ namespace BooksMVC.DomainModel.Domains
         {
             using (service = new BookWcfServiceClient())
             {
-                var books = service.GetBooks().Select(book => new
-                {
-                    BookID = book.BookID,
-                    BookName = book.BookName,
-                    Authors = book.Authors.Select(author => new AuthorViewModel()
-                    {
-                        AuthorID = author.AuthorID,
-                        AuthorName = author.AuthorName
-                    }),
-                    SelectedAuthors = book.SelectedAuthors
-                }).ToList();
-
-                return books.Select(book => new BookViewModel()
-                {
-                    BookID = book.BookID,
-                    BookName = book.BookName,
-                    Authors = book.Authors.ToList<AuthorViewModel>(),
-                    SelectedAuthors = book.SelectedAuthors
-                }).ToList<BookViewModel>();
+                return service.GetBooks().Select(book => Mapper.Map<BookServiceModel, BookViewModel>(book)).ToList<BookViewModel>();
             }
         }
 
@@ -55,13 +40,7 @@ namespace BooksMVC.DomainModel.Domains
         {
             using (service = new BookWcfServiceClient())
             {
-                BookServiceModel bookService = service.GetBook(bookId);
-                return new BookViewModel() 
-                { 
-                    BookID = bookService.BookID, 
-                    BookName = bookService.BookName, 
-                    SelectedAuthors = bookService.SelectedAuthors 
-                };
+                return Mapper.Map<BookServiceModel, BookViewModel>(service.GetBook(bookId));
             }
         }
 
@@ -69,14 +48,8 @@ namespace BooksMVC.DomainModel.Domains
         {
             using (service = new BookWcfServiceClient())
             {
-                service.CreateBook(new BookServiceModel()
-                {
-                    BookID = vmBook.BookID,
-                    BookName = vmBook.BookName,
-                    SelectedAuthors = vmBook.SelectedAuthors.ToArray<string>()
-                });
+                service.CreateBook(Mapper.Map<BookViewModel, BookServiceModel>(vmBook));
             }
-
             return vmBook;
         }
 
@@ -84,26 +57,16 @@ namespace BooksMVC.DomainModel.Domains
         {
             using (service = new BookWcfServiceClient())
             {
-                service.EditBook(new BookServiceModel()
-                {
-                    BookID = vmBook.BookID,
-                    BookName = vmBook.BookName,
-                    SelectedAuthors = vmBook.SelectedAuthors.ToArray<string>()
-                });
-
-                return vmBook;
+                service.EditBook(Mapper.Map<BookViewModel, BookServiceModel>(vmBook));
             }
+            return vmBook;
         }
 
         public void RemoveBook(BookViewModel vmBook)
         {
             using (service = new BookWcfServiceClient())
             {
-                service.RemoveBook(new BookServiceModel() 
-                { 
-                    BookID = vmBook.BookID, 
-                    BookName = vmBook.BookName 
-                });
+                service.RemoveBook(Mapper.Map<BookViewModel, BookServiceModel>(vmBook));
             }
         }
     }
