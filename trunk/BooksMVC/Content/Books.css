@@ -1,4 +1,4 @@
-﻿/* The Books page  */
+﻿/* Books */
 .BooksTable {
     border-width: 1pt;
     width: 100%;
@@ -29,16 +29,16 @@
     background-color:#f0f0f0;
 }
 
-/* The Author page  */
+/* Author */
 
-#Author {
+#authorLayer {
     width: 50%;
     display: none;
 }
 
-/* The Book page  */
+/* Book */
 
-#Book {
+#bookLayer {
     width: 50%;
     display: none;
 }

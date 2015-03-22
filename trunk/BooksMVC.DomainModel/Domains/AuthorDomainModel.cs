@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using BooksMVC.ViewModel;
 using BooksMVC.Infrastructure;
 using BooksMVC.DomainModel.AuthorWcfService;
+using AutoMapper;
 
 namespace BooksMVC.DomainModel.Domains
 {
@@ -13,17 +14,17 @@ namespace BooksMVC.DomainModel.Domains
     {
         AuthorWcfServiceClient service;
 
+        public AuthorDomainModel() 
+        {
+            Mapper.CreateMap<AuthorServiceModel, AuthorViewModel>();
+            Mapper.CreateMap<AuthorViewModel, AuthorServiceModel>();
+        }
+
         public AuthorViewModel GetAuthor(int authorId)
         {
             using (service = new AuthorWcfServiceClient())
             {
-                AuthorServiceModel authorService = service.GetAuthor(authorId);
-                return new AuthorViewModel() 
-                { 
-                    AuthorID = authorService.AuthorID, 
-                    AuthorName = authorService.AuthorName, 
-                    Books = authorService.Books
-                };
+                return Mapper.Map<AuthorServiceModel, AuthorViewModel>(service.GetAuthor(authorId));
             }
         }
 
@@ -31,13 +32,7 @@ namespace BooksMVC.DomainModel.Domains
         {
             using (service = new AuthorWcfServiceClient())
             {
-                service.CreateAuthor(new AuthorServiceModel() 
-                { 
-                    AuthorID = vmAuthor.AuthorID, 
-                    AuthorName = vmAuthor.AuthorName, 
-                    Books = vmAuthor.Books 
-                });
-
+                service.CreateAuthor(Mapper.Map<AuthorViewModel, AuthorServiceModel>(vmAuthor));
                 return vmAuthor;
             }
         }
@@ -46,13 +41,7 @@ namespace BooksMVC.DomainModel.Domains
         {
             using (service = new AuthorWcfServiceClient())
             {
-                service.EditAuthor(new AuthorServiceModel() 
-                {
-                    AuthorID = vmAuthor.AuthorID,
-                    AuthorName = vmAuthor.AuthorName,
-                    Books = vmAuthor.Books
-                });
-
+                service.EditAuthor(Mapper.Map<AuthorViewModel, AuthorServiceModel>(vmAuthor));
                 return vmAuthor;
             }
         }

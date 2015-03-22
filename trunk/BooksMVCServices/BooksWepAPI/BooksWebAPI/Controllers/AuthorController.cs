@@ -21,7 +21,7 @@ namespace BooksWebAPI.Controllers
             }
         }
 
-        public AuthorViewModel CreateAuthor(AuthorViewModel vmAuthor)
+        public AuthorViewModel CreateAuthor([FromBody]AuthorViewModel vmAuthor)
         {
             using (model = new AuthorDomainModel())
             {
@@ -30,7 +30,7 @@ namespace BooksWebAPI.Controllers
             }
         }
 
-        public AuthorViewModel EditAuthor(AuthorViewModel vmAuthor)
+        public AuthorViewModel EditAuthor([FromBody]AuthorViewModel vmAuthor)
         {
             using (model = new AuthorDomainModel())
             {
