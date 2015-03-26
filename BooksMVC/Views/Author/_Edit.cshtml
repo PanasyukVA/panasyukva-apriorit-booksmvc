@@ -1,4 +1,4 @@
-﻿@model BooksMVC.ViewModel.AuthorViewModel
+﻿@model Books.ViewModel.AuthorViewModel
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -8,8 +8,8 @@
         <legend>Author</legend>
 
         <div class="form-group">
-            @Html.EditorFor(model => model.AuthorID)
-            @Html.ValidationMessageFor(model => model.AuthorID)
+            @Html.EditorFor(model => model.AuthorId)
+            @Html.ValidationMessageFor(model => model.AuthorId)
         </div>
 
         <div class="form-group">

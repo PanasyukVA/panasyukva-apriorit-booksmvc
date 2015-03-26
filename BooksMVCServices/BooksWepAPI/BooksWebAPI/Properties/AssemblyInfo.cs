@@ -1,15 +1,23 @@
-﻿using System.Reflection;
+﻿//------------------------------------------------------
+// <copyright file="AssemblyInfo.cs" company="ApriorIT">
+//     Copyright (c) ApriorIT. All rights reserved.
+// </copyright>
+// <author>Vitaliy Panasyuk</author>
+//------------------------------------------------------
+using System;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("BooksWebAPI")]
+[assembly: CLSCompliant(true)]
+[assembly: AssemblyTitle("BooksWebApi")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("BooksWebAPI")]
+[assembly: AssemblyProduct("BooksWebApi")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

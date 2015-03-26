@@ -7,8 +7,8 @@
     <ProjectGuid>{5A90C46E-BBCD-4C4E-A1F8-81E2C88C289A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BooksMVC.DAL</RootNamespace>
-    <AssemblyName>BooksMVC.DAL</AssemblyName>
+    <RootNamespace>Books.DataAccessLayer</RootNamespace>
+    <AssemblyName>Books.DataAccessLayer</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -28,6 +28,12 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Books.DataAccessLayer.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -80,6 +86,7 @@
     <None Include="App.Config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Books.DataAccessLayer.snk" />
     <None Include="BooksModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>BooksModel.edmx</DependentUpon>

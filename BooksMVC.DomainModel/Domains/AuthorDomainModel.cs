@@ -1,48 +1,78 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BooksMVC.ViewModel;
-using BooksMVC.Infrastructure;
-using BooksMVC.DomainModel.AuthorWcfService;
-using AutoMapper;
-
-namespace BooksMVC.DomainModel.Domains
+﻿//------------------------------------------------------
+// <copyright file="AuthorDomainModel.cs" company="ApriorIT">
+//     Copyright (c) ApriorIT. All rights reserved.
+// </copyright>
+// <author>Vitaliy Panasyuk</author>
+//------------------------------------------------------
+namespace Books.DomainModel.Domains
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using AutoMapper;
+    using Books.DomainModel.AuthorWcfService;
+    using Books.Infrastructure;
+    using Books.ViewModel;
+
+    /// <summary>
+    /// Represents an author domain model
+    /// </summary>
     public class AuthorDomainModel : DomainModelBase 
     {
-        AuthorWcfServiceClient service;
+        /// <summary>
+        /// Represents a service of the author
+        /// </summary>
+        private AuthorWcfServiceClient service;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuthorDomainModel" /> class 
+        /// </summary>
         public AuthorDomainModel() 
         {
             Mapper.CreateMap<AuthorServiceModel, AuthorViewModel>();
             Mapper.CreateMap<AuthorViewModel, AuthorServiceModel>();
         }
 
+        /// <summary>
+        /// Gets an author
+        /// </summary>
+        /// <param name="authorId">An author id to receive</param>
+        /// <returns>The received author</returns>
         public AuthorViewModel GetAuthor(int authorId)
         {
-            using (service = new AuthorWcfServiceClient())
+            using (this.service = new AuthorWcfServiceClient())
             {
-                return Mapper.Map<AuthorServiceModel, AuthorViewModel>(service.GetAuthor(authorId));
+                return Mapper.Map<AuthorServiceModel, AuthorViewModel>(this.service.GetAuthor(authorId));
             }
         }
 
-        public AuthorViewModel CreateAuthor(AuthorViewModel vmAuthor)
+        /// <summary>
+        /// Creates na author
+        /// </summary>
+        /// <param name="viewModelAuthor">The author to create</param>
+        /// <returns>The created author</returns>
+        public AuthorViewModel CreateAuthor(AuthorViewModel viewModelAuthor)
         {
-            using (service = new AuthorWcfServiceClient())
+            using (this.service = new AuthorWcfServiceClient())
             {
-                service.CreateAuthor(Mapper.Map<AuthorViewModel, AuthorServiceModel>(vmAuthor));
-                return vmAuthor;
+                this.service.CreateAuthor(Mapper.Map<AuthorViewModel, AuthorServiceModel>(viewModelAuthor));
+                return viewModelAuthor;
             }
         }
 
-        public AuthorViewModel EditAuthor(AuthorViewModel vmAuthor)
+        /// <summary>
+        /// Edits an author
+        /// </summary>
+        /// <param name="viewModelAuthor">The author to edit</param>
+        /// <returns>The edited author</returns>
+        public AuthorViewModel EditAuthor(AuthorViewModel viewModelAuthor)
         {
-            using (service = new AuthorWcfServiceClient())
+            using (this.service = new AuthorWcfServiceClient())
             {
-                service.EditAuthor(Mapper.Map<AuthorViewModel, AuthorServiceModel>(vmAuthor));
-                return vmAuthor;
+                this.service.EditAuthor(Mapper.Map<AuthorViewModel, AuthorServiceModel>(viewModelAuthor));
+                return viewModelAuthor;
             }
         }
     }

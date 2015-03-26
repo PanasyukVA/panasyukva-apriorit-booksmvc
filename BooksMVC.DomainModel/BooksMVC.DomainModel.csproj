@@ -7,8 +7,8 @@
     <ProjectGuid>{8C473837-C905-4E26-AB55-356C33B82156}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BooksMVC.DomainModel</RootNamespace>
-    <AssemblyName>BooksMVC.DomainModel</AssemblyName>
+    <RootNamespace>Books.DomainModel</RootNamespace>
+    <AssemblyName>Books.DomainModel</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -29,6 +29,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Books.DomainModel.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoMapper">
       <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
@@ -36,8 +42,11 @@
     <Reference Include="AutoMapper.Net4">
       <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
     </Reference>
-    <Reference Include="BooksMVC.ViewModel">
-      <HintPath>..\BooksMVC.ViewModel\bin\Debug\BooksMVC.ViewModel.dll</HintPath>
+    <Reference Include="Books.Infrastructure">
+      <HintPath>..\BooksMVC.Infrastructure\bin\Debug\Books.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Books.ViewModel">
+      <HintPath>..\BooksMVC.ViewModel\bin\Debug\Books.ViewModel.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -68,9 +77,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Books.DomainModel.snk" />
     <None Include="packages.config" />
     <None Include="Service References\AuthorWcfService\AuthorWcfService.disco" />
-    <None Include="Service References\AuthorWcfService\BooksMVC.DomainModel.AuthorWcfService.AuthorServiceModel.datasource">
+    <None Include="Service References\AuthorWcfService\Books.DomainModel.AuthorWcfService.AuthorServiceModel.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\AuthorWcfService\configuration91.svcinfo" />
@@ -79,10 +89,10 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Service References\BookWcfService\BooksMVC.DomainModel.BookWcfService.AuthorServiceModel.datasource">
+    <None Include="Service References\BookWcfService\Books.DomainModel.BookWcfService.AuthorServiceModel.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\BookWcfService\BooksMVC.DomainModel.BookWcfService.BookServiceModel.datasource">
+    <None Include="Service References\BookWcfService\Books.DomainModel.BookWcfService.BookServiceModel.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\BookWcfService\BookWcfService.disco" />
@@ -122,12 +132,6 @@
     <None Include="Service References\BookWcfService\BookWcfService3.xsd">
       <SubType>Designer</SubType>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BooksMVC.Infrastructure\BooksMVC.Infrastructure.csproj">
-      <Project>{cfa4fff2-bf1d-4007-9404-d867e69a85f6}</Project>
-      <Name>BooksMVC.Infrastructure</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

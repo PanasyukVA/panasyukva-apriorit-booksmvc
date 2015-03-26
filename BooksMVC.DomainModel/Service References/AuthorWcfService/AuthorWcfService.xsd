@@ -18,7 +18,7 @@
   <xs:element name="CreateAuthor">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/BooksWcfServices" minOccurs="0" name="vmAuthor" nillable="true" type="q2:AuthorServiceModel" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/BooksWcfServices" minOccurs="0" name="viewModelAuthor" nillable="true" type="q2:AuthorServiceModel" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -32,7 +32,7 @@
   <xs:element name="EditAuthor">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/BooksWcfServices" minOccurs="0" name="vmAuthor" nillable="true" type="q4:AuthorServiceModel" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/BooksWcfServices" minOccurs="0" name="viewModelAuthor" nillable="true" type="q4:AuthorServiceModel" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

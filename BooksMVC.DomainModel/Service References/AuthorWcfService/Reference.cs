@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BooksMVC.DomainModel.AuthorWcfService {
+namespace Books.DomainModel.AuthorWcfService {
     using System.Runtime.Serialization;
     using System;
     
@@ -23,7 +23,7 @@ namespace BooksMVC.DomainModel.AuthorWcfService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> AuthorIDField;
+        private System.Nullable<int> AuthorIdField;
         
         private string AuthorNameField;
         
@@ -41,14 +41,14 @@ namespace BooksMVC.DomainModel.AuthorWcfService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> AuthorID {
+        public System.Nullable<int> AuthorId {
             get {
-                return this.AuthorIDField;
+                return this.AuthorIdField;
             }
             set {
-                if ((this.AuthorIDField.Equals(value) != true)) {
-                    this.AuthorIDField = value;
-                    this.RaisePropertyChanged("AuthorID");
+                if ((this.AuthorIdField.Equals(value) != true)) {
+                    this.AuthorIdField = value;
+                    this.RaisePropertyChanged("AuthorId");
                 }
             }
         }
@@ -94,31 +94,31 @@ namespace BooksMVC.DomainModel.AuthorWcfService {
     public interface IAuthorWcfService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthorWcfService/GetAuthor", ReplyAction="http://tempuri.org/IAuthorWcfService/GetAuthorResponse")]
-        BooksMVC.DomainModel.AuthorWcfService.AuthorServiceModel GetAuthor(int authorId);
+        Books.DomainModel.AuthorWcfService.AuthorServiceModel GetAuthor(int authorId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthorWcfService/GetAuthor", ReplyAction="http://tempuri.org/IAuthorWcfService/GetAuthorResponse")]
-        System.Threading.Tasks.Task<BooksMVC.DomainModel.AuthorWcfService.AuthorServiceModel> GetAuthorAsync(int authorId);
+        System.Threading.Tasks.Task<Books.DomainModel.AuthorWcfService.AuthorServiceModel> GetAuthorAsync(int authorId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthorWcfService/CreateAuthor", ReplyAction="http://tempuri.org/IAuthorWcfService/CreateAuthorResponse")]
-        BooksMVC.DomainModel.AuthorWcfService.AuthorServiceModel CreateAuthor(BooksMVC.DomainModel.AuthorWcfService.AuthorServiceModel vmAuthor);
+        Books.DomainModel.AuthorWcfService.AuthorServiceModel CreateAuthor(Books.DomainModel.AuthorWcfService.AuthorServiceModel viewModelAuthor);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthorWcfService/CreateAuthor", ReplyAction="http://tempuri.org/IAuthorWcfService/CreateAuthorResponse")]
-        System.Threading.Tasks.Task<BooksMVC.DomainModel.AuthorWcfService.AuthorServiceModel> CreateAuthorAsync(BooksMVC.DomainModel.AuthorWcfService.AuthorServiceModel vmAuthor);
+        System.Threading.Tasks.Task<Books.DomainModel.AuthorWcfService.AuthorServiceModel> CreateAuthorAsync(Books.DomainModel.AuthorWcfService.AuthorServiceModel viewModelAuthor);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthorWcfService/EditAuthor", ReplyAction="http://tempuri.org/IAuthorWcfService/EditAuthorResponse")]
-        BooksMVC.DomainModel.AuthorWcfService.AuthorServiceModel EditAuthor(BooksMVC.DomainModel.AuthorWcfService.AuthorServiceModel vmAuthor);
+        Books.DomainModel.AuthorWcfService.AuthorServiceModel EditAuthor(Books.DomainModel.AuthorWcfService.AuthorServiceModel viewModelAuthor);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAuthorWcfService/EditAuthor", ReplyAction="http://tempuri.org/IAuthorWcfService/EditAuthorResponse")]
-        System.Threading.Tasks.Task<BooksMVC.DomainModel.AuthorWcfService.AuthorServiceModel> EditAuthorAsync(BooksMVC.DomainModel.AuthorWcfService.AuthorServiceModel vmAuthor);
+        System.Threading.Tasks.Task<Books.DomainModel.AuthorWcfService.AuthorServiceModel> EditAuthorAsync(Books.DomainModel.AuthorWcfService.AuthorServiceModel viewModelAuthor);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IAuthorWcfServiceChannel : BooksMVC.DomainModel.AuthorWcfService.IAuthorWcfService, System.ServiceModel.IClientChannel {
+    public interface IAuthorWcfServiceChannel : Books.DomainModel.AuthorWcfService.IAuthorWcfService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class AuthorWcfServiceClient : System.ServiceModel.ClientBase<BooksMVC.DomainModel.AuthorWcfService.IAuthorWcfService>, BooksMVC.DomainModel.AuthorWcfService.IAuthorWcfService {
+    public partial class AuthorWcfServiceClient : System.ServiceModel.ClientBase<Books.DomainModel.AuthorWcfService.IAuthorWcfService>, Books.DomainModel.AuthorWcfService.IAuthorWcfService {
         
         public AuthorWcfServiceClient() {
         }
@@ -139,28 +139,28 @@ namespace BooksMVC.DomainModel.AuthorWcfService {
                 base(binding, remoteAddress) {
         }
         
-        public BooksMVC.DomainModel.AuthorWcfService.AuthorServiceModel GetAuthor(int authorId) {
+        public Books.DomainModel.AuthorWcfService.AuthorServiceModel GetAuthor(int authorId) {
             return base.Channel.GetAuthor(authorId);
         }
         
-        public System.Threading.Tasks.Task<BooksMVC.DomainModel.AuthorWcfService.AuthorServiceModel> GetAuthorAsync(int authorId) {
+        public System.Threading.Tasks.Task<Books.DomainModel.AuthorWcfService.AuthorServiceModel> GetAuthorAsync(int authorId) {
             return base.Channel.GetAuthorAsync(authorId);
         }
         
-        public BooksMVC.DomainModel.AuthorWcfService.AuthorServiceModel CreateAuthor(BooksMVC.DomainModel.AuthorWcfService.AuthorServiceModel vmAuthor) {
-            return base.Channel.CreateAuthor(vmAuthor);
+        public Books.DomainModel.AuthorWcfService.AuthorServiceModel CreateAuthor(Books.DomainModel.AuthorWcfService.AuthorServiceModel viewModelAuthor) {
+            return base.Channel.CreateAuthor(viewModelAuthor);
         }
         
-        public System.Threading.Tasks.Task<BooksMVC.DomainModel.AuthorWcfService.AuthorServiceModel> CreateAuthorAsync(BooksMVC.DomainModel.AuthorWcfService.AuthorServiceModel vmAuthor) {
-            return base.Channel.CreateAuthorAsync(vmAuthor);
+        public System.Threading.Tasks.Task<Books.DomainModel.AuthorWcfService.AuthorServiceModel> CreateAuthorAsync(Books.DomainModel.AuthorWcfService.AuthorServiceModel viewModelAuthor) {
+            return base.Channel.CreateAuthorAsync(viewModelAuthor);
         }
         
-        public BooksMVC.DomainModel.AuthorWcfService.AuthorServiceModel EditAuthor(BooksMVC.DomainModel.AuthorWcfService.AuthorServiceModel vmAuthor) {
-            return base.Channel.EditAuthor(vmAuthor);
+        public Books.DomainModel.AuthorWcfService.AuthorServiceModel EditAuthor(Books.DomainModel.AuthorWcfService.AuthorServiceModel viewModelAuthor) {
+            return base.Channel.EditAuthor(viewModelAuthor);
         }
         
-        public System.Threading.Tasks.Task<BooksMVC.DomainModel.AuthorWcfService.AuthorServiceModel> EditAuthorAsync(BooksMVC.DomainModel.AuthorWcfService.AuthorServiceModel vmAuthor) {
-            return base.Channel.EditAuthorAsync(vmAuthor);
+        public System.Threading.Tasks.Task<Books.DomainModel.AuthorWcfService.AuthorServiceModel> EditAuthorAsync(Books.DomainModel.AuthorWcfService.AuthorServiceModel viewModelAuthor) {
+            return base.Channel.EditAuthorAsync(viewModelAuthor);
         }
     }
 }

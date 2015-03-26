@@ -1,70 +1,96 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BooksMVC.DAL;
-using BooksMVC.ViewModel;
-using System.Data.Objects.SqlClient;
-using BooksMVC.Infrastructure;
-
-namespace BooksWebAPI.DomainModel.Domains
+﻿//----------------------------------------------------------
+// <copyright file="BookDomainModel.cs" company="ApriorIT">
+//     Copyright (c) ApriorIT. All rights reserved.
+// </copyright>
+// <author>Vitaliy Panasyuk</author>
+//----------------------------------------------------------
+namespace BooksWebApi.DomainModel.Domains
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Data.Objects.SqlClient;
+    using System.Globalization;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using Books.DataAccessLayer;
+    using Books.Infrastructure;
+    using Books.ViewModel;
+
+    /// <summary>
+    /// Represents a book domain model
+    /// </summary>
     public class BookDomainModel : DomainModelBase
     {
-        SelfEducationEntities context;
+        /// <summary>
+        /// Represents a database context for the manipulation of entities
+        /// </summary>
+        private SelfEducationEntities context;
 
+        /// <summary>
+        /// Gets all authors
+        /// </summary>
+        /// <returns>Received authors</returns>
         public ICollection<AuthorViewModel> GetAuthors()
         {
-            using (context = new SelfEducationEntities())
+            using (this.context = new SelfEducationEntities())
             {
-                return context.Authors.Select(author => new AuthorViewModel()
+                return this.context.Authors.Select(author => new AuthorViewModel()
                 {
-                    AuthorID = author.ID,
+                    AuthorId = author.Id,
                     AuthorName = author.Name
                 }).ToList<AuthorViewModel>();
             }
         }
 
+        /// <summary>
+        /// Gets all books
+        /// </summary>
+        /// <returns>Received books</returns>
         public ICollection<BookViewModel> GetBooks()
         {
-            using (context = new SelfEducationEntities())
+            using (this.context = new SelfEducationEntities())
             {
-                var books = context.Books.Select(book => new
+                var books = this.context.Books.Select(book => new
                 {
-                    BookID = book.ID,
+                    BookId = book.Id,
                     BookName = book.Name,
                     Authors = book.Authors.Select(author => new AuthorViewModel
                     {
-                        AuthorID = author.ID,
+                        AuthorId = author.Id,
                         AuthorName = author.Name
                     })
                 }).ToList();
 
                 return books.Select(book => new BookViewModel()
                 {
-                    BookID = book.BookID,
+                    BookId = book.BookId,
                     BookName = book.BookName,
                     Authors = book.Authors.ToList<AuthorViewModel>()
                 }).ToList<BookViewModel>();
             }
         }
 
-        public BookViewModel GetBook(int Id)
+        /// <summary>
+        /// Gets a book
+        /// </summary>
+        /// <param name="id">An book id to receive</param>
+        /// <returns>The received book</returns>
+        public BookViewModel GetBook(int id)
         {
-            using (context = new SelfEducationEntities())
+            using (this.context = new SelfEducationEntities())
             {
-                var returnBook = context.Books.Where(book => book.ID == Id).Select(book => new
+                var returnBook = this.context.Books.Where(book => book.Id == id).Select(book => new
                 {
-                    BookID = book.ID,
+                    BookId = book.Id,
                     BookName = book.Name,
-                    Authors = book.Authors.Select(author => new AuthorViewModel() { AuthorID = author.ID, AuthorName = author.Name }),
-                    SelectedAuthors = book.Authors.Select(author => SqlFunctions.StringConvert((double?)author.ID).Trim())
+                    Authors = book.Authors.Select(author => new AuthorViewModel() { AuthorId = author.Id, AuthorName = author.Name }),
+                    SelectedAuthors = book.Authors.Select(author => SqlFunctions.StringConvert((double?)author.Id).Trim())
                 }).First();
 
                 return new BookViewModel()
                 {
-                    BookID = returnBook.BookID,
+                    BookId = returnBook.BookId,
                     BookName = returnBook.BookName,
                     Authors = returnBook.Authors.ToList<AuthorViewModel>(),
                     SelectedAuthors = returnBook.SelectedAuthors
@@ -72,54 +98,71 @@ namespace BooksWebAPI.DomainModel.Domains
             }
         }
 
-        public BookViewModel CreateBook(BookViewModel vmBook)
+        /// <summary>
+        /// Creates a book
+        /// </summary>
+        /// <param name="viewModelBook">The book to create</param>
+        /// <returns>The created book</returns>
+        public BookViewModel CreateBook(BookViewModel viewModelBook)
         {
-            using (context = new SelfEducationEntities())
+            using (this.context = new SelfEducationEntities())
             {
-                context.Books.Add(new Book()
+                this.context.Books.Add(new Book()
                 {
-                    Name = vmBook.BookName,
-                    Authors = context.Authors.Where(author => vmBook.SelectedAuthors.Contains(SqlFunctions.StringConvert((double?)author.ID).Trim())).ToList()
+                    Name = viewModelBook.BookName,
+                    Authors = this.context.Authors.Where(author => viewModelBook.SelectedAuthors.Contains(SqlFunctions.StringConvert((double?)author.Id).Trim())).ToList()
                 });
-                context.SaveChanges();
-                return vmBook;
+                this.context.SaveChanges();
+                return viewModelBook;
             }
         }
 
-        public BookViewModel EditBook(BookViewModel vmBook)
+        /// <summary>
+        /// Edits a book
+        /// </summary>
+        /// <param name="viewModelBook">The book to edit</param>
+        /// <returns>The edited book</returns>
+        public BookViewModel EditBook(BookViewModel viewModelBook)
         {
-            using (context = new SelfEducationEntities())
+            using (this.context = new SelfEducationEntities())
             {
-                Book DALBook = context.Books.Where(book => book.ID == vmBook.BookID).First();
-                DALBook.Name = vmBook.BookName;
-                context.SaveChanges();
+                Book dalBook = this.context.Books.Where(book => book.Id == viewModelBook.BookId).First();
+                dalBook.Name = viewModelBook.BookName;
+                this.context.SaveChanges();
 
                 // Delete
-                IEnumerable<string> authorsDelete = DALBook.Authors.Where(
-                    author => !vmBook.SelectedAuthors.Contains(author.ID.ToString())).Select(
-                        author => author.ID.ToString()).AsEnumerable<string>();
+                IEnumerable<string> authorsDelete = dalBook.Authors.Where(
+                    author => !viewModelBook.SelectedAuthors.Contains(author.Id.ToString(CultureInfo.CurrentCulture))).Select(
+                        author => author.Id.ToString(CultureInfo.CurrentCulture)).AsEnumerable<string>();
                 foreach (var author in authorsDelete)
-                    context.Database.ExecuteSqlCommand("DELETE dbo.BookAuthor WHERE BookID = {0} AND AuthorID = {1}", DALBook.ID, author);
+                {
+                    this.context.Database.ExecuteSqlCommand("DELETE dbo.BookAuthor WHERE BookID = {0} AND AuthorID = {1}", dalBook.Id, author);
+                }
 
                 // Insert
-                IEnumerable<string> authorsInsert = vmBook.SelectedAuthors.Where(
-                    author => !DALBook.Authors.Select(
-                        dalauthor => dalauthor.ID).AsEnumerable<int>().Contains(Convert.ToInt32(author))
-                        );
+                IEnumerable<string> authorsInsert = viewModelBook.SelectedAuthors.Where(
+                    author => !dalBook.Authors.Select(
+                        dalauthor => dalauthor.Id).AsEnumerable<int>().Contains(Convert.ToInt32(author, CultureInfo.CurrentCulture)));
                 foreach (var author in authorsInsert)
-                    context.Database.ExecuteSqlCommand("INSERT INTO dbo.BookAuthor(BookID, AuthorID) VALUES({0}, {1})", DALBook.ID, author);
+                {
+                    this.context.Database.ExecuteSqlCommand("INSERT INTO dbo.BookAuthor(BookID, AuthorID) VALUES({0}, {1})", dalBook.Id, author);
+                }
 
-                return vmBook;
+                return viewModelBook;
             }
         }
 
-        public void RemoveBook(BookViewModel vmBook)
+        /// <summary>
+        /// Removes a book
+        /// </summary>
+        /// <param name="viewModelBook">The book to remove</param>
+        public void RemoveBook(BookViewModel viewModelBook)
         {
-            using (context = new SelfEducationEntities())
+            using (this.context = new SelfEducationEntities())
             {
-                Book DALBook = context.Books.Where(book => book.ID == vmBook.BookID).First();
-                context.Books.Remove(DALBook);
-                context.SaveChanges();
+                Book dalBook = this.context.Books.Where(book => book.Id == viewModelBook.BookId).First();
+                this.context.Books.Remove(dalBook);
+                this.context.SaveChanges();
             }
         }
     }

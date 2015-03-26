@@ -1,6 +1,6 @@
-﻿@model System.Exception
+﻿@model System.Web.Mvc.HandleErrorInfo
 
 <div>
     <h1>Sorry, an error was occured</h1>
-    <p>The Error: @Model.Message</p>
+    <p>The Error: @Model.Exception.Message</p>
 </div>

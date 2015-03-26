@@ -1,32 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using BooksMVC.DomainModel.Domains;
-using BooksMVC.ViewModel;
-using System.Net.Http;
-
-namespace BooksMVC.Controllers
+﻿//------------------------------------------------------
+// <copyright file="AuthorController.cs" company="ApriorIT">
+//     Copyright (c) ApriorIT. All rights reserved.
+// </copyright>
+// <author>Vitaliy Panasyuk</author>
+//------------------------------------------------------
+namespace Books.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net.Http;
+    using System.Web;
+    using System.Web.Mvc;
+    using Books.DomainModel.Domains;
+    using Books.ViewModel;
+
+    /// <summary>
+    /// Represents an author controller
+    /// </summary>
     public class AuthorController : Controller
     {
-        //
-        // GET: /Author/Create
-
+        /// <summary>
+        /// Creates a form to create an author 
+        /// GET: /Author/Create
+        /// </summary>
+        /// <returns>A result of the creation</returns>
         [HttpGet]
         public ActionResult Create()
         {
-            return View("_Edit", new AuthorViewModel());
+            return this.View("_Edit", new AuthorViewModel());
         }
 
-        //
-        // GET: /Author/Edit/5
-
+        /// <summary>
+        /// Creates a form to edit an author 
+        /// GET: /Author/Edit/5
+        /// </summary>
+        /// <returns>A result of the creation</returns>
         [HttpGet]
-        public ActionResult Edit(int id)
+        public ActionResult Edit()
         {
-            return View("_Edit", new AuthorViewModel());
+            return this.View("_Edit", new AuthorViewModel());
         }
     }
 }

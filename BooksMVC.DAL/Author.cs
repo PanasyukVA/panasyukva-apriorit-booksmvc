@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BooksMVC.DAL
+namespace Books.DataAccessLayer
 {
     using System;
     using System.Collections.Generic;
@@ -19,9 +19,9 @@ namespace BooksMVC.DAL
             this.Books = new HashSet<Book>();
         }
     
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
     
-        public virtual ICollection<Book> Books { get; set; }
+        public ICollection<Book> Books { get; set; }
     }
 }
