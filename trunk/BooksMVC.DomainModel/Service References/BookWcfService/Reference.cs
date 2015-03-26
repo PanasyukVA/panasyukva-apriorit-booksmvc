@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BooksMVC.DomainModel.BookWcfService {
+namespace Books.DomainModel.BookWcfService {
     using System.Runtime.Serialization;
     using System;
     
@@ -23,7 +23,7 @@ namespace BooksMVC.DomainModel.BookWcfService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> AuthorIDField;
+        private System.Nullable<int> AuthorIdField;
         
         private string AuthorNameField;
         
@@ -41,14 +41,14 @@ namespace BooksMVC.DomainModel.BookWcfService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> AuthorID {
+        public System.Nullable<int> AuthorId {
             get {
-                return this.AuthorIDField;
+                return this.AuthorIdField;
             }
             set {
-                if ((this.AuthorIDField.Equals(value) != true)) {
-                    this.AuthorIDField = value;
-                    this.RaisePropertyChanged("AuthorID");
+                if ((this.AuthorIdField.Equals(value) != true)) {
+                    this.AuthorIdField = value;
+                    this.RaisePropertyChanged("AuthorId");
                 }
             }
         }
@@ -98,10 +98,10 @@ namespace BooksMVC.DomainModel.BookWcfService {
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        private BooksMVC.DomainModel.BookWcfService.AuthorServiceModel[] AuthorsField;
+        private Books.DomainModel.BookWcfService.AuthorServiceModel[] AuthorsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> BookIDField;
+        private System.Nullable<int> BookIdField;
         
         private string BookNameField;
         
@@ -118,7 +118,7 @@ namespace BooksMVC.DomainModel.BookWcfService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public BooksMVC.DomainModel.BookWcfService.AuthorServiceModel[] Authors {
+        public Books.DomainModel.BookWcfService.AuthorServiceModel[] Authors {
             get {
                 return this.AuthorsField;
             }
@@ -131,14 +131,14 @@ namespace BooksMVC.DomainModel.BookWcfService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> BookID {
+        public System.Nullable<int> BookId {
             get {
-                return this.BookIDField;
+                return this.BookIdField;
             }
             set {
-                if ((this.BookIDField.Equals(value) != true)) {
-                    this.BookIDField = value;
-                    this.RaisePropertyChanged("BookID");
+                if ((this.BookIdField.Equals(value) != true)) {
+                    this.BookIdField = value;
+                    this.RaisePropertyChanged("BookId");
                 }
             }
         }
@@ -184,49 +184,49 @@ namespace BooksMVC.DomainModel.BookWcfService {
     public interface IBookWcfService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookWcfService/GetAuthors", ReplyAction="http://tempuri.org/IBookWcfService/GetAuthorsResponse")]
-        BooksMVC.DomainModel.BookWcfService.AuthorServiceModel[] GetAuthors();
+        Books.DomainModel.BookWcfService.AuthorServiceModel[] GetAuthors();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookWcfService/GetAuthors", ReplyAction="http://tempuri.org/IBookWcfService/GetAuthorsResponse")]
-        System.Threading.Tasks.Task<BooksMVC.DomainModel.BookWcfService.AuthorServiceModel[]> GetAuthorsAsync();
+        System.Threading.Tasks.Task<Books.DomainModel.BookWcfService.AuthorServiceModel[]> GetAuthorsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookWcfService/GetBooks", ReplyAction="http://tempuri.org/IBookWcfService/GetBooksResponse")]
-        BooksMVC.DomainModel.BookWcfService.BookServiceModel[] GetBooks();
+        Books.DomainModel.BookWcfService.BookServiceModel[] GetBooks();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookWcfService/GetBooks", ReplyAction="http://tempuri.org/IBookWcfService/GetBooksResponse")]
-        System.Threading.Tasks.Task<BooksMVC.DomainModel.BookWcfService.BookServiceModel[]> GetBooksAsync();
+        System.Threading.Tasks.Task<Books.DomainModel.BookWcfService.BookServiceModel[]> GetBooksAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookWcfService/GetBook", ReplyAction="http://tempuri.org/IBookWcfService/GetBookResponse")]
-        BooksMVC.DomainModel.BookWcfService.BookServiceModel GetBook(int bookId);
+        Books.DomainModel.BookWcfService.BookServiceModel GetBook(int bookId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookWcfService/GetBook", ReplyAction="http://tempuri.org/IBookWcfService/GetBookResponse")]
-        System.Threading.Tasks.Task<BooksMVC.DomainModel.BookWcfService.BookServiceModel> GetBookAsync(int bookId);
+        System.Threading.Tasks.Task<Books.DomainModel.BookWcfService.BookServiceModel> GetBookAsync(int bookId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookWcfService/CreateBook", ReplyAction="http://tempuri.org/IBookWcfService/CreateBookResponse")]
-        BooksMVC.DomainModel.BookWcfService.BookServiceModel CreateBook(BooksMVC.DomainModel.BookWcfService.BookServiceModel vmBook);
+        Books.DomainModel.BookWcfService.BookServiceModel CreateBook(Books.DomainModel.BookWcfService.BookServiceModel viewModelBook);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookWcfService/CreateBook", ReplyAction="http://tempuri.org/IBookWcfService/CreateBookResponse")]
-        System.Threading.Tasks.Task<BooksMVC.DomainModel.BookWcfService.BookServiceModel> CreateBookAsync(BooksMVC.DomainModel.BookWcfService.BookServiceModel vmBook);
+        System.Threading.Tasks.Task<Books.DomainModel.BookWcfService.BookServiceModel> CreateBookAsync(Books.DomainModel.BookWcfService.BookServiceModel viewModelBook);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookWcfService/EditBook", ReplyAction="http://tempuri.org/IBookWcfService/EditBookResponse")]
-        BooksMVC.DomainModel.BookWcfService.BookServiceModel EditBook(BooksMVC.DomainModel.BookWcfService.BookServiceModel vmBook);
+        Books.DomainModel.BookWcfService.BookServiceModel EditBook(Books.DomainModel.BookWcfService.BookServiceModel viewModelBook);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookWcfService/EditBook", ReplyAction="http://tempuri.org/IBookWcfService/EditBookResponse")]
-        System.Threading.Tasks.Task<BooksMVC.DomainModel.BookWcfService.BookServiceModel> EditBookAsync(BooksMVC.DomainModel.BookWcfService.BookServiceModel vmBook);
+        System.Threading.Tasks.Task<Books.DomainModel.BookWcfService.BookServiceModel> EditBookAsync(Books.DomainModel.BookWcfService.BookServiceModel viewModelBook);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookWcfService/RemoveBook", ReplyAction="http://tempuri.org/IBookWcfService/RemoveBookResponse")]
-        void RemoveBook(BooksMVC.DomainModel.BookWcfService.BookServiceModel vmBook);
+        void RemoveBook(Books.DomainModel.BookWcfService.BookServiceModel viewModelBook);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBookWcfService/RemoveBook", ReplyAction="http://tempuri.org/IBookWcfService/RemoveBookResponse")]
-        System.Threading.Tasks.Task RemoveBookAsync(BooksMVC.DomainModel.BookWcfService.BookServiceModel vmBook);
+        System.Threading.Tasks.Task RemoveBookAsync(Books.DomainModel.BookWcfService.BookServiceModel viewModelBook);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IBookWcfServiceChannel : BooksMVC.DomainModel.BookWcfService.IBookWcfService, System.ServiceModel.IClientChannel {
+    public interface IBookWcfServiceChannel : Books.DomainModel.BookWcfService.IBookWcfService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class BookWcfServiceClient : System.ServiceModel.ClientBase<BooksMVC.DomainModel.BookWcfService.IBookWcfService>, BooksMVC.DomainModel.BookWcfService.IBookWcfService {
+    public partial class BookWcfServiceClient : System.ServiceModel.ClientBase<Books.DomainModel.BookWcfService.IBookWcfService>, Books.DomainModel.BookWcfService.IBookWcfService {
         
         public BookWcfServiceClient() {
         }
@@ -247,52 +247,52 @@ namespace BooksMVC.DomainModel.BookWcfService {
                 base(binding, remoteAddress) {
         }
         
-        public BooksMVC.DomainModel.BookWcfService.AuthorServiceModel[] GetAuthors() {
+        public Books.DomainModel.BookWcfService.AuthorServiceModel[] GetAuthors() {
             return base.Channel.GetAuthors();
         }
         
-        public System.Threading.Tasks.Task<BooksMVC.DomainModel.BookWcfService.AuthorServiceModel[]> GetAuthorsAsync() {
+        public System.Threading.Tasks.Task<Books.DomainModel.BookWcfService.AuthorServiceModel[]> GetAuthorsAsync() {
             return base.Channel.GetAuthorsAsync();
         }
         
-        public BooksMVC.DomainModel.BookWcfService.BookServiceModel[] GetBooks() {
+        public Books.DomainModel.BookWcfService.BookServiceModel[] GetBooks() {
             return base.Channel.GetBooks();
         }
         
-        public System.Threading.Tasks.Task<BooksMVC.DomainModel.BookWcfService.BookServiceModel[]> GetBooksAsync() {
+        public System.Threading.Tasks.Task<Books.DomainModel.BookWcfService.BookServiceModel[]> GetBooksAsync() {
             return base.Channel.GetBooksAsync();
         }
         
-        public BooksMVC.DomainModel.BookWcfService.BookServiceModel GetBook(int bookId) {
+        public Books.DomainModel.BookWcfService.BookServiceModel GetBook(int bookId) {
             return base.Channel.GetBook(bookId);
         }
         
-        public System.Threading.Tasks.Task<BooksMVC.DomainModel.BookWcfService.BookServiceModel> GetBookAsync(int bookId) {
+        public System.Threading.Tasks.Task<Books.DomainModel.BookWcfService.BookServiceModel> GetBookAsync(int bookId) {
             return base.Channel.GetBookAsync(bookId);
         }
         
-        public BooksMVC.DomainModel.BookWcfService.BookServiceModel CreateBook(BooksMVC.DomainModel.BookWcfService.BookServiceModel vmBook) {
-            return base.Channel.CreateBook(vmBook);
+        public Books.DomainModel.BookWcfService.BookServiceModel CreateBook(Books.DomainModel.BookWcfService.BookServiceModel viewModelBook) {
+            return base.Channel.CreateBook(viewModelBook);
         }
         
-        public System.Threading.Tasks.Task<BooksMVC.DomainModel.BookWcfService.BookServiceModel> CreateBookAsync(BooksMVC.DomainModel.BookWcfService.BookServiceModel vmBook) {
-            return base.Channel.CreateBookAsync(vmBook);
+        public System.Threading.Tasks.Task<Books.DomainModel.BookWcfService.BookServiceModel> CreateBookAsync(Books.DomainModel.BookWcfService.BookServiceModel viewModelBook) {
+            return base.Channel.CreateBookAsync(viewModelBook);
         }
         
-        public BooksMVC.DomainModel.BookWcfService.BookServiceModel EditBook(BooksMVC.DomainModel.BookWcfService.BookServiceModel vmBook) {
-            return base.Channel.EditBook(vmBook);
+        public Books.DomainModel.BookWcfService.BookServiceModel EditBook(Books.DomainModel.BookWcfService.BookServiceModel viewModelBook) {
+            return base.Channel.EditBook(viewModelBook);
         }
         
-        public System.Threading.Tasks.Task<BooksMVC.DomainModel.BookWcfService.BookServiceModel> EditBookAsync(BooksMVC.DomainModel.BookWcfService.BookServiceModel vmBook) {
-            return base.Channel.EditBookAsync(vmBook);
+        public System.Threading.Tasks.Task<Books.DomainModel.BookWcfService.BookServiceModel> EditBookAsync(Books.DomainModel.BookWcfService.BookServiceModel viewModelBook) {
+            return base.Channel.EditBookAsync(viewModelBook);
         }
         
-        public void RemoveBook(BooksMVC.DomainModel.BookWcfService.BookServiceModel vmBook) {
-            base.Channel.RemoveBook(vmBook);
+        public void RemoveBook(Books.DomainModel.BookWcfService.BookServiceModel viewModelBook) {
+            base.Channel.RemoveBook(viewModelBook);
         }
         
-        public System.Threading.Tasks.Task RemoveBookAsync(BooksMVC.DomainModel.BookWcfService.BookServiceModel vmBook) {
-            return base.Channel.RemoveBookAsync(vmBook);
+        public System.Threading.Tasks.Task RemoveBookAsync(Books.DomainModel.BookWcfService.BookServiceModel viewModelBook) {
+            return base.Channel.RemoveBookAsync(viewModelBook);
         }
     }
 }

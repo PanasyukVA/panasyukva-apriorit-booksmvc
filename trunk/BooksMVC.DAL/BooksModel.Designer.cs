@@ -1,4 +1,10 @@
-﻿// T4 code generation is enabled for model 'C:\Users\panasyuk.vitaliy\Documents\Visual Studio 2013\Projects\panasyukva-apriorit-booksmvc\BooksMVC.DAL\BooksModel.edmx'. 
+﻿//-------------------------------------------------------------
+// <copyright file="BooksModel.Designer.cs" company="Apriorit">
+//     Copyright (c) Apriorit. All rights reserved.
+// </copyright>
+// <author>Vitaliy Panasyuk</author>
+//-------------------------------------------------------------
+// T4 code generation is enabled for model 'C:\Users\panasyuk.vitaliy\Documents\Visual Studio 2013\Projects\panasyukva-apriorit-booksmvc\BooksMVC.DAL\BooksModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

@@ -1,96 +1,137 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using BooksMVC.DomainModel.Domains;
-using BooksMVC.ViewModel;
-
-namespace BooksMVC.Controllers
+﻿//--------------------------------------------------------
+// <copyright file="BookController.cs" company="ApriorIT">
+//     Copyright (c) ApriorIT. All rights reserved.
+// </copyright>
+// <author>Vitaliy Panasyuk</author>
+//--------------------------------------------------------
+namespace Books.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
+    using System.Web.Mvc;
+    using Books.DomainModel.Domains;
+    using Books.ViewModel;
+
+    /// <summary>
+    /// Represents a book controller
+    /// </summary>
     public class BookController : Controller
     {
-        BookDomainModel model;
-        
-        //
-        // GET: /Book/Index
+        /// <summary>
+        /// Represents a book domain model
+        /// </summary>
+        private BookDomainModel model;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BookController" /> class
+        /// </summary>
+        public BookController()
+            : base()
+        {
+            ViewBag.webApiGetAuthorPath = (System.Configuration.ConfigurationManager.AppSettings["BooksWebAPIGetAuthor"] ?? string.Empty).ToString();
+            ViewBag.webApiCreateAuthorPath = (System.Configuration.ConfigurationManager.AppSettings["BooksWebAPICreateAuthor"] ?? string.Empty).ToString();
+            ViewBag.webApiEditAuthorPath = (System.Configuration.ConfigurationManager.AppSettings["BooksWebAPIEditAuthor"] ?? string.Empty).ToString();
+        }
+
+        /// <summary>
+        /// Gets books
+        /// GET: /Book/Index
+        /// </summary>
+        /// <returns>Books to receive</returns>
         [HttpGet]
         public ActionResult Index()
         {
-            using (model = new BookDomainModel())
+            using (this.model = new BookDomainModel())
             {
-                return View("Index", model.GetBooks());
+                return this.View("Index", this.model.GetBooks());
             }
         }
         
-        //
-        // GET: /Book/Create
-
+        /// <summary>
+        /// Creates a form to create a book 
+        /// GET: /Book/Create
+        /// </summary>
+        /// <returns>A result of the creation</returns>
         [HttpGet]
         public ActionResult Create()
         {
-            using (model = new BookDomainModel())
+            using (this.model = new BookDomainModel())
             {
-                ViewBag.AllAuthors = new SelectList(model.GetAuthors(), "AuthorID", "AuthorName");
-                return View("_Edit", new BookViewModel() { SelectedAuthors = new List<string>() });
+                ViewBag.AllAuthors = new SelectList(this.model.GetAuthors(), "AuthorId", "AuthorName");
+                return this.View("_Edit", new BookViewModel() { SelectedAuthors = new List<string>() });
             }
         }
 
-        //
-        // POST: /Book/Create
-
+        /// <summary>
+        /// Creates a book
+        /// POST: /Book/Create
+        /// </summary>
+        /// <param name="model">The book to create</param>
+        /// <returns>A result of creation</returns>
         [HttpPost]
-        public ActionResult Create(BookViewModel Model)
+        public ActionResult Create(BookViewModel model)
         {
-            try
+            using (this.model = new BookDomainModel())
             {
-                using (model = new BookDomainModel())
-                {
-                    model.CreateBook(Model);
-                }
+                this.model.CreateBook(model);
+            }
 
-                return RedirectToAction("Index");
-            }
-            catch(Exception err)
-            {
-                return View("_Error", err);
-            }
+            return this.RedirectToAction("_Index");
         }
 
-        //
-        // GET: /Book/Edit/5
-
+        /// <summary>
+        /// Creates a form to edit a book
+        /// GET: /Book/Edit/5
+        /// </summary>
+        /// <param name="id">An book id to edit</param>
+        /// <returns>A result of creation</returns>
         [HttpGet]
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public ActionResult Edit(int id)
         {
-            using (model = new BookDomainModel())
+            using (this.model = new BookDomainModel())
             {
-                ViewBag.AllAuthors = new SelectList(model.GetAuthors(), "AuthorID", "AuthorName");
-                return View("_Edit", model.GetBook(id));
+                ViewBag.AllAuthors = new SelectList(this.model.GetAuthors(), "AuthorId", "AuthorName");
+                return this.View("_Edit", this.model.GetBook(id));
             }
         }
 
-        //
-        // POST: /Book/Edit/5
-
+        /// <summary>
+        /// Edits a book
+        /// POST: /Book/Edit/5
+        /// </summary>
+        /// <param name="model">The book to edit</param>
+        /// <returns>A result of editing</returns>
         [HttpPost]
-        public ActionResult Edit(int id, BookViewModel Model)
+        public ActionResult Edit(BookViewModel model)
         {
-            try
+            using (this.model = new BookDomainModel())
             {
-                using (model = new BookDomainModel())
-                {
-                    model.EditBook(Model);
-                }
+                this.model.EditBook(model);
+            }
 
-                return RedirectToAction("Index");
-            }
-            catch(Exception err)
+            return this.RedirectToAction("Index");
+        }
+
+        /// <summary>
+        /// Handles an error
+        /// </summary>
+        /// <param name="filterContext">A context to handle the error</param>
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            if (filterContext.ExceptionHandled)
             {
-                return View("_Error", err);
+                return;
             }
+
+            filterContext.Result = new ViewResult()
+            {
+                ViewName = "_Error"
+            };
+
+            filterContext.ExceptionHandled = true;
         }
     }
 }

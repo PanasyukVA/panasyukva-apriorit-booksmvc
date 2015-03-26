@@ -1,72 +1,117 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BooksMVC.ViewModel;
-using BooksMVC.Infrastructure;
-using BooksMVC.DomainModel.BookWcfService;
-using AutoMapper;
-
-namespace BooksMVC.DomainModel.Domains
+﻿//------------------------------------------------------
+// <copyright file="BookDomainModel.cs" company="ApriorIT">
+//     Copyright (c) ApriorIT. All rights reserved.
+// </copyright>
+// <author>Vitaliy Panasyuk</author>
+//------------------------------------------------------
+namespace Books.DomainModel.Domains
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using AutoMapper;
+    using Books.DomainModel.BookWcfService;
+    using Books.Infrastructure;
+    using Books.ViewModel;
+    
+    /// <summary>
+    /// Represents a book domain model
+    /// </summary>
     public class BookDomainModel : DomainModelBase 
     {
-        BookWcfServiceClient service;
+        /// <summary>
+        /// Represents a service of the book
+        /// </summary>
+        private BookWcfServiceClient service;
 
-        public BookDomainModel(){
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BookDomainModel" /> class 
+        /// </summary>
+        public BookDomainModel()
+        {
             Mapper.CreateMap<AuthorServiceModel, AuthorViewModel>();
             Mapper.CreateMap<BookServiceModel, BookViewModel>();
             Mapper.CreateMap<BookViewModel, BookServiceModel>();
         }
 
+        /// <summary>
+        /// Gets authors
+        /// </summary>
+        /// <returns>Received authors</returns>
         public ICollection<AuthorViewModel> GetAuthors()
         {
-            using (service = new BookWcfServiceClient())
+            using (this.service = new BookWcfServiceClient())
             {
-                return service.GetAuthors().Select(author => Mapper.Map<AuthorServiceModel, AuthorViewModel>(author)).ToList<AuthorViewModel>();
+                return this.service.GetAuthors().Select(author => Mapper.Map<AuthorServiceModel, AuthorViewModel>(author)).ToList<AuthorViewModel>();
             }
         }
 
+        /// <summary>
+        /// Gets books
+        /// </summary>
+        /// <returns>Received books</returns>
         public ICollection<BookViewModel> GetBooks()
         {
-            using (service = new BookWcfServiceClient())
+            using (this.service = new BookWcfServiceClient())
             {
-                return service.GetBooks().Select(book => Mapper.Map<BookServiceModel, BookViewModel>(book)).ToList<BookViewModel>();
+                return this.service.GetBooks().Select(book => Mapper.Map<BookServiceModel, BookViewModel>(book)).ToList<BookViewModel>();
             }
         }
 
+        /// <summary>
+        /// Gets a book
+        /// </summary>
+        /// <param name="bookId">An book id to receive</param>
+        /// <returns>The received book</returns>
         public BookViewModel GetBook(int bookId)
         {
-            using (service = new BookWcfServiceClient())
+            using (this.service = new BookWcfServiceClient())
             {
-                return Mapper.Map<BookServiceModel, BookViewModel>(service.GetBook(bookId));
+                return Mapper.Map<BookServiceModel, BookViewModel>(this.service.GetBook(bookId));
             }
         }
 
-        public BookViewModel CreateBook(BookViewModel vmBook)
+        /// <summary>
+        /// Creates book
+        /// </summary>
+        /// <param name="viewModelBook">The book to create</param>
+        /// <returns>The created book</returns>
+        public BookViewModel CreateBook(BookViewModel viewModelBook)
         {
-            using (service = new BookWcfServiceClient())
+            using (this.service = new BookWcfServiceClient())
             {
-                service.CreateBook(Mapper.Map<BookViewModel, BookServiceModel>(vmBook));
+                this.service.CreateBook(Mapper.Map<BookViewModel, BookServiceModel>(viewModelBook));
             }
-            return vmBook;
+
+            return viewModelBook;
         }
 
-        public BookViewModel EditBook(BookViewModel vmBook)
+        /// <summary>
+        /// Edits a book
+        /// </summary>
+        /// <param name="viewModelBook">The book to edit</param>
+        /// <returns>The edited book</returns>
+        public BookViewModel EditBook(BookViewModel viewModelBook)
         {
-            using (service = new BookWcfServiceClient())
+            using (this.service = new BookWcfServiceClient())
             {
-                service.EditBook(Mapper.Map<BookViewModel, BookServiceModel>(vmBook));
+                this.service.EditBook(Mapper.Map<BookViewModel, BookServiceModel>(viewModelBook));
             }
-            return vmBook;
+
+            return viewModelBook;
         }
 
-        public void RemoveBook(BookViewModel vmBook)
+        /// <summary>
+        /// Removes a book
+        /// </summary>
+        /// <param name="viewModelBook">The book to remove</param>
+        public void RemoveBook(BookViewModel viewModelBook)
         {
-            using (service = new BookWcfServiceClient())
+            using (this.service = new BookWcfServiceClient())
             {
-                service.RemoveBook(Mapper.Map<BookViewModel, BookServiceModel>(vmBook));
+                this.service.RemoveBook(Mapper.Map<BookViewModel, BookServiceModel>(viewModelBook));
             }
         }
     }

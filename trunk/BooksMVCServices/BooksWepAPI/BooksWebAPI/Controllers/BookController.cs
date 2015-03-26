@@ -1,65 +1,104 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using BooksMVC.ViewModel;
-using BooksWebAPI.DomainModel.Domains;
-
-namespace BooksWebAPI.Controllers
+﻿//--------------------------------------------------------
+// <copyright file="BookController.cs" company="ApriorIT">
+//     Copyright (c) ApriorIT. All rights reserved.
+// </copyright>
+// <author>Vitaliy Panasyuk</author>
+//--------------------------------------------------------
+namespace BooksWebApi.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net;
+    using System.Net.Http;
+    using System.Web.Http;
+    using Books.ViewModel;
+    using BooksWebApi.DomainModel.Domains;
+
+    /// <summary>
+    /// Represents a book controller
+    /// </summary>
     public class BookController : ApiController
     {
-        BookDomainModel model;
+        /// <summary>
+        /// Represents a book domain model
+        /// </summary>
+        private BookDomainModel model;
 
+        /// <summary>
+        /// Gets all authors
+        /// </summary>
+        /// <returns>Received authors</returns>
         public ICollection<AuthorViewModel> GetAuthors()
         {
-            using (model = new BookDomainModel())
+            using (this.model = new BookDomainModel())
             {
-                return model.GetAuthors();
+                return this.model.GetAuthors();
             }
         }
 
+        /// <summary>
+        /// Gets all books
+        /// </summary>
+        /// <returns>Received books</returns>
         public ICollection<BookViewModel> GetBooks()
         {
-            using (model = new BookDomainModel())
+            using (this.model = new BookDomainModel())
             {
-                return model.GetBooks();
+                return this.model.GetBooks();
             }
         }
 
-        public BookViewModel GetBook(int Id)
+        /// <summary>
+        /// Gets a book
+        /// </summary>
+        /// <param name="id">An book id to receive</param>
+        /// <returns>The received book</returns>
+        public BookViewModel GetBook(int id)
         {
-            using (model = new BookDomainModel())
+            using (this.model = new BookDomainModel())
             {
-                return model.GetBook(Id);
+                return this.model.GetBook(id);
             }
         }
 
-        public BookViewModel CreateBook(BookViewModel vmBook)
+        /// <summary>
+        /// Creates a book
+        /// </summary>
+        /// <param name="viewModelBook">The book to create</param>
+        /// <returns>The created book</returns>
+        public BookViewModel CreateBook(BookViewModel viewModelBook)
         {
-            using (model = new BookDomainModel())
+            using (this.model = new BookDomainModel())
             {
-                model.CreateBook(vmBook);
-                return vmBook;
+                this.model.CreateBook(viewModelBook);
+                return viewModelBook;
             }
         }
 
-        public BookViewModel EditBook(BookViewModel vmBook)
+        /// <summary>
+        /// Edits a book
+        /// </summary>
+        /// <param name="viewModelBook">The book to edit</param>
+        /// <returns>The edited book</returns>
+        public BookViewModel EditBook(BookViewModel viewModelBook)
         {
-            using (model = new BookDomainModel())
+            using (this.model = new BookDomainModel())
             {
-                model.EditBook(vmBook);
-                return vmBook;
+                this.model.EditBook(viewModelBook);
+                return viewModelBook;
             }
         }
 
-        public void RemoveBook(BookViewModel vmBook)
+        /// <summary>
+        /// Removes a book
+        /// </summary>
+        /// <param name="viewModelBook">The book to remove</param>
+        public void RemoveBook(BookViewModel viewModelBook)
         {
-            using (model = new BookDomainModel())
+            using (this.model = new BookDomainModel())
             {
-                model.RemoveBook(vmBook);
+                this.model.RemoveBook(viewModelBook);
             }
         }
     }

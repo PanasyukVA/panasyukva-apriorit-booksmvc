@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SelfEducationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SelfEducationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Author">
           <Key>
             <PropertyRef Name="ID" />
@@ -64,24 +64,23 @@
             <End Role="BookAuthor" EntitySet="BookAuthor" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SelfEducationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Author">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Books" Relationship="Self.BookAuthor" FromRole="Author" ToRole="Book" />
         </EntityType>
         <EntityType Name="Book">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Authors" Relationship="Self.BookAuthor" FromRole="Book" ToRole="Author" />
         </EntityType>
@@ -106,7 +105,7 @@
           <EntitySetMapping Name="Authors">
             <EntityTypeMapping TypeName="SelfEducationModel.Author">
               <MappingFragment StoreEntitySet="Author">
-                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Id" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -114,17 +113,17 @@
           <EntitySetMapping Name="Books">
             <EntityTypeMapping TypeName="SelfEducationModel.Book">
               <MappingFragment StoreEntitySet="Book">
-                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Id" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <AssociationSetMapping Name="BookAuthor" TypeName="SelfEducationModel.BookAuthor" StoreEntitySet="BookAuthor">
             <EndProperty Name="Author">
-              <ScalarProperty Name="ID" ColumnName="AuthorID" />
+              <ScalarProperty Name="Id" ColumnName="AuthorID" />
             </EndProperty>
             <EndProperty Name="Book">
-              <ScalarProperty Name="ID" ColumnName="BookID" />
+              <ScalarProperty Name="Id" ColumnName="BookID" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

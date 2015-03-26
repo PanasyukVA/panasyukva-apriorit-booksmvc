@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BooksMVC.DAL
+namespace Books.DataAccessLayer
 {
     using System;
     using System.Data.Entity;

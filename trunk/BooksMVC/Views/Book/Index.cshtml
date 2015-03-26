@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BooksMVC.ViewModel.BookViewModel>
+﻿@model IEnumerable<Books.ViewModel.BookViewModel>
 
 @{
     ViewBag.Title = "Books";
@@ -25,7 +25,7 @@
                     {
                         <tr>
                             <th>
-                                @book.BookID
+                                @book.BookId
                             </th>
                             <td>
                                 @book.BookName
@@ -33,7 +33,7 @@
                             <td>
                                 @foreach (var author in book.Authors)
                                 {
-                                    <a id="aEditAuthor" class="btn btn-link" href="#" data-authorid="@author.AuthorID">@author.AuthorName</a>
+                                    <a id="aEditAuthor" class="btn btn-link" href="#" data-authorid="@author.AuthorId">@author.AuthorName</a>
                                     if (author != book.Authors.Last())
                                     {
                                         @:,
@@ -41,7 +41,7 @@
                                 }
                             </td>
                             <td>
-                                <button id="btnEditBook" class="btn btn-primary btn-sm" data-bookid="@book.BookID" title="Click the button to edit the book" type="button">
+                                <button id="btnEditBook" class="btn btn-primary btn-sm" data-bookid="@book.BookId" title="Click the button to edit the book" type="button">
                                     <span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;&nbsp;Edit
                                 </button>
                             </td>

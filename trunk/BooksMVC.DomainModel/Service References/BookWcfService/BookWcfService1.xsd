@@ -42,7 +42,7 @@
   <xs:element name="CreateBook">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/BooksWcfServices" minOccurs="0" name="vmBook" nillable="true" type="q4:BookServiceModel" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/BooksWcfServices" minOccurs="0" name="viewModelBook" nillable="true" type="q4:BookServiceModel" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -56,7 +56,7 @@
   <xs:element name="EditBook">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/BooksWcfServices" minOccurs="0" name="vmBook" nillable="true" type="q6:BookServiceModel" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/BooksWcfServices" minOccurs="0" name="viewModelBook" nillable="true" type="q6:BookServiceModel" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -70,7 +70,7 @@
   <xs:element name="RemoveBook">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/BooksWcfServices" minOccurs="0" name="vmBook" nillable="true" type="q8:BookServiceModel" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/BooksWcfServices" minOccurs="0" name="viewModelBook" nillable="true" type="q8:BookServiceModel" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
