@@ -165,5 +165,31 @@ namespace BooksWebApi.DomainModel.Domains
                 this.context.SaveChanges();
             }
         }
+
+        /// <summary>
+        /// Gets authors of the book
+        /// </summary>
+        /// <param name="id">The book id to receive authors</param>
+        /// <returns>Received authors</returns>
+        public ICollection<AuthorViewModel> GetBookAuthors(int id)
+        {
+            return this.context.Books.Where(book => book.Id == id).First().Authors.Select(author => new AuthorViewModel()
+            {
+                AuthorId = author.Id,
+                AuthorName = author.Name,
+                Books = author.Books.Select(book => book.Name).Aggregate((currernt, next) => currernt + ", " + next)
+            }).ToList<AuthorViewModel>();
+        }
+
+        /// <summary>
+        /// Gets books by publish date
+        /// </summary>
+        /// <param name="beginDate">The start date</param>
+        /// <param name="endDate">The end date</param>
+        /// <returns>Received books</returns>
+        public ICollection<BookViewModel> GetBooksByPublishDateRange(DateTime beginDate, DateTime endDate)
+        {
+            throw new NotImplementedException("This functionality is not implemented");
+        }
     }
 }
