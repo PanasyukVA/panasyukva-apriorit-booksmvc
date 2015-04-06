@@ -1,8 +1,14 @@
 ﻿/// <reference path="jquery-2.1.3.js" />
 /// <reference path="jquery-2.1.3.intellisense.js" />
+/// <reference path="jquery.blockUI.js" />
+
+function initializeGlobal() {
+    $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+}
 
 // Initialize "Books" layer
 function initializeBooks() {
+    $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
     $("[id=aEditAuthor]").on("click", showEditingAuthor);
     $("[id=btnEditBook]").on("click", showEditingBook);
     $("#btnCreateAuthor").on("click", showCreatingAuthor);
@@ -30,7 +36,7 @@ function getAuthor(authorView, state, result, authorid) {
 
 // Full Author form data
 function fullAuthor(data) {
-    $("#AuthorID").val(data.AuthorID);
+    $("#AuthorId").val(data.AuthorId);
     $("#AuthorName").val(data.AuthorName);
     $("#Books").val(data.Books);
 }
@@ -70,11 +76,11 @@ function initializeAuthor() {
 
 // Create / Edit author
 function createEditAuthor() {
-    var authorId = $("#AuthorID").val();
-    var url = authorId == "" ? webAPICreateAuthorPath : webAPIEditAuthorPath;
+    var authorId = $("#AuthorId").val();
+    var url = authorId == "0" ? webAPICreateAuthorPath : webAPIEditAuthorPath;
     var authorName = $("#AuthorName").val();
     var books = $("#Books").val();
-    var data = { "AuthorID": authorId, "AuthorName": authorName, "Books": books };
+    var data = { "AuthorId": authorId, "AuthorName": authorName, "Books": books };
     $.ajax({
         url: url,
         data: data,

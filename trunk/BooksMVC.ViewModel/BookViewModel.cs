@@ -23,7 +23,7 @@ namespace Books.ViewModel
         /// Gets or sets a book id
         /// </summary>
         [HiddenInput(DisplayValue = false)]
-        public int? BookId { get; set; }
+        public int BookId { get; set; }
 
         /// <summary>
         /// Gets or sets a book name

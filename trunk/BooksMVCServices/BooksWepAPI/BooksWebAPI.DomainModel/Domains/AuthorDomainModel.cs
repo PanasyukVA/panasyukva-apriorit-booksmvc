@@ -8,6 +8,7 @@ namespace BooksWebApi.DomainModel.Domains
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Linq;
     using System.Text;
@@ -31,6 +32,7 @@ namespace BooksWebApi.DomainModel.Domains
         /// </summary>
         /// <param name="id">An author id to receive</param>
         /// <returns>The received author</returns>
+        [ExcludeFromCodeCoverage]
         public AuthorViewModel GetAuthor(int id)
         {
             using (this.context = new SelfEducationEntities())
@@ -54,6 +56,7 @@ namespace BooksWebApi.DomainModel.Domains
         /// </summary>
         /// <param name="viewModelAuthor">The author to create</param>
         /// <returns>The created author</returns>
+        [ExcludeFromCodeCoverage]
         public AuthorViewModel CreateAuthor(AuthorViewModel viewModelAuthor)
         {
             using (this.context = new SelfEducationEntities())
@@ -69,6 +72,7 @@ namespace BooksWebApi.DomainModel.Domains
         /// </summary>
         /// <param name="viewModelAuthor">The author to edit</param>
         /// <returns>The edited author</returns>
+        [ExcludeFromCodeCoverage]
         public AuthorViewModel EditAuthor(AuthorViewModel viewModelAuthor)
         {
             using (this.context = new SelfEducationEntities())

@@ -23,7 +23,7 @@ namespace Books.DomainModel.BookWcfService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> AuthorIdField;
+        private int AuthorIdField;
         
         private string AuthorNameField;
         
@@ -41,7 +41,7 @@ namespace Books.DomainModel.BookWcfService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> AuthorId {
+        public int AuthorId {
             get {
                 return this.AuthorIdField;
             }
@@ -101,7 +101,7 @@ namespace Books.DomainModel.BookWcfService {
         private Books.DomainModel.BookWcfService.AuthorServiceModel[] AuthorsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> BookIdField;
+        private int BookIdField;
         
         private string BookNameField;
         
@@ -131,7 +131,7 @@ namespace Books.DomainModel.BookWcfService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> BookId {
+        public int BookId {
             get {
                 return this.BookIdField;
             }

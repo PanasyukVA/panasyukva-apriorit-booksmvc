@@ -79,15 +79,18 @@
     <None Include="App.config" />
     <None Include="Books.DomainModel.snk" />
     <None Include="packages.config" />
-    <None Include="Service References\AuthorWcfService\AuthorWcfService.disco" />
+    <None Include="Service References\AuthorWcfService\AuthorWcfService.wsdl" />
+    <None Include="Service References\AuthorWcfService\AuthorWcfService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AuthorWcfService\AuthorWcfService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AuthorWcfService\AuthorWcfService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\AuthorWcfService\Books.DomainModel.AuthorWcfService.AuthorServiceModel.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\AuthorWcfService\configuration91.svcinfo" />
-    <None Include="Service References\AuthorWcfService\configuration.svcinfo" />
-    <None Include="Service References\AuthorWcfService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Service References\BookWcfService\Books.DomainModel.BookWcfService.AuthorServiceModel.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -102,6 +105,13 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\AuthorWcfService\AuthorWcfService.disco" />
+    <None Include="Service References\AuthorWcfService\configuration91.svcinfo" />
+    <None Include="Service References\AuthorWcfService\configuration.svcinfo" />
+    <None Include="Service References\AuthorWcfService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -109,16 +119,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <None Include="Service References\AuthorWcfService\AuthorWcfService.wsdl" />
-    <None Include="Service References\AuthorWcfService\AuthorWcfService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\AuthorWcfService\AuthorWcfService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\AuthorWcfService\AuthorWcfService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\BookWcfService\BookWcfService.wsdl" />
     <None Include="Service References\BookWcfService\BookWcfService.xsd">
       <SubType>Designer</SubType>

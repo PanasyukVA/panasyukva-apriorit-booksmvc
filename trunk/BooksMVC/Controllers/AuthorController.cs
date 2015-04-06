@@ -13,12 +13,13 @@ namespace Books.Controllers
     using System.Web;
     using System.Web.Mvc;
     using Books.DomainModel.Domains;
+    using Books.Helpers;
     using Books.ViewModel;
 
     /// <summary>
     /// Represents an author controller
     /// </summary>
-    public class AuthorController : Controller
+    public class AuthorController : BooksControllerBase
     {
         /// <summary>
         /// Creates a form to create an author 
