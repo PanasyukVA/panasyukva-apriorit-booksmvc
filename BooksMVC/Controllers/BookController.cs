@@ -12,12 +12,13 @@ namespace Books.Controllers
     using System.Web;
     using System.Web.Mvc;
     using Books.DomainModel.Domains;
+    using Books.Helpers;
     using Books.ViewModel;
 
     /// <summary>
     /// Represents a book controller
     /// </summary>
-    public class BookController : Controller
+    public class BookController : BooksControllerBase
     {
         /// <summary>
         /// Represents a book domain model
@@ -78,7 +79,7 @@ namespace Books.Controllers
                 this.model.CreateBook(model);
             }
 
-            return this.RedirectToAction("_Index");
+            return this.RedirectToAction("Index");
         }
 
         /// <summary>
@@ -113,25 +114,6 @@ namespace Books.Controllers
             }
 
             return this.RedirectToAction("Index");
-        }
-
-        /// <summary>
-        /// Handles an error
-        /// </summary>
-        /// <param name="filterContext">A context to handle the error</param>
-        protected override void OnException(ExceptionContext filterContext)
-        {
-            if (filterContext.ExceptionHandled)
-            {
-                return;
-            }
-
-            filterContext.Result = new ViewResult()
-            {
-                ViewName = "_Error"
-            };
-
-            filterContext.ExceptionHandled = true;
         }
     }
 }

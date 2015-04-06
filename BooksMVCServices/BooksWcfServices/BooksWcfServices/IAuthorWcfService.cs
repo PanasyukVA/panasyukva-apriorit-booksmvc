@@ -56,7 +56,7 @@ namespace BooksWcfServices
         /// Gets or sets author id
         /// </summary>
         [DataMember]
-        public int? AuthorId { get; set; }
+        public int AuthorId { get; set; }
         
         /// <summary>
         /// Gets or sets author name

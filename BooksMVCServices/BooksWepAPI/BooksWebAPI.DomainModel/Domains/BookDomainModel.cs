@@ -9,6 +9,7 @@ namespace BooksWebApi.DomainModel.Domains
     using System;
     using System.Collections.Generic;
     using System.Data.Objects.SqlClient;
+    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Linq;
     using System.Text;
@@ -31,6 +32,7 @@ namespace BooksWebApi.DomainModel.Domains
         /// Gets all authors
         /// </summary>
         /// <returns>Received authors</returns>
+        [ExcludeFromCodeCoverage]
         public ICollection<AuthorViewModel> GetAuthors()
         {
             using (this.context = new SelfEducationEntities())
@@ -76,6 +78,7 @@ namespace BooksWebApi.DomainModel.Domains
         /// </summary>
         /// <param name="id">An book id to receive</param>
         /// <returns>The received book</returns>
+        [ExcludeFromCodeCoverage]
         public BookViewModel GetBook(int id)
         {
             using (this.context = new SelfEducationEntities())
@@ -103,6 +106,7 @@ namespace BooksWebApi.DomainModel.Domains
         /// </summary>
         /// <param name="viewModelBook">The book to create</param>
         /// <returns>The created book</returns>
+        [ExcludeFromCodeCoverage]
         public BookViewModel CreateBook(BookViewModel viewModelBook)
         {
             using (this.context = new SelfEducationEntities())
@@ -122,6 +126,7 @@ namespace BooksWebApi.DomainModel.Domains
         /// </summary>
         /// <param name="viewModelBook">The book to edit</param>
         /// <returns>The edited book</returns>
+        [ExcludeFromCodeCoverage]
         public BookViewModel EditBook(BookViewModel viewModelBook)
         {
             using (this.context = new SelfEducationEntities())
@@ -132,7 +137,7 @@ namespace BooksWebApi.DomainModel.Domains
 
                 // Delete
                 IEnumerable<string> authorsDelete = dalBook.Authors.Where(
-                    author => !viewModelBook.SelectedAuthors.Contains(author.Id.ToString(CultureInfo.CurrentCulture))).Select(
+                    author =>   !viewModelBook.SelectedAuthors.Contains(author.Id.ToString(CultureInfo.CurrentCulture))).Select(
                         author => author.Id.ToString(CultureInfo.CurrentCulture)).AsEnumerable<string>();
                 foreach (var author in authorsDelete)
                 {
@@ -156,6 +161,7 @@ namespace BooksWebApi.DomainModel.Domains
         /// Removes a book
         /// </summary>
         /// <param name="viewModelBook">The book to remove</param>
+        [ExcludeFromCodeCoverage]
         public void RemoveBook(BookViewModel viewModelBook)
         {
             using (this.context = new SelfEducationEntities())
@@ -173,12 +179,15 @@ namespace BooksWebApi.DomainModel.Domains
         /// <returns>Received authors</returns>
         public ICollection<AuthorViewModel> GetBookAuthors(int id)
         {
-            return this.context.Books.Where(book => book.Id == id).First().Authors.Select(author => new AuthorViewModel()
+            using (this.context = new SelfEducationEntities())
             {
-                AuthorId = author.Id,
-                AuthorName = author.Name,
-                Books = author.Books.Select(book => book.Name).Aggregate((currernt, next) => currernt + ", " + next)
-            }).ToList<AuthorViewModel>();
+                return this.context.Books.Where(book => book.Id == id).First().Authors.Select(author => new AuthorViewModel()
+                {
+                    AuthorId = author.Id,
+                    AuthorName = author.Name,
+                    Books = author.Books.Select(book => book.Name).Aggregate((currernt, next) => currernt + ", " + next)
+                }).ToList<AuthorViewModel>();
+            }
         }
 
         /// <summary>
@@ -189,7 +198,28 @@ namespace BooksWebApi.DomainModel.Domains
         /// <returns>Received books</returns>
         public ICollection<BookViewModel> GetBooksByPublishDateRange(DateTime beginDate, DateTime endDate)
         {
-            throw new NotImplementedException("This functionality is not implemented");
+            using (this.context = new SelfEducationEntities())
+            {
+                var books = this.context.Books.Where(book => book.PublishDate >= beginDate && book.PublishDate <= endDate).Select(book => new
+                {
+                    BookId = book.Id,
+                    BookName = book.Name,
+                    Authors = book.Authors.Select(author => new AuthorViewModel
+                    {
+                        AuthorId = author.Id,
+                        AuthorName = author.Name
+                    }),
+                    SelectedAuthors = book.Authors.Select(author => SqlFunctions.StringConvert((double)author.Id))
+                }).ToList();
+
+                return books.Select(book => new BookViewModel()
+                {
+                    BookId = book.BookId,
+                    BookName = book.BookName,
+                    Authors = book.Authors.ToList<AuthorViewModel>(),
+                    SelectedAuthors = book.SelectedAuthors
+                }).ToList<BookViewModel>();
+            }
         }
     }
 }

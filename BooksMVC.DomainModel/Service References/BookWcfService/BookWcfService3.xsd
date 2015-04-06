@@ -9,7 +9,7 @@
   <xs:element name="ArrayOfAuthorServiceModel" nillable="true" type="tns:ArrayOfAuthorServiceModel" />
   <xs:complexType name="AuthorServiceModel">
     <xs:sequence>
-      <xs:element minOccurs="0" name="AuthorId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="AuthorId" type="xs:int" />
       <xs:element name="AuthorName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Books" nillable="true" type="xs:string" />
     </xs:sequence>
@@ -24,7 +24,7 @@
   <xs:complexType name="BookServiceModel">
     <xs:sequence>
       <xs:element name="Authors" nillable="true" type="tns:ArrayOfAuthorServiceModel" />
-      <xs:element minOccurs="0" name="BookId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="BookId" type="xs:int" />
       <xs:element name="BookName" nillable="true" type="xs:string" />
       <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" name="SelectedAuthors" nillable="true" type="q1:ArrayOfstring" />
     </xs:sequence>

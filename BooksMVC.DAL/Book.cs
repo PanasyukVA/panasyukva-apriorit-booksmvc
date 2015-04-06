@@ -21,7 +21,8 @@ namespace Books.DataAccessLayer
     
         public int Id { get; set; }
         public string Name { get; set; }
+        public System.DateTime PublishDate { get; set; }
     
-        public ICollection<Author> Authors { get; set; }
+        public virtual ICollection<Author> Authors { get; set; }
     }
 }
