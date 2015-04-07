@@ -1,3 +1,11 @@
-﻿<div style="text-align: center">
-    <h3 style="color: red">Sorry, an error was occured</h3>
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Books";
+    Layout = "~/Views/_BaseLayout.cshtml";
+}
+
+<div style="text-align: center;">
+    <img data-errormessage="@Model.Exception.Message" src="~/Content/ErrorGlobal.jpg" />
 </div>
+
