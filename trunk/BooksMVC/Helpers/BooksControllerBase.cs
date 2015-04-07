@@ -32,11 +32,10 @@ namespace Books.Helpers
 
             if (IsAjax(filterContext))
             {
-                filterContext.Result = new ContentResult
+                filterContext.Result = new JsonResult()
                 {
-                    Content = string.Format("<div style=\"color: red\"><h3>The error was occurred. Error: {0}</h3></div>", filterContext.Exception.Message),
-                    ContentType = "text/html",
-                    ContentEncoding = Encoding.UTF8 
+                    Data = filterContext.Exception.Message,
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
                 };
 
                 filterContext.ExceptionHandled = true;
@@ -44,12 +43,7 @@ namespace Books.Helpers
             }
             else
             {
-                filterContext.Result = new ViewResult()
-                {
-                    ViewName = "_Error"
-                };
-
-                filterContext.ExceptionHandled = true;
+                base.OnException(filterContext);
             }
         }
 
