@@ -46,6 +46,7 @@ namespace Books.Controllers
         {
             using (this.model = new BookDomainModel())
             {
+                var t = Convert.ToInt32("");
                 return this.View("Index", this.model.GetBooks());
             }
         }
