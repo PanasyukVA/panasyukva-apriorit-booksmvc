@@ -9,6 +9,12 @@ function initializeGlobal() {
 // Initialize "Books" layer
 function initializeBooks() {
     $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+
+    $ajax({
+        type: "GET",
+        url: "Book/Index"
+    }).done(function (data) {});
+
     $("[id=aEditAuthor]").on("click", showEditingAuthor);
     $("[id=btnEditBook]").on("click", showEditingBook);
     $("#btnCreateAuthor").on("click", showCreatingAuthor);
@@ -110,8 +116,10 @@ function displayBook(bookView) {
 
 function authorErrorHandling(error){
     $("#authorLayer").html(error.responseText);
+    $("#bookLayer").slideDown(1000);
 }
 
 function bookErrorHandling(error) {
     $("#bookLayer").html(error.responseText);
+    $("#bookLayer").slideDown(1000);
 }

@@ -60,8 +60,6 @@ namespace Books.Controllers
         {
             using (this.model = new BookDomainModel())
             {
-                throw new NotImplementedException("This is test exception");
-
                 ViewBag.AllAuthors = new SelectList(this.model.GetAuthors(), "AuthorId", "AuthorName");
                 return this.View("_Edit", new BookViewModel() { SelectedAuthors = new List<string>() });
             }

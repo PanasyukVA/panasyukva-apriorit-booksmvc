@@ -4,17 +4,12 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8" />
     <title>@ViewBag.Title</title>
-    <link href="@Url.Content("~/Content/Books.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" type="text/css" />
-    <script src="@Url.Content("~/Scripts/jquery-2.1.3.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/jquery.validate.mizxn.js")"></script>
-    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/jquery-2.1.3.js")"></script>
-    <script src="@Url.Content("~/Scripts/bootstrap.js")"></script>
-    <script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/jquery.blockUI.js")"></script>
-    <script src="@Url.Content("~/Scripts/bookauthor.js")"></script>
-
+    <link href="@Url.Content("~/bundles/Content")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/bundles/jquery")"></script>
+    <script src="@Url.Content("~/bundles/bootstrap")"></script>
+    <script src="@Url.Content("~/bundles/knockout")"></script>
+    <script src="@Url.Content("~/bundles/Scripts")"></script>
+    
     <script type="text/javascript">
         var webAPIGetAuthorPath = '@(ViewBag.webApiGetAuthorPath)';
         var webAPICreateAuthorPath = '@(ViewBag.webApiCreateAuthorPath)';
