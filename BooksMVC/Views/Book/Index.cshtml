@@ -8,6 +8,8 @@
 <div id="container">
     <div role="main">
         <div role="main">
+
+            <!-- Book layer -->
             <div id="bookLayer" style="display: none;">
                 <form>
                     <fieldset>
@@ -49,6 +51,7 @@
                 </script>
             </div>
 
+            <!-- Books layer -->
             <div id="BooksLayer">
                 <table class="BooksTable table table-bordered table-hover table-condensed">
                     <thead>
@@ -60,12 +63,11 @@
                         </tr>
                     </thead>
 
-                    <tbody>
+                    <tbody data-bind="foreach: books">
                         <tr>
-                            <th>
+                            <th data-bind="text: Value.bookId">
                             </th>
-                            <td>
-                            </td>
+                            <td data-bind="text: Value.bookName"></td>
                             <td>
                                 <a class="btn btn-link" id="aEditAuthor" href="#" data-authorid="5">Phil Haack</a>
                             </td>
@@ -75,105 +77,12 @@
                                 </button>
                             </td>
                         </tr>
-                        <tr>
-                            <th>
-                            </th>
-                            <td>
-                            </td>
-                            <td>
-                                <a class="btn btn-link" id="aEditAuthor" href="#" data-authorid="1">Adam Freeman</a>
-                            </td>
-                            <td>
-                                <button title="Click the button to edit the book" class="btn btn-primary btn-sm" id="btnEditBook" type="button" data-bookid="2">
-                                    <span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;&nbsp;Edit
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                3
-                            </th>
-                            <td>
-                                Professional ASP.NET MVC 3
-                            </td>
-                            <td>
-                                <a class="btn btn-link" id="aEditAuthor" href="#" data-authorid="5">Phil Haack</a>
-                            </td>
-                            <td>
-                                <button title="Click the button to edit the book" class="btn btn-primary btn-sm" id="btnEditBook" type="button" data-bookid="3">
-                                    <span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;&nbsp;Edit
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                30
-                            </th>
-                            <td>
-                                TestBook
-                            </td>
-                            <td>
-                                <a class="btn btn-link" id="aEditAuthor" href="#" data-authorid="1">Adam Freeman</a>
-                            </td>
-                            <td>
-                                <button title="Click the button to edit the book" class="btn btn-primary btn-sm" id="btnEditBook" type="button" data-bookid="30">
-                                    <span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;&nbsp;Edit
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                35
-                            </th>
-                            <td>
-                                TestBook2
-                            </td>
-                            <td>
-                                <a class="btn btn-link" id="aEditAuthor" href="#" data-authorid="1">Adam Freeman</a>
-                            </td>
-                            <td>
-                                <button title="Click the button to edit the book" class="btn btn-primary btn-sm" id="btnEditBook" type="button" data-bookid="35">
-                                    <span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;&nbsp;Edit
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                36
-                            </th>
-                            <td>
-                                TestBook3
-                            </td>
-                            <td>
-                                <a class="btn btn-link" id="aEditAuthor" href="#" data-authorid="36">TestAuthor2</a>
-                            </td>
-                            <td>
-                                <button title="Click the button to edit the book" class="btn btn-primary btn-sm" id="btnEditBook" type="button" data-bookid="36">
-                                    <span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;&nbsp;Edit
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                37
-                            </th>
-                            <td>
-                                TestBook4
-                            </td>
-                            <td>
-                                <a class="btn btn-link" id="aEditAuthor" href="#" data-authorid="35">TestAuthor5</a>
-                            </td>
-                            <td>
-                                <button title="Click the button to edit the book" class="btn btn-primary btn-sm" id="btnEditBook" type="button" data-bookid="37">
-                                    <span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;&nbsp;Edit
-                                </button>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
 
-            <div id="authorLayer" style="display: block;">
+            <!-- Author layer -->
+            <div id="authorLayer" style="display: none;">
                 <form action="/Author/Edit/35" method="post">
                     <input name="__RequestVerificationToken" type="hidden" value="MAuBXoOOgDKXo7VFclfb9wwKnsr1A7J5043EB8soJyRPuW1-WF7aX2nGXRFqHti50cTztrYEswRcqSKCCgSUizxW5VhfB7A5gDvTr1FwQsA1">    <fieldset>
                         <legend>Author</legend>
@@ -212,6 +121,7 @@
                 </script>
             </div>
 
+            <!-- Global operations -->
             <p class="btn-group">
                 <button class="btn btn-primary" id="btnCreateBook">
                     <span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;&nbsp;Add book
@@ -224,7 +134,9 @@
     </div>
 </div>
 <script type="text/javascript">
-        $(document).ready(function () {
-            initializeBooks();
-        });
+    $(document).ready(function () {
+        // Initializes "Books" layer
+        var Books = Books || new BooksNS.books();
+        Books.initializeBooks();
+    });
 </script>
