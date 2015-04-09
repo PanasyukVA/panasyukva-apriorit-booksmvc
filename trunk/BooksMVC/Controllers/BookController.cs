@@ -46,7 +46,7 @@ namespace Books.Controllers
         {
             using (this.model = new BookDomainModel())
             {
-                return this.View("Index", this.model.GetBooks());
+                return this.View("Index");
             }
         }
         

@@ -23,7 +23,9 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            initializeGlobal();
+            // Initializes the "Global" layer
+            var Books = Books || new BooksNS.books();
+            Books.initializeGlobal();
         });
     </script>
 </body>
