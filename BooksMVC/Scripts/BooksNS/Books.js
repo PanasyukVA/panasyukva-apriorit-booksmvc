@@ -9,22 +9,29 @@ var BooksNS = BooksNS || {};
 // The books class
 BooksNS.books = function () {
     // Initializes the "Global" layer
-    function initializeGlobal() {
+    this.initializeGlobal = function() {
         // Enables the blocking UI durring ajax request
         $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
     }
 
     // Initializes the "Books" layer
-    function initializeBooks() {
-        // Gets books
-        var booksViewModel = new ViewModel.booksViewModel();
-        getBooks(booksViewModel);
+    this.initializeBooks = function () {
+        // Initializes the "Author" layer
+        initializeAuthor();
 
+        // Initializes the "Book" layer
+        initializeBook();
+
+        // Initializes the "Books" layer
         // Subscribes on events
         $("[id=aEditAuthor]").on("click", showEditingAuthor);
         $("[id=btnEditBook]").on("click", showEditingBook);
         $("#btnCreateAuthor").on("click", showCreatingAuthor);
         $("#btnCreateBook").on("click", showCreatingBook);
+
+        // Gets books
+        var booksViewModel = new ViewModel.booksViewModel();
+        getBooks(booksViewModel);
     }
 
     // Initializes the "Book" layer
@@ -45,19 +52,19 @@ BooksNS.books = function () {
 
     // Gets books
     function getBooks(viewModel) {
-        $ajax({
+        $.ajax({
             type: "GET",
-            url: "BooksWcfServices/BookWcfService.svc/GetBooks",
+            url: "http://localhost/BooksWebAPI/api/Book/GetBooks",
             dataType: "json",
             success: function (data) {
                 $(data).each(function (index, element) {
-                    var book = new Entity.book(element.bookId, element.bookName, element.authors, element.selectedAuthors);
+                    var book = new Model.book(element.BookId, element.BookName, element.Authors, element.SelectedAuthors);
                     viewModel.books.push(book);
                 });
                 ko.applyBindings(viewModel);
             },
-            error: function () {
-                throw "The error handling durring getting books is not implemented!";
+            error: function (error) {
+                alert(error.responseText);
             }
         });
     }

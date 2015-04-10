@@ -44,11 +44,6 @@
                         </p>
                     </fieldset>
                 </form>
-                <script type="text/javascript">
-                    $(document).ready(function () {
-                        initializeBook();
-                    });
-                </script>
             </div>
 
             <!-- Books layer -->
@@ -65,11 +60,11 @@
 
                     <tbody data-bind="foreach: books">
                         <tr>
-                            <th data-bind="text: Value.bookId">
+                            <th data-bind="text: bookId">
                             </th>
-                            <td data-bind="text: Value.bookName"></td>
-                            <td>
-                                <a class="btn btn-link" id="aEditAuthor" href="#" data-authorid="5">Phil Haack</a>
+                            <td data-bind="text: bookName"></td>
+                            <td data-bind="foreach: authors">
+                                <a class="btn btn-link" id="aEditAuthor" href="#" data-bind="text: AuthorName, attr: { 'data-authorid': AuthorId }"></a>
                             </td>
                             <td>
                                 <button title="Click the button to edit the book" class="btn btn-primary btn-sm" id="btnEditBook" type="button" data-bookid="1">
@@ -114,11 +109,6 @@
                         </p>
                     </fieldset>
                 </form>
-                <script type="text/javascript">
-                    $(document).ready(function () {
-                        initializeAuthor();
-                    });
-                </script>
             </div>
 
             <!-- Global operations -->

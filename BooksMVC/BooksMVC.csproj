@@ -171,9 +171,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Icon.png" />
-    <Content Include="Scripts\Entity\author.js" />
+    <Content Include="Scripts\Model\author.js" />
     <Content Include="Scripts\ViewModel\authorViewModel.js" />
-    <Content Include="Scripts\Entity\book.js" />
+    <Content Include="Scripts\Model\book.js" />
     <Content Include="Scripts\ViewModel\booksViewModel.js" />
     <Content Include="Scripts\ViewModel\bookViewModel.js" />
     <Content Include="Scripts\BooksNS\books.js" />
