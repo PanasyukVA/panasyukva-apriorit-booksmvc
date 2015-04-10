@@ -40,13 +40,13 @@
             bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
                         "~/Scripts/knockout-{version}.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/Scripts").Include(
-                "~/Scripts/Entity/author.js",
-                "~/Scripts/Entity/book.js",
-                "~/Scripts/ViewModel/authorViewModel.js",
-                "~/Scripts/ViewModel/bookViewModel.js",
-                "~/Scripts/ViewModel/booksViewModel.js",
-                "~/Scripts/BooksNS/books.js"));
+            //bundles.Add(new ScriptBundle("~/bundles/Scripts").Include(
+            //    "~/Scripts/Model/author.js",
+            //    "~/Scripts/Model/book.js",
+            //    "~/Scripts/ViewModel/authorViewModel.js",
+            //    "~/Scripts/ViewModel/bookViewModel.js",
+            //    "~/Scripts/ViewModel/booksViewModel.js",
+            //    "~/Scripts/BooksNS/books.js"));
         }
     }
 }
