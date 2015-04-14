@@ -7,126 +7,137 @@
 
 <div id="container">
     <div role="main">
-        <div role="main">
+        <!-- Book layer -->
+        <div id="bookLayer" style="display: none;" data-bind="with: bookViewModel">
+            <fieldset>
+                <legend>Book</legend>
 
-            <!-- Book layer -->
-            <div id="bookLayer" style="display: none;">
-                <form>
-                    <fieldset>
-                        <legend>Book</legend>
+                <div id="bookLayerError" style="display: none"></div>
 
-                        <div class="form-group">
-                            <input name="BookId" id="BookId" type="hidden" value="" data-val-required="The BookId field is required." data-val-number="The field BookId must be a number." data-val="true">
-                            <span class="field-validation-valid" data-valmsg-replace="true" data-valmsg-for="BookId"></span>
-                        </div>
+                <div class="form-group">
+                    <input name="BookId" id="BookId" type="hidden" data-bind="value: bookId" data-val-required="The BookId field is required." data-val-number="The field BookId must be a number." data-val="true">
+                    <span class="field-validation-valid" data-valmsg-replace="true" data-valmsg-for="BookId"></span>
+                </div>
 
-                        <div class="form-group">
-                            <label for="BookName">BookName</label>:
-                            <input name="BookName" class="form-control" id="BookName" type="text" placeholder="Please, enter a book name" value="" data-val-required="The BookName field is required." data-val="true">
-                            <span class="field-validation-valid" data-valmsg-replace="true" data-valmsg-for="BookName"></span>
-                        </div>
+                <div class="form-group">
+                    <label for="BookName">BookName</label>:
+                    <input name="BookName" class="form-control" id="BookName" type="text" placeholder="Please, enter a book name" data-bind="value: bookName" data-val-required="The BookName field is required." data-val="true">
+                    <span class="field-validation-valid" data-valmsg-replace="true" data-valmsg-for="BookName"></span>
+                </div>
 
-                        <div class="form-group">
-                            <label for="Authors">Authors</label>:
-                            <select name="SelectedAuthors" class="form-control" id="SelectedAuthors" size="3" multiple="multiple">
-                                <option value="2">Matthew MacDonald</option>
-                            </select>
-                            <span class="field-validation-valid" data-valmsg-replace="true" data-valmsg-for="Authors"></span>
-                        </div>
+                <div class="form-group">
+                    <label for="Authors">Authors</label>:
+                    <select name="SelectedAuthors" class="form-control" id="SelectedAuthors" size="3" multiple="multiple" data-bind="foreach: bookAuthors">
+                        <!-- ko if: ($root.bookViewModel.bookSelectedAuthors.indexOf(AuthorId.toString()) === -1) -->
+                        <option data-bind="text: AuthorName, value: AuthorId"></option>
+                        <!-- /ko -->
+                        <!-- ko ifnot: ($root.bookViewModel.bookSelectedAuthors.indexOf(AuthorId.toString()) === -1) -->
+                            <option data-bind="text: AuthorName, value: AuthorId" selected></option>
+                        <!-- /ko -->
+                    </select>
+                    <span class="field-validation-valid" data-valmsg-replace="true" data-valmsg-for="Authors"></span>
+                </div>
 
-                        <p>
-                            <button class="btn btn-info btn-md" type="submit">
-                                <span class="glyphicon glyphicon-floppy-saved"></span>&nbsp;&nbsp;&nbsp;Save
-                            </button>
-                            <button class="btn btn-info btn-md" id="btnCancelBook" type="button">
-                                <span class="glyphicon glyphicon-floppy-remove"></span>&nbsp;&nbsp;&nbsp;Cancel
-                            </button>
-                        </p>
-                    </fieldset>
-                </form>
-            </div>
-
-            <!-- Books layer -->
-            <div id="BooksLayer">
-                <table class="BooksTable table table-bordered table-hover table-condensed">
-                    <thead>
-                        <tr>
-                            <th class="text-center lead">#</th>
-                            <th class="text-center lead">Book Name</th>
-                            <th class="text-center lead">Authors</th>
-                            <th class="text-center lead">Operations</th>
-                        </tr>
-                    </thead>
-
-                    <tbody data-bind="foreach: books">
-                        <tr>
-                            <th data-bind="text: bookId">
-                            </th>
-                            <td data-bind="text: bookName"></td>
-                            <td data-bind="foreach: authors">
-                                <a class="btn btn-link" id="aEditAuthor" href="#" data-bind="text: AuthorName, attr: { 'data-authorid': AuthorId }"></a>
-                            </td>
-                            <td>
-                                <button title="Click the button to edit the book" class="btn btn-primary btn-sm" id="btnEditBook" type="button" data-bookid="1">
-                                    <span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;&nbsp;Edit
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Author layer -->
-            <div id="authorLayer" style="display: none;">
-                <form action="/Author/Edit/35" method="post">
-                    <input name="__RequestVerificationToken" type="hidden" value="MAuBXoOOgDKXo7VFclfb9wwKnsr1A7J5043EB8soJyRPuW1-WF7aX2nGXRFqHti50cTztrYEswRcqSKCCgSUizxW5VhfB7A5gDvTr1FwQsA1">    <fieldset>
-                        <legend>Author</legend>
-
-                        <div class="form-group">
-                            <input name="AuthorId" id="AuthorId" type="hidden" value="35" data-val-required="The AuthorId field is required." data-val-number="The field AuthorId must be a number." data-val="true">
-                            <span class="field-validation-valid" data-valmsg-replace="true" data-valmsg-for="AuthorId"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="AuthorName">AuthorName</label>
-                            <input name="AuthorName" class="form-control" id="AuthorName" type="text" placeholder="Please, enter an author name" value="" data-val-required="The AuthorName field is required." data-val="true">
-                            <span class="field-validation-valid" data-valmsg-replace="true" data-valmsg-for="AuthorName"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="Books">Books</label>
-                            <input name="Books" class="form-control" id="Books" type="text" readonly="readonly" value="">
-                            <span class="field-validation-valid" data-valmsg-replace="true" data-valmsg-for="Books"></span>
-                        </div>
-
-                        <p>
-                            <button class="btn btn-info btn-md" id="btnSubmitAuthor" type="button">
-                                <span class="glyphicon glyphicon-floppy-saved"></span>&nbsp;&nbsp;&nbsp;Save
-                            </button>
-                            <button class="btn btn-info btn-md" id="btnCancelAuthor" type="button">
-                                <span class="glyphicon glyphicon-floppy-remove"></span>&nbsp;&nbsp;&nbsp;Cancel
-                            </button>
-                        </p>
-                    </fieldset>
-                </form>
-            </div>
-
-            <!-- Global operations -->
-            <p class="btn-group">
-                <button class="btn btn-primary" id="btnCreateBook">
-                    <span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;&nbsp;Add book
-                </button>
-                <button class="btn btn-primary" id="btnCreateAuthor">
-                    <span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;&nbsp;Add author
-                </button>
-            </p>
+                <p>
+                    <button class="btn btn-info btn-md" type="submit" id="btnSubmitBook">
+                        <span class="glyphicon glyphicon-floppy-saved"></span>&nbsp;&nbsp;&nbsp;Save
+                    </button>
+                    <button class="btn btn-info btn-md" id="btnCancelBook" type="button">
+                        <span class="glyphicon glyphicon-floppy-remove"></span>&nbsp;&nbsp;&nbsp;Cancel
+                    </button>
+                </p>
+            </fieldset>
         </div>
+
+        <!-- Books layer -->
+        <div id="booksLayer" data-bind="with: booksViewModel">
+
+            <div id="booksLayerError" style="display: none"></div>
+
+            <table class="BooksTable table table-bordered table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th class="text-center lead">#</th>
+                        <th class="text-center lead">Book Name</th>
+                        <th class="text-center lead">Authors</th>
+                        <th class="text-center lead">Operations</th>
+                    </tr>
+                </thead>
+
+                <tbody data-bind="foreach: books">
+                    <tr>
+                        <th data-bind="text: bookId">
+                        </th>
+                        <td data-bind="text: bookName"></td>
+                        <td data-bind="with: bookAuthors">
+                            <!-- ko foreach: $data -->
+                            <a class=" btn btn-link" id="aEditAuthor" href="#" data-bind="text: AuthorName, attr: { 'data-authorid': AuthorId }">
+                            </a>
+                            <!-- ko if: ($index() !== ($parent.length - 1)) -->
+                            ,
+                            <!-- /ko -->
+                            <!-- /ko -->
+                        </td>
+                        <td>
+                            <button title="Click the button to edit the book" class="btn btn-primary btn-sm" id="btnEditBook" type="button" data-bind="attr: { 'data-bookid': bookId }">
+                                <span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;&nbsp;Edit
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Author layer -->
+        <div id="authorLayer" style="display: none;" data-bind="with: authorViewModel">
+
+            <div id="authorLayerError" style="display: none"></div>
+
+            <fieldset>
+                <legend>Author</legend>
+
+                <div class="form-group">
+                    <input name="AuthorId" id="AuthorId" type="hidden" data-bind="value: authorId" data-val-required="The AuthorId field is required." data-val-number="The field AuthorId must be a number." data-val="true">
+                    <span class="field-validation-valid" data-valmsg-replace="true" data-valmsg-for="AuthorId"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="AuthorName">AuthorName</label>
+                    <input name="AuthorName" class="form-control" id="AuthorName" type="text" data-bind="value: authorName" placeholder="Please, enter an author name" data-val-required="The AuthorName field is required." data-val="true">
+                    <span class="field-validation-valid" data-valmsg-replace="true" data-valmsg-for="AuthorName"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="Books">Books</label>
+                    <input name="Books" class="form-control" id="Books" type="text" readonly="readonly" data-bind="value: authorBooks">
+                    <span class="field-validation-valid" data-valmsg-replace="true" data-valmsg-for="Books"></span>
+                </div>
+
+                <p>
+                    <button class="btn btn-info btn-md" id="btnSubmitAuthor" type="button">
+                        <span class="glyphicon glyphicon-floppy-saved"></span>&nbsp;&nbsp;&nbsp;Save
+                    </button>
+                    <button class="btn btn-info btn-md" id="btnCancelAuthor" type="button">
+                        <span class="glyphicon glyphicon-floppy-remove"></span>&nbsp;&nbsp;&nbsp;Cancel
+                    </button>
+                </p>
+            </fieldset>
+        </div>
+
+        <!-- Global operations -->
+        <p class="btn-group">
+            <button class="btn btn-primary" id="btnCreateBook">
+                <span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;&nbsp;Add book
+            </button>
+            <button class="btn btn-primary" id="btnCreateAuthor">
+                <span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;&nbsp;Add author
+            </button>
+        </p>
     </div>
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
-        // Initializes "Books" layer
         var Books = Books || new BooksNS.books();
-        Books.initializeBooks();
+        Books.initialize();
     });
 </script>

@@ -44,33 +44,42 @@ namespace Books.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            return this.View("Index");
+        }
+
+        /// <summary>
+        /// Gets the list of books in the JSON format
+        /// </summary>
+        /// <returns>The received list of books in the JSON format</returns>
+        [HttpGet]
+        public JsonResult GetIndex()
+        {
             using (this.model = new BookDomainModel())
             {
-                return this.View("Index");
+                return Json(model.GetBooks(), JsonRequestBehavior.AllowGet);
             }
         }
-        
+
         /// <summary>
         /// Creates a form to create a book 
         /// GET: /Book/Create
         /// </summary>
         /// <returns>A result of the creation</returns>
         [HttpGet]
-        public ActionResult Create()
+        public JsonResult GetCreate()
         {
             using (this.model = new BookDomainModel())
             {
-                ViewBag.AllAuthors = new SelectList(this.model.GetAuthors(), "AuthorId", "AuthorName");
-                return this.View("_Edit", new BookViewModel() { SelectedAuthors = new List<string>() });
+                return Json(this.model.GetAuthors(), JsonRequestBehavior.AllowGet);
             }
         }
 
-        /// <summary>
-        /// Creates a book
-        /// POST: /Book/Create
-        /// </summary>
-        /// <param name="model">The book to create</param>
-        /// <returns>A result of creation</returns>
+        ///// <summary>
+        ///// Creates a book
+        ///// POST: /Book/Create
+        ///// </summary>
+        ///// <param name="model">The book to create</param>
+        ///// <returns>A result of creation</returns>
         [HttpPost]
         public ActionResult Create(BookViewModel model)
         {
@@ -89,13 +98,15 @@ namespace Books.Controllers
         /// <param name="id">An book id to edit</param>
         /// <returns>A result of creation</returns>
         [HttpGet]
-        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public ActionResult Edit(int id)
+        public JsonResult GetEdit(int id)
         {
             using (this.model = new BookDomainModel())
             {
-                ViewBag.AllAuthors = new SelectList(this.model.GetAuthors(), "AuthorId", "AuthorName");
-                return this.View("_Edit", this.model.GetBook(id));
+                return Json(new 
+                { 
+                    book = this.model.GetBook(id), 
+                    allAuthors = this.model.GetAuthors()
+                }, JsonRequestBehavior.AllowGet);
             }
         }
 

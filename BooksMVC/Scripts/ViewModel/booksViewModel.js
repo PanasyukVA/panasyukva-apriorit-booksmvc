@@ -4,6 +4,6 @@
 var ViewModel = ViewModel || {};
 
 // The booksViewModel class
-ViewModel.booksViewModel = function() {
+ViewModel.booksViewModel = function () {
     this.books = ko.observableArray([]);
 }

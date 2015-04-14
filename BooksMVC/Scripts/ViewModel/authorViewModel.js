@@ -7,5 +7,5 @@ var ViewModel = ViewModel || {};
 ViewModel.authorViewModel = function (author) {
     this.authorId = ko.observable(author.authorId);
     this.authorName = ko.observable(author.authorName);
-    this.authorBooks = ko.observableArray(author.authorBooks);
+    this.authorBooks = ko.observable(author.authorBooks);
 }
