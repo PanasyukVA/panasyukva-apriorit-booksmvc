@@ -1,0 +1,41 @@
+﻿@model Books.ViewModel.AuthorViewModel
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Author</legend>
+
+        <div class="form-group">
+            @Html.EditorFor(model => model.AuthorId)
+            @Html.ValidationMessageFor(model => model.AuthorId)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AuthorName)
+            @Html.TextBoxFor(model => model.AuthorName, new { @class = "form-control", placeholder = "Please, enter an author name" })
+            @Html.ValidationMessageFor(model => model.AuthorName)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Books)
+            @Html.TextBoxFor(model => model.Books, new { @readonly = "readonly", @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Books)
+        </div>
+
+        <p>
+            <button type="button" class="btn btn-info btn-md" id="btnSubmitAuthor">
+                <span class="glyphicon glyphicon-floppy-saved"></span>&nbsp;&nbsp;&nbsp;Save
+            </button>
+            <button type="button" id="btnCancelAuthor" class="btn btn-info btn-md">
+                <span class="glyphicon glyphicon-floppy-remove"></span>&nbsp;&nbsp;&nbsp;Cancel
+            </button>
+        </p>
+    </fieldset>
+}
+<script type="text/javascript">
+        $(document).ready(function () {
+            initializeAuthor();
+        });
+</script>

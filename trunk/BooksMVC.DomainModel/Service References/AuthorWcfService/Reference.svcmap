@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4e4b6ba4-ce65-40f7-9cba-617ac719e552" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/BooksWcfServices/AuthorWcfService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="AuthorWcfService.wsdl" MetadataType="Wsdl" ID="931c902f-6e43-4796-b9af-09b3a548186e" SourceId="1" SourceUrl="http://localhost/BooksWcfServices/AuthorWcfService.svc?wsdl" />
+    <MetadataFile FileName="AuthorWcfService.disco" MetadataType="Disco" ID="bd92b240-c7d6-4bbd-9f60-975a1fb5666d" SourceId="1" SourceUrl="http://localhost/BooksWcfServices/AuthorWcfService.svc?disco" />
+    <MetadataFile FileName="AuthorWcfService.xsd" MetadataType="Schema" ID="65846d81-caba-49cf-b87a-3fd920bac707" SourceId="1" SourceUrl="http://localhost/BooksWcfServices/AuthorWcfService.svc?xsd=xsd0" />
+    <MetadataFile FileName="AuthorWcfService1.xsd" MetadataType="Schema" ID="b48eb7f7-f226-4b1c-9107-d7a4d8a01800" SourceId="1" SourceUrl="http://localhost/BooksWcfServices/AuthorWcfService.svc?xsd=xsd2" />
+    <MetadataFile FileName="AuthorWcfService2.xsd" MetadataType="Schema" ID="44988be8-963a-448f-b4dd-06c2a43d28df" SourceId="1" SourceUrl="http://localhost/BooksWcfServices/AuthorWcfService.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
