@@ -1,0 +1,9 @@
+﻿@model Books.ViewModel.BookViewModel
+
+@Html.DisplayForModel(new { AllAuthors = ViewBag.AllAuthors });
+
+<script type="text/javascript">
+        $(document).ready(function () {
+            initializeBook();
+        });
+</script>
