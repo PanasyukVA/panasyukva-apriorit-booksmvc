@@ -2,9 +2,9 @@
 var Model = Model || {};
 
 // The book class
-Model.book = function (id, name, auth, selectedAuth) {
+Model.book = function (id, name, authors, selectedAuthors) {
     this.bookId = id;
     this.bookName = name;
-    this.authors = auth;
-    this.selectedAuthors = selectedAuth;
+    this.bookAuthors = authors;
+    this.bookSelectedAuthors = selectedAuthors;
 }

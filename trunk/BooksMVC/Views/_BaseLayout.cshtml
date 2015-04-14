@@ -8,14 +8,7 @@
     <script src="@Url.Content("~/bundles/jquery")"></script>
     <script src="@Url.Content("~/bundles/bootstrap")"></script>
     <script src="@Url.Content("~/bundles/knockout")"></script>
-
-    <script src="@Url.Content("~/Scripts/Model/author.js")"></script>
-    <script src="@Url.Content("~/Scripts/Model/book.js")"></script>
-    <script src="@Url.Content("~/Scripts/ViewModel/authorViewModel.js")"></script>
-    <script src="@Url.Content("~/Scripts/ViewModel/bookViewModel.js")"></script>
-    <script src="@Url.Content("~/Scripts/ViewModel/booksViewModel.js")"></script>
-    <script src="@Url.Content("~/Scripts/BooksNS/books.js")"></script>
-    @*<script src="@Url.Content("~/bundles/Scripts")"></script>*@
+    <script src="@Url.Content("~/bundles/Scripts")"></script>
 
     <script type="text/javascript">
         var webAPIGetAuthorPath = '@(ViewBag.webApiGetAuthorPath)';
@@ -27,13 +20,5 @@
     <div class="container-fluid">
         @RenderBody()
     </div>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            // Initializes the "Global" layer
-            var Books = Books || new BooksNS.books();
-            Books.initializeGlobal();
-        });
-    </script>
 </body>
 </html>
