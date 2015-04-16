@@ -12,7 +12,6 @@ namespace Books.Controllers
     using System.Web;
     using System.Web.Mvc;
     using Books.DomainModel.Domains;
-    using Books.Helpers;
     using Books.ViewModel;
 
     /// <summary>
@@ -81,14 +80,14 @@ namespace Books.Controllers
         ///// <param name="model">The book to create</param>
         ///// <returns>A result of creation</returns>
         [HttpPost]
-        public ActionResult Create(BookViewModel model)
+        public JsonResult Create(BookViewModel model)
         {
             using (this.model = new BookDomainModel())
             {
                 this.model.CreateBook(model);
             }
 
-            return this.RedirectToAction("Index");
+            return Json(new { });
         }
 
         /// <summary>
@@ -117,14 +116,14 @@ namespace Books.Controllers
         /// <param name="model">The book to edit</param>
         /// <returns>A result of editing</returns>
         [HttpPost]
-        public ActionResult Edit(BookViewModel model)
+        public JsonResult Edit(BookViewModel model)
         {
             using (this.model = new BookDomainModel())
             {
                 this.model.EditBook(model);
             }
 
-            return this.RedirectToAction("Index");
+            return Json(new { });
         }
     }
 }
