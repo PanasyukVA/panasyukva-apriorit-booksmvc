@@ -13,7 +13,6 @@ namespace Books.Controllers
     using System.Web;
     using System.Web.Mvc;
     using Books.DomainModel.Domains;
-    using Books.Helpers;
     using Books.ViewModel;
 
     /// <summary>
