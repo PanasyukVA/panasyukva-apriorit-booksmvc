@@ -31,6 +31,7 @@ namespace Books.DomainModel.Domains
         /// </summary>
         public BookDomainModel()
         {
+            Mapper.CreateMap<AuthorViewModel, AuthorServiceModel>();
             Mapper.CreateMap<AuthorServiceModel, AuthorViewModel>();
             Mapper.CreateMap<BookServiceModel, BookViewModel>();
             Mapper.CreateMap<BookViewModel, BookServiceModel>();
