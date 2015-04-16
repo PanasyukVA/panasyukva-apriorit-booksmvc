@@ -109,7 +109,8 @@ namespace BooksWcfServices
                 this.context.Books.Add(new Book()
                 {
                     Name = viewModelBook.BookName,
-                    Authors = this.context.Authors.Where(author => viewModelBook.SelectedAuthors.Contains(SqlFunctions.StringConvert((double?)author.Id).Trim())).ToList()
+                    Authors = this.context.Authors.Where(author => viewModelBook.SelectedAuthors.Contains(SqlFunctions.StringConvert((double?)author.Id).Trim())).ToList(),
+                    PublishDate = DateTime.Now
                 });
                 this.context.SaveChanges();
                 return viewModelBook;
