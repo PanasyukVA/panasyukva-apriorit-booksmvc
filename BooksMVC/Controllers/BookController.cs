@@ -13,6 +13,7 @@ namespace Books.Controllers
     using System.Web.Mvc;
     using Books.DomainModel.Domains;
     using Books.ViewModel;
+    using Books.Models;
 
     /// <summary>
     /// Represents a book controller
@@ -124,6 +125,19 @@ namespace Books.Controllers
             }
 
             return Json(new { });
+        }
+
+        /// <summary>
+        /// Gets view "Using EditorFor"
+        /// </summary>
+        /// <returns>The received view "Using EditorFor"</returns>
+        [HttpGet]
+        public ActionResult IndexEditorFor()
+        {
+            using (this.model = new BookDomainModel())
+            {
+                return this.View("IndexEditorFor", new BookViewModelEditroFor(this.model.GetBook(1), this.model.GetAuthors()));
+            }
         }
     }
 }
