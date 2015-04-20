@@ -1,9 +1,9 @@
-﻿//------------------------------------------------------
+﻿//---------------------------------------------------------
 // <copyright file="BookDomainModel.cs" company="ApriorIT">
 //     Copyright (c) ApriorIT. All rights reserved.
 // </copyright>
 // <author>Vitaliy Panasyuk</author>
-//------------------------------------------------------
+//---------------------------------------------------------
 namespace Books.DomainModel.Domains
 {
     using System;
