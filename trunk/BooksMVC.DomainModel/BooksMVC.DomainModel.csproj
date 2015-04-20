@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Domains\AuthorDomainModel.cs" />
     <Compile Include="Domains\BookDomainModel.cs" />
+    <Compile Include="Domains\BookDomainModelEditorFor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\AuthorWcfService\Reference.cs">
       <AutoGen>True</AutoGen>
