@@ -1,9 +1,9 @@
-﻿//------------------------------------------------------
+﻿//-------------------------------------------------------
 // <copyright file="BookViewModel.cs" company="ApriorIT">
 //     Copyright (c) ApriorIT. All rights reserved.
 // </copyright>
 // <author>Vitaliy Panasyuk</author>
-//------------------------------------------------------
+//-------------------------------------------------------
 namespace Books.ViewModel
 {
     using System;

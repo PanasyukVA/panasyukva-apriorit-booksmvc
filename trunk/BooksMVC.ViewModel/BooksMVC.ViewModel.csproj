@@ -47,8 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthorsEditorFor.cs" />
     <Compile Include="AuthorViewModel.cs" />
     <Compile Include="BookViewModel.cs" />
+    <Compile Include="BookViewModelEditroFor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
