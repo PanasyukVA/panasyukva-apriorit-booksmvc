@@ -1,4 +1,10 @@
-﻿namespace Books
+﻿//------------------------------------------------------
+// <copyright file="BundleConfig.cs" company="ApriorIT">
+//     Copyright (c) ApriorIT. All rights reserved.
+// </copyright>
+// <author>Vitaliy Panasyuk</author>
+//------------------------------------------------------
+namespace Books
 {
     #region
     using System.Web;
@@ -13,7 +19,6 @@
     {
         /// <summary>
         /// Registers Bundling.
-        /// For more information on Bundling, visit http://go.microsoft.com/fwlink/?LinkId=254725
         /// </summary>
         /// <param name="bundles">Collection of bundles to register.</param>
         public static void RegisterBundles(BundleCollection bundles)
@@ -22,7 +27,9 @@
 
             bundles.Add(new StyleBundle("~/bundles/Content").Include(
                         "~/Content/Books.css",
-                        "~/Content/bootstrap.css"));
+                        "~/Content/bootstrap.css",
+                        "~/Content/bootstrap-multiselect.css",
+                        "~/Content/bootstrap.min.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
@@ -35,7 +42,8 @@
                         "~/Scripts/bootstrap.js",
                         "~/Scripts/bootstrap.min.js",
                         "~/Scripts/jquery.validate.mizxn.js",
-                        "~/Scripts/jquery.validate.unobtrusive.min.js"));
+                        "~/Scripts/jquery.validate.unobtrusive.min.js",
+                        "~/Scripts/bootstrap-multiselect.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
                         "~/Scripts/knockout-{version}.js"));

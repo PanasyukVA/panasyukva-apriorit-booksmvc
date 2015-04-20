@@ -25,7 +25,7 @@ namespace Books.Controllers
         /// <param name="filterContext">A context to handle the error</param>
         protected override void OnException(ExceptionContext filterContext)
         {
-            if (IsAjax(filterContext))
+            if (this.IsAjax(filterContext))
             {
                 filterContext.Result = new JsonResult()
                 {
