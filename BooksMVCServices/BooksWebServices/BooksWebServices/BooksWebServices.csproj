@@ -14,7 +14,7 @@
     <RootNamespace>BooksWebServices</RootNamespace>
     <AssemblyName>BooksWebServices</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -38,11 +38,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BooksMVC.DAL">
-      <HintPath>..\..\..\BooksMVC.DAL\bin\Debug\BooksMVC.DAL.dll</HintPath>
+    <Reference Include="Books.DataAccessLayer">
+      <HintPath>..\..\..\BooksMVC.DAL\bin\Debug\Books.DataAccessLayer.dll</HintPath>
     </Reference>
-    <Reference Include="BooksMVC.ViewModel">
-      <HintPath>..\..\..\BooksMVC.ViewModel\bin\Debug\BooksMVC.ViewModel.dll</HintPath>
+    <Reference Include="Books.ViewModel">
+      <HintPath>..\..\..\BooksMVC.ViewModel\bin\Debug\Books.ViewModel.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\..\..\BooksMVC.DAL\bin\Debug\EntityFramework.dll</HintPath>
@@ -105,7 +105,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>0</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:51219/</IISUrl>
+          <IISUrl>http://localhost/BooksWebServices</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

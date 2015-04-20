@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
-using BooksMVC.DAL;
-using BooksMVC.ViewModel;
+using Books.DataAccessLayer;
+using Books.ViewModel;
 
 namespace BooksWebServices
 {
@@ -23,14 +23,14 @@ namespace BooksWebServices
         {
             using (context = new SelfEducationEntities())
             {
-                return context.Authors.Where(author => author.ID == authorId).Select(author => new
+                return context.Authors.Where(author => author.Id == authorId).Select(author => new
                 {
-                    AuthorID = author.ID,
+                    AuthorId = author.Id,
                     AuthorName = author.Name,
                     Books = author.Books.Select(book => book.Name)
                 }).ToList().Select(author => new AuthorViewModel()
                 {
-                    AuthorID = author.AuthorID,
+                    AuthorId = author.AuthorId,
                     AuthorName = author.AuthorName,
                     Books = author.Books.Aggregate((currernt, next) => currernt + ", " + next)
                 }).First();
@@ -53,7 +53,7 @@ namespace BooksWebServices
         {
             using (context = new SelfEducationEntities())
             {
-                Author DALAuthor = context.Authors.Where(author => author.ID == vmAuthor.AuthorID).First();
+                Author DALAuthor = context.Authors.Where(author => author.Id == vmAuthor.AuthorId).First();
                 DALAuthor.Name = vmAuthor.AuthorName;
                 context.SaveChanges();
                 return vmAuthor;
