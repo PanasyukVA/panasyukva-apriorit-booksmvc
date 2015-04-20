@@ -1,0 +1,44 @@
+﻿@model Books.ViewModel.BookViewModelEditroFor
+
+@{
+    ViewBag.Title = "Using EditorFor";
+    Layout = "~/Views/_BaseLayout.cshtml";
+}
+
+<h2>Using EditorFor</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Book</legend>
+
+        <div class="form-group">
+            @Html.EditorFor(model => model.BookId)
+            @Html.ValidationMessageFor(model => model.BookId)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BookName):
+            @Html.TextBoxFor(model => model.BookName, new { @class = "form-control", placeholder = "Please, enter a book name" })
+            @Html.ValidationMessageFor(model => model.BookName)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Authors):
+            @Html.EditorFor(model => model.Authors)
+            @Html.ValidationMessageFor(model => model.Authors)
+        </div>
+    </fieldset>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(document).ready(function () {
+            var Books = Books || new BooksNS.books();
+            Books.initializeEditorFor();
+        });
+    });
+</script>
