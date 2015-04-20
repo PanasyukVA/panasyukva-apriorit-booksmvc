@@ -28,7 +28,6 @@ namespace Books
             bundles.Add(new StyleBundle("~/bundles/Content").Include(
                         "~/Content/Books.css",
                         "~/Content/bootstrap.css",
-                        "~/Content/bootstrap-multiselect.css",
                         "~/Content/bootstrap.min.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
@@ -40,10 +39,7 @@ namespace Books
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                         "~/Scripts/bootstrap.js",
-                        "~/Scripts/bootstrap.min.js",
-                        "~/Scripts/jquery.validate.mizxn.js",
-                        "~/Scripts/jquery.validate.unobtrusive.min.js",
-                        "~/Scripts/bootstrap-multiselect.js"));
+                        "~/Scripts/bootstrap.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
                         "~/Scripts/knockout-{version}.js"));
