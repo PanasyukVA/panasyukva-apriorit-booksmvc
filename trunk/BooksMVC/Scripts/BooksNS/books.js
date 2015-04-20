@@ -10,6 +10,14 @@ var BooksNS = BooksNS || {};
 
 // The books class
 BooksNS.books = function () {
+    // Initializes Edit by using EditorFor
+    this.initializeEditorFor = function () {
+        //$('#Authors_SelectedAuthors').multiselect({
+        //    includeSelectAllOption: true,
+        //    enableFiltering: true
+        //});
+    }
+
     // Initializes all layers
     this.initialize = function () {
         $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);

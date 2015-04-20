@@ -29,7 +29,7 @@ namespace Books
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Book", action = "IndexEditorFor", id = UrlParameter.Optional });
+                defaults: new { controller = "Book", action = "EditEditorFor", id = UrlParameter.Optional });
         }
     }
 }

@@ -13,17 +13,21 @@ namespace Books.Controllers
     using System.Web.Mvc;
     using Books.DomainModel.Domains;
     using Books.ViewModel;
-    using Books.Models;
-
+    
     /// <summary>
     /// Represents a book controller
     /// </summary>
     public class BookController : BooksControllerBase
     {
         /// <summary>
-        /// Represents a book domain model
+        /// Represents the book domain model
         /// </summary>
         private BookDomainModel model;
+
+        /// <summary>
+        /// Represents the book domain model by using "EditorFor" 
+        /// </summary>
+        private BookDomainModelEditorFor modelEditorFor;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BookController" /> class
@@ -56,7 +60,7 @@ namespace Books.Controllers
         {
             using (this.model = new BookDomainModel())
             {
-                return Json(model.GetBooks(), JsonRequestBehavior.AllowGet);
+                return this.Json(this.model.GetBooks(), JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -70,16 +74,16 @@ namespace Books.Controllers
         {
             using (this.model = new BookDomainModel())
             {
-                return Json(this.model.GetAuthors(), JsonRequestBehavior.AllowGet);
+                return this.Json(this.model.GetAuthors(), JsonRequestBehavior.AllowGet);
             }
         }
 
-        ///// <summary>
-        ///// Creates a book
-        ///// POST: /Book/Create
-        ///// </summary>
-        ///// <param name="model">The book to create</param>
-        ///// <returns>A result of creation</returns>
+        /// <summary>
+        /// Creates a book
+        /// POST: /Book/Create
+        /// </summary>
+        /// <param name="model">The book to create</param>
+        /// <returns>A result of creation</returns>
         [HttpPost]
         public JsonResult Create(BookViewModel model)
         {
@@ -88,7 +92,7 @@ namespace Books.Controllers
                 this.model.CreateBook(model);
             }
 
-            return Json(new { });
+            return this.Json(new { });
         }
 
         /// <summary>
@@ -102,11 +106,7 @@ namespace Books.Controllers
         {
             using (this.model = new BookDomainModel())
             {
-                return Json(new 
-                { 
-                    book = this.model.GetBook(id), 
-                    allAuthors = this.model.GetAuthors()
-                }, JsonRequestBehavior.AllowGet);
+                return this.Json(new { book = this.model.GetBook(id), allAuthors = this.model.GetAuthors() }, JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -124,7 +124,7 @@ namespace Books.Controllers
                 this.model.EditBook(model);
             }
 
-            return Json(new { });
+            return this.Json(new { });
         }
 
         /// <summary>
@@ -132,11 +132,11 @@ namespace Books.Controllers
         /// </summary>
         /// <returns>The received view "Using EditorFor"</returns>
         [HttpGet]
-        public ActionResult IndexEditorFor()
+        public ActionResult EditEditorFor()
         {
-            using (this.model = new BookDomainModel())
+            using (this.modelEditorFor = new BookDomainModelEditorFor())
             {
-                return this.View("IndexEditorFor", new BookViewModelEditroFor(this.model.GetBook(1), this.model.GetAuthors()));
+                return this.View("EditEditorFor", this.modelEditorFor.GetBook(1));
             }
         }
     }
