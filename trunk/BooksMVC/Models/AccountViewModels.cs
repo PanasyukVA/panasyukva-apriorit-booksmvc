@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace ASPNETIdentity.Models
+namespace Books.Models
 {
     public class ExternalLoginListViewModel
     {
