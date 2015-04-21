@@ -21,7 +21,7 @@ namespace Books.ViewModel
         /// </summary>
         /// <param name="viewModel">The book view model</param>
         /// <param name="allAuthors">The list of all authors</param>
-        public BookViewModelEditroFor(BookViewModel viewModel, ICollection<AuthorViewModel> allAuthors)
+        public BookViewModelEditroFor(BookViewModel viewModel, ICollection<AuthorViewModel> allAuthors) : base()
         {
             this.BookId = viewModel.BookId;
             this.BookName = viewModel.BookName;
