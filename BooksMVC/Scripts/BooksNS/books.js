@@ -12,10 +12,7 @@ var BooksNS = BooksNS || {};
 BooksNS.books = function () {
     // Initializes Edit by using EditorFor
     this.initializeEditorFor = function () {
-        //$('#Authors_SelectedAuthors').multiselect({
-        //    includeSelectAllOption: true,
-        //    enableFiltering: true
-        //});
+        $('#Authors_SelectedAuthors').SumoSelect();
     }
 
     // Initializes all layers
