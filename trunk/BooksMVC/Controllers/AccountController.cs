@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Books.Models;
+using System.Collections.Generic;
 
 namespace Books.Controllers
 {
@@ -163,7 +164,7 @@ namespace Books.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Book");
                 }
                 AddErrors(result);
             }
@@ -392,7 +393,7 @@ namespace Books.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Book");
         }
 
         //
@@ -423,6 +424,20 @@ namespace Books.Controllers
             base.Dispose(disposing);
         }
 
+        [Authorize(Roles = "Admin")]
+        public ActionResult Index()
+        {
+            var Db = new ApplicationDbContext();
+            var users = Db.Users;
+            var model = new List<EditUserViewModel>();
+            foreach (var user in users)
+            {
+                var u = new EditUserViewModel(user);
+                model.Add(u);
+            }
+            return View(model);
+        }
+
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
@@ -449,7 +464,7 @@ namespace Books.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Book");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

@@ -19,8 +19,25 @@
     </script>
 </head>
 <body>
-    <div class="container-fluid">
+    <div class="navbar navbar-default">
+        <div class="navbar-header">
+            @Html.ActionLink("Books", "Index", "Book", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">@Html.ActionLink("Book list", "Index", "Book", new { area = "" })</li>
+                <li>@Html.ActionLink("Users", "Index", "Account")</li>
+                <li>@Html.ActionLink("Roles", "Index", "Roles")</li>
+            </ul>
+            @Html.Partial("_LoginPartial")
+        </div>
+    </div>
+    <div class="body-content">
         @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Books</p>
+        </footer>
     </div>
 </body>
 </html>
