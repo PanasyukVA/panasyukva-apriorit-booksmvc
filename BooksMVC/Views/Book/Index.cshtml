@@ -71,21 +71,39 @@
                         <td data-bind="text: bookName"></td>
                         <td data-bind="with: bookAuthors">
                             <!-- ko foreach: $data -->
-                            <a class=" btn btn-link" id="aEditAuthor" href="#" data-bind="text: AuthorName, attr: { 'data-authorid': AuthorId }">
-                            </a>
+                            @if (Request.IsAuthenticated)
+                            {
+                                <a class=" btn btn-link" id="aEditAuthor" href="#" data-bind="text: AuthorName, attr: { 'data-authorid': AuthorId }">
+                                </a>
+                            }
+                            else
+                            {
+                                <span data-bind="text: AuthorName, attr: { 'data-authorid': AuthorId }">
+                                </span>
+                            }
                             <!-- ko if: ($index() !== ($parent.length - 1)) -->
                             ,
                             <!-- /ko -->
                             <!-- /ko -->
                         </td>
                         <td>
-                            <button title="Click the button to edit the book" class="btn btn-primary btn-sm" id="btnEditBook" type="button" data-bind="attr: { 'data-bookid': bookId }">
+                            <button @{ if (!Request.IsAuthenticated) { <text>disabled="disabled"</text> } } title="Click the button to edit the book" class="btn btn-primary btn-sm" id="btnEditBook" type="button" data-bind="attr: { 'data-bookid': bookId }">
                                 <span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;&nbsp;Edit
                             </button>
                         </td>
                     </tr>
                 </tbody>
             </table>
+
+            <!-- Global operations -->
+            <p class="btn-group">
+                <button @{ if (!Request.IsAuthenticated) { <text> disabled="disabled" </text>   } } class="btn btn-primary" id="btnCreateBook">
+                    <span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;&nbsp;Add book
+                </button>
+                <button @{ if (!Request.IsAuthenticated) { <text> disabled="disabled" </text>   } } class="btn btn-primary" id="btnCreateAuthor">
+                    <span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;&nbsp;Add author
+                </button>
+            </p>
         </div>
 
         <!-- Author layer -->
@@ -123,16 +141,6 @@
                 </p>
             </fieldset>
         </div>
-
-        <!-- Global operations -->
-        <p class="btn-group">
-            <button class="btn btn-primary" id="btnCreateBook">
-                <span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;&nbsp;Add book
-            </button>
-            <button class="btn btn-primary" id="btnCreateAuthor">
-                <span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;&nbsp;Add author
-            </button>
-        </p>
     </div>
 </div>
 <script type="text/javascript">
