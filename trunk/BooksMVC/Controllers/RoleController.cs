@@ -16,14 +16,14 @@ namespace Books.Controllers
             var rolesList = new List<RoleViewModel>();
             foreach (var role in _db.Roles)
             {
-                var roleModel = new RoleViewModel(role);
+                var roleModel = new RoleViewModel((ApplicationRole)role);
                 rolesList.Add(roleModel);
             }
             return View(rolesList);
         }
 
 
-        [Authorize(Roles = "Admin")]
+        // [Authorize(Roles = "Admin")]
         public ActionResult Create(string message = "")
         {
             ViewBag.Message = message;
@@ -32,7 +32,7 @@ namespace Books.Controllers
 
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        // [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include =
             "RoleName,Description")]RoleViewModel model)
         {
@@ -61,7 +61,7 @@ namespace Books.Controllers
         {
             // It's actually the Role.Name tucked into the id param:
             var role = _db.Roles.First(r => r.Name == id);
-            var roleModel = new EditRoleViewModel(role);
+            var roleModel = new EditRoleViewModel((ApplicationRole)role);
             return View(roleModel);
         }
 
@@ -75,7 +75,6 @@ namespace Books.Controllers
             {
                 var role = _db.Roles.First(r => r.Name == model.OriginalRoleName);
                 role.Name = model.RoleName;
-                role.Description = model.Description;
                 _db.Entry(role).State = EntityState.Modified;
                 _db.SaveChanges();
                 return RedirectToAction("Index");
@@ -92,7 +91,7 @@ namespace Books.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var role = _db.Roles.First(r => r.Name == id);
-            var model = new RoleViewModel(role);
+            var model = new RoleViewModel((ApplicationRole)role);
             if (role == null)
             {
                 return HttpNotFound();

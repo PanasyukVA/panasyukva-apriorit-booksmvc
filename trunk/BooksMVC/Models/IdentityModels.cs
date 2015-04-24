@@ -19,15 +19,19 @@ namespace Books.Models
             // Add custom user claims here
             return userIdentity;
         }
+    }
 
-        [Required]
-        public string FirstName { get; set; }
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    {
+        public ApplicationDbContext()
+            : base("DefaultConnection", throwIfV1Schema: false)
+        {
+        }
 
-        [Required]
-        public string LastName { get; set; }
-
-        [Required]
-        public string Email { get; set; }
+        public static ApplicationDbContext Create()
+        {
+            return new ApplicationDbContext();
+        }
     }
 
     public class IdentityManager
@@ -70,17 +74,17 @@ namespace Books.Models
         }
 
 
-        //public void ClearUserRoles(string userId)
-        //{
-        //    var user = _userManager.FindById(userId);
-        //    var currentRoles = new List<IdentityUserRole>();
+        public void ClearUserRoles(string userId)
+        {
+            var user = _userManager.FindById(userId);
+            var currentRoles = new List<IdentityUserRole>();
 
-        //    currentRoles.AddRange(user.Roles);
-        //    foreach (var role in currentRoles)
-        //    {
-        //        _userManager.RemoveFromRole(userId, role.Role.Name);
-        //    }
-        //}
+            currentRoles.AddRange(user.Roles);
+            foreach (var role in currentRoles)
+            {
+                _userManager.RemoveFromRole(userId, role.ToString());
+            }
+        }
 
 
         public void RemoveFromRole(string userId, string roleName)
