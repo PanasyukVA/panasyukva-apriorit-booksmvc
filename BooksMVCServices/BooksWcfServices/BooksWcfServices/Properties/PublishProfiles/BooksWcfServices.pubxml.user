@@ -7,5 +7,35 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword />
+    <_PublishTargetUrl>C:\inetpub\wwwroot\BooksWcfServices</_PublishTargetUrl>
   </PropertyGroup>
+  <ItemGroup>
+    <File Include="AuthorWcfService.svc">
+      <publishTime>06/01/2015 22:43:45</publishTime>
+    </File>
+    <File Include="bin/Books.DataAccessLayer.dll">
+      <publishTime>06/02/2015 22:09:01</publishTime>
+    </File>
+    <File Include="bin/Books.DataAccessLayer.pdb">
+      <publishTime>06/02/2015 22:09:01</publishTime>
+    </File>
+    <File Include="bin/BooksWcfServices.dll">
+      <publishTime>06/02/2015 22:13:29</publishTime>
+    </File>
+    <File Include="bin/BooksWcfServices.pdb">
+      <publishTime>06/02/2015 22:13:29</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>06/01/2015 22:44:04</publishTime>
+    </File>
+    <File Include="BooksWcfServices.snk">
+      <publishTime>06/01/2015 22:43:46</publishTime>
+    </File>
+    <File Include="BookWcfService.svc">
+      <publishTime>06/01/2015 22:43:46</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>06/02/2015 22:18:43</publishTime>
+    </File>
+  </ItemGroup>
 </Project>
