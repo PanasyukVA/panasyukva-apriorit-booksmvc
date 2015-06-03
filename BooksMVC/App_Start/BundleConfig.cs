@@ -29,7 +29,8 @@ namespace Books
                         "~/Content/Books.css",
                         "~/Content/bootstrap.css",
                         "~/Content/bootstrap.min.css",
-                        "~/Content/sumoselect.css"));
+                        "~/Content/sumoselect.css",
+                        "~/Content/jquery.growl.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
@@ -37,7 +38,8 @@ namespace Books
                         "~/Scripts/jquery.blockUI.js",
                         "~/Scripts/jquery.validate.mizxn.js",
                         "~/Scripts/jquery.validate.unobtrusive.min.js",
-                        "~/Scripts/jquery.sumoselect.min.js"));
+                        "~/Scripts/jquery.sumoselect.min.js",
+                        "~/Scripts/jquery.growl.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                         "~/Scripts/bootstrap.js",
