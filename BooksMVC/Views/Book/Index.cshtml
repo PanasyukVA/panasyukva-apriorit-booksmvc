@@ -6,6 +6,42 @@
 
 <div id="container">
     <div role="main">
+        <!-- Results layer -->
+        <!-- Author modal result -->
+        <div class="modal fade" id="authorResultModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Information</h4>
+                    </div>
+                    <div class="modal-body">
+                        The author successfully created / edited.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnOkAuthorResult" class="btn btn-success" data-dismiss="modal">Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Book modal result -->
+        <div class="modal fade" id="bookResultModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Information</h4>
+                    </div>
+                    <div class="modal-body">
+                        The book successfully created / edited.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnOkBookResult" class="btn btn-success" data-dismiss="modal">Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Book layer -->
         <div id="bookLayer" style="display: none;" data-bind="with: bookViewModel">
             <fieldset>
