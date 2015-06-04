@@ -45,12 +45,14 @@ BooksNS.books = function () {
     function initializeBook() {
         $("#btnCancelBook").click(function () { $("#bookLayer").slideUp(1000); });
         $("#btnSubmitBook").click(createEditBook);
+        $("#btnOkBookResult").click(function () { location.reload(true); });
     }
 
     // Initializes the "Author" layer
     function initializeAuthor() {
         $("#btnCancelAuthor").click(function () { $("#authorLayer").slideUp(1000); });
         $("#btnSubmitAuthor").click(createEditAuthor);
+        $("#btnOkAuthorResult").click(function () { location.reload(true); });
     }
 
     // Gets books
@@ -132,7 +134,7 @@ BooksNS.books = function () {
             type: "POST",
             cache: false,
             dataType: "json",
-            success: function () { location.reload(true); },
+            success: function () { $('#authorResultModal').modal('show'); },
             error: function (jqXHR, textStatus, errorThrown) { layerErrorHandling(jqXHR, "authorLayer"); }
         });
     }
@@ -160,7 +162,7 @@ BooksNS.books = function () {
             dataType: "json",
             contentType: "application/json"
         })
-            .done(function () { location.reload(true); })
+            .done(function () { $('#bookResultModal').modal('show') })
             .fail(function (jqXHR, textStatus, errorThrown) { layerErrorHandling(jqXHR, "bookLayer"); });
     }
 
