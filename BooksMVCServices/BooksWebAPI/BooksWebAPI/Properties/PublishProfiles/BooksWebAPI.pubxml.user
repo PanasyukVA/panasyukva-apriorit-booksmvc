@@ -6,50 +6,50 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\inetpub\wwwroot\BooksWepAPI</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\inetpub\wwwroot\BooksWebAPI</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Books.DataAccessLayer.dll">
-      <publishTime>06/05/2015 10:29:35</publishTime>
+      <publishTime>06/05/2015 12:08:21</publishTime>
     </File>
     <File Include="bin/Books.Infrastructure.dll">
-      <publishTime>06/05/2015 10:29:31</publishTime>
+      <publishTime>06/05/2015 12:07:13</publishTime>
     </File>
     <File Include="bin/Books.ViewModel.dll">
-      <publishTime>06/05/2015 10:48:29</publishTime>
+      <publishTime>06/05/2015 12:09:32</publishTime>
     </File>
     <File Include="bin/BooksWebApi.dll">
-      <publishTime>06/05/2015 10:48:39</publishTime>
+      <publishTime>06/05/2015 12:10:45</publishTime>
     </File>
     <File Include="bin/BooksWebApi.DomainModel.dll">
-      <publishTime>06/05/2015 10:48:30</publishTime>
+      <publishTime>06/05/2015 12:09:33</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
-      <publishTime>06/05/2015 10:21:30</publishTime>
+      <publishTime>06/05/2015 12:01:04</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
-      <publishTime>06/05/2015 10:21:20</publishTime>
+      <publishTime>06/05/2015 12:00:57</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
-      <publishTime>06/05/2015 10:21:16</publishTime>
+      <publishTime>06/05/2015 12:00:50</publishTime>
     </File>
     <File Include="bin/System.Web.Http.dll">
-      <publishTime>06/05/2015 10:21:17</publishTime>
+      <publishTime>06/05/2015 12:00:51</publishTime>
     </File>
     <File Include="bin/System.Web.Http.WebHost.dll">
-      <publishTime>06/05/2015 10:21:17</publishTime>
+      <publishTime>06/05/2015 12:00:51</publishTime>
     </File>
     <File Include="BooksWebApi.snk">
-      <publishTime>06/05/2015 10:21:15</publishTime>
+      <publishTime>06/05/2015 12:00:49</publishTime>
     </File>
     <File Include="Global.asax">
-      <publishTime>06/05/2015 10:21:15</publishTime>
+      <publishTime>06/05/2015 12:00:49</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>06/05/2015 10:21:15</publishTime>
+      <publishTime>06/05/2015 12:00:49</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/05/2015 10:37:27</publishTime>
+      <publishTime>06/05/2015 12:10:45</publishTime>
     </File>
   </ItemGroup>
 </Project>
